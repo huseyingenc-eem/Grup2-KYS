@@ -21,7 +21,8 @@ namespace KYS.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["ESMA"]?.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
