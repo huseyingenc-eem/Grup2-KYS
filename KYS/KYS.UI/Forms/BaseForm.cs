@@ -72,6 +72,15 @@ namespace KYS.UI.Forms
                             chk.Checked = false;
                         }
 
+                        if (t is ComboBox)
+                        {
+                            ComboBox cmb = t as ComboBox;
+                            if (cmb.Items.Count > 0)
+                                cmb.SelectedIndex = 0; 
+                            else
+                                cmb.SelectedIndex = -1; 
+                        }
+
                     }
                 }
 
@@ -97,6 +106,15 @@ namespace KYS.UI.Forms
                      DateTimePicker dtp = item as DateTimePicker;
                      dtp.Value = DateTime.Now; 
                  }
+
+                if (item is ComboBox)
+                {
+                    ComboBox cmb = item as ComboBox;
+                    if (cmb.Items.Count > 0)
+                        cmb.SelectedIndex = 0; 
+                    else
+                        cmb.SelectedIndex = -1; 
+                }
             }
         }
     }
