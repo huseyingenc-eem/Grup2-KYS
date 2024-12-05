@@ -98,7 +98,7 @@ namespace KYS.UI.Forms
                 }
                 else
                 {
-                    MessageBox.Show("Lütfen bir şirket seçiniz");
+                    MessageBox.Show("Lütfen bir yazar seçiniz");
                 }
             }
             catch (Exception ex)
