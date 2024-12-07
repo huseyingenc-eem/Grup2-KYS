@@ -30,3 +30,54 @@ UI Layer:
 Entityler üzerinde herhangi bir deðiþiklik yapýldýðýnda aþaðýdaki komutlar sýrasý ile çalýþtýrýlýr:
 5-add-migration <FirstInitialize>
 6-update-database
+
+
+
+Yapýlacak Listesi:
+
+Bilinmesi Gerekenler: UserForm ve Admin de UserEntity kullanýrken örneðin kitap ödünç alýrken falan deðiþken olarak
+	SessionManager.CurrentUser kullanýn noktaya bastiðiniza giriþ yapan kullanýcýnýn User özellikleri gelecek. o yüzden kullancýý textboxlarý oluþturup setlemenize gerek yok. SessionManager.CurrentUser ile setleyebilirsiniz.
+
+Admin Panel Formlarý
+
+AdminPanelForms Klasörü:
+
+	AdminPanelForm.cs --Yapýlmadý. En Son Yapýlacak.
+
+	BookForm.cs --Yapýldý.
+
+	BookTypeForm.cs  --Yapýlmadý. Yapacak Kiþi:Hüseyin
+
+	PublisherForm.cs --Yapýldý. 
+
+	ReportForm.cs  --Yapýlmadý. Beklesin en son bakarýz.
+
+	DuyuruForm.cs --Yapýlmadý Yapacak Kiþi:Esma
+	{
+		baseformdan türetme. kendi tasarýmýný yapar mýsýn?
+	}
+
+	AuthorForm.cs --Yapýldý.
+
+	BorrowRecord --yapýlmadý.
+
+
+Kullanýcý Panel Formlarý
+
+UserPanelForms Klasörü:
+
+	UserPanelForm.cs --Yapýlmadý. en son yapýlacak
+
+	BookDetailForm.cs --Yapýlmadý. Yapacak Kiþi: Hüseyin
+
+	AuthorDetailsForm.cs --yapýlmadý. Yapacak Kiþi: Özlem
+
+	ProfileForm.cs --Yapýlmadý. Yapacak Kiþi: Esmanur
+
+	BorrowRecordDetailForm.cs --Yapýlmadý. Yapacak Kiþi:Eda
+
+Ortak Kullanýlabilecek Formlar
+CommonForms Klasörü:
+
+	UserForm.cs   --Yapýldý.
+	

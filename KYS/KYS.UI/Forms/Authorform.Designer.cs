@@ -139,7 +139,7 @@
             // 
             // btnSelectPhoto
             // 
-            btnSelectPhoto.Location = new Point(9, 575);
+            btnSelectPhoto.Location = new Point(12, 614);
             btnSelectPhoto.Name = "btnSelectPhoto";
             btnSelectPhoto.Size = new Size(148, 43);
             btnSelectPhoto.TabIndex = 17;

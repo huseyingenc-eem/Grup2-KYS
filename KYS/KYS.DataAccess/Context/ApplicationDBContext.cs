@@ -21,13 +21,11 @@ namespace KYS.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["ESMA"]?.ConnectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //DB tablolarımız oluşturulurken onlara müdehale edebiliriz.
 
             //OrderDetail tablosunun ID alınını iptal edeceğiz:
             modelBuilder.Entity<BorrowRecord>().Ignore(x => x.Id);

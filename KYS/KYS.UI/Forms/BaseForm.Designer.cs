@@ -92,6 +92,7 @@
             Margin = new Padding(5, 6, 5, 6);
             Name = "BaseForm";
             Text = "BaseForm";
+            Load += BaseForm_Load;
             ResumeLayout(false);
         }
 

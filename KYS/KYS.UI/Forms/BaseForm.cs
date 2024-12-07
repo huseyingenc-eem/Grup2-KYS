@@ -63,7 +63,7 @@ namespace KYS.UI.Forms
                         if (t is DateTimePicker)
                         {
                             DateTimePicker dtp = t as DateTimePicker;
-                            dtp.Value = DateTime.Now; 
+                            dtp.Value = DateTime.Now;
                         }
 
                         if (t is CheckBox)
@@ -76,9 +76,9 @@ namespace KYS.UI.Forms
                         {
                             ComboBox cmb = t as ComboBox;
                             if (cmb.Items.Count > 0)
-                                cmb.SelectedIndex = 0; 
+                                cmb.SelectedIndex = 0;
                             else
-                                cmb.SelectedIndex = -1; 
+                                cmb.SelectedIndex = -1;
                         }
 
                     }
@@ -101,21 +101,26 @@ namespace KYS.UI.Forms
                     mbox.Clear();  // MaskedTextBox'ı temizliyoruz
                 }
 
-                 if (item is DateTimePicker)
-                 {
-                     DateTimePicker dtp = item as DateTimePicker;
-                     dtp.Value = DateTime.Now; 
-                 }
+                if (item is DateTimePicker)
+                {
+                    DateTimePicker dtp = item as DateTimePicker;
+                    dtp.Value = DateTime.Now;
+                }
 
                 if (item is ComboBox)
                 {
                     ComboBox cmb = item as ComboBox;
                     if (cmb.Items.Count > 0)
-                        cmb.SelectedIndex = 0; 
+                        cmb.SelectedIndex = 0;
                     else
-                        cmb.SelectedIndex = -1; 
+                        cmb.SelectedIndex = -1;
                 }
             }
+        }
+
+        private void BaseForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

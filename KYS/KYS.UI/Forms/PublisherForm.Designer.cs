@@ -71,9 +71,9 @@
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(33, 285);
+            lstListe.Location = new Point(33, 225);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(542, 424);
+            lstListe.Size = new Size(542, 184);
             lstListe.TabIndex = 8;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 

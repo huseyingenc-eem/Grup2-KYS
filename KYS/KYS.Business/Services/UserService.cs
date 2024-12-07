@@ -69,5 +69,16 @@ namespace KYS.Business.Services
                 throw new Exception(sb.ToString());
             }
         }
+        public User Authenticate(string username, string password)
+        {
+            // Veritabanında kullanıcı sorgulama
+            var user = _uRepository.GetAll().FirstOrDefault(u => u.Username == username && u.Password == password);
+
+            // Kullanıcı yoksa hata fırlat
+            if (user == null)
+                throw new Exception("Kullanıcı adı veya şifre yanlış.");
+
+            return user;
+        }
     }
 }
