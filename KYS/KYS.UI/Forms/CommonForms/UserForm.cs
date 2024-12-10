@@ -129,6 +129,7 @@ namespace KYS.UI.Forms
         {
             try
             {
+
                 if (_userService
                     .IfEntityExists(x => x.Username == txtUserName.Text ||
                                     x.Email == txtEmail.Text))

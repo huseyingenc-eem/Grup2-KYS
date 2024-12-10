@@ -36,9 +36,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Forms\AdminPanelForms\" />
-    <Folder Include="Forms\UserPanelForms\" />
-  </ItemGroup>
-
 </Project>

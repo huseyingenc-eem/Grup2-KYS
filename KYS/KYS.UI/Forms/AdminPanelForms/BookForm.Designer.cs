@@ -38,7 +38,6 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
-            chckMevcutMu = new CheckBox();
             lstListe = new ListBox();
             txtName = new TextBox();
             txtPublishedYear = new TextBox();
@@ -145,22 +144,11 @@
             label10.TabIndex = 13;
             label10.Text = "Kitap Açıklaması :";
             // 
-            // chckMevcutMu
-            // 
-            chckMevcutMu.AutoSize = true;
-            chckMevcutMu.Location = new Point(536, 712);
-            chckMevcutMu.Name = "chckMevcutMu";
-            chckMevcutMu.Size = new Size(366, 34);
-            chckMevcutMu.TabIndex = 15;
-            chckMevcutMu.Text = "Kitap Mevcut/Kitap Bulunmamakta";
-            chckMevcutMu.UseVisualStyleBackColor = true;
-            chckMevcutMu.CheckedChanged += chckMevcutMu_CheckedChanged;
-            // 
             // lstListe
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(588, 395);
+            lstListe.Location = new Point(559, 403);
             lstListe.Name = "lstListe";
             lstListe.Size = new Size(314, 244);
             lstListe.TabIndex = 16;
@@ -184,6 +172,7 @@
             // 
             txtISBN.Location = new Point(234, 269);
             txtISBN.Name = "txtISBN";
+            txtISBN.ReadOnly = true;
             txtISBN.Size = new Size(287, 36);
             txtISBN.TabIndex = 19;
             // 
@@ -213,7 +202,7 @@
             txtDescription.Location = new Point(234, 445);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(316, 194);
+            txtDescription.Size = new Size(287, 194);
             txtDescription.TabIndex = 23;
             // 
             // cmbAuthor
@@ -255,7 +244,7 @@
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(588, 102);
+            pictureBoxPhoto.Location = new Point(559, 93);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(314, 256);
             pictureBoxPhoto.TabIndex = 28;
@@ -279,7 +268,6 @@
             Controls.Add(txtPublishedYear);
             Controls.Add(txtName);
             Controls.Add(lstListe);
-            Controls.Add(chckMevcutMu);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -304,7 +292,6 @@
             Controls.SetChildIndex(label8, 0);
             Controls.SetChildIndex(label9, 0);
             Controls.SetChildIndex(label10, 0);
-            Controls.SetChildIndex(chckMevcutMu, 0);
             Controls.SetChildIndex(lstListe, 0);
             Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(txtPublishedYear, 0);
@@ -335,7 +322,6 @@
         private Label label8;
         private Label label9;
         private Label label10;
-        private CheckBox chckMevcutMu;
         private ListBox lstListe;
         private TextBox txtName;
         private TextBox txtPublishedYear;

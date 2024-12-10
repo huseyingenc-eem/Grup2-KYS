@@ -4,6 +4,7 @@ using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
 using KYS.UI.Forms.PanelForms;
 using KYS.UI.Forms;
+using KYS.UI.Forms.UserPanelForms;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KYS.UI
@@ -28,7 +29,9 @@ namespace KYS.UI
 
             // Uygulamayý baþlat
             ApplicationConfiguration.Initialize();
+
             Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            //Application.Run(new BookDetailForm());
         }
 
         static void EnsureAdminExists()

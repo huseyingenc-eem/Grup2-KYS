@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace KYS.DataAccess.Context
 {
-    public class ApplicationDBContext:DbContext
+    public class ApplicationDBContext : DbContext
     {
 
         // buraya aşağıdaki yorum satırı gibi entity eklemeleri yapılacak.
@@ -24,6 +24,9 @@ namespace KYS.DataAccess.Context
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
         }
 
+        
+            
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -31,7 +34,8 @@ namespace KYS.DataAccess.Context
             modelBuilder.Entity<BorrowRecord>().Ignore(x => x.Id);
 
             //Bunun yerine ProductID ve OrderID alanlarını Composite Key yapacağız:
-            modelBuilder.Entity<BorrowRecord>().HasKey(b => new {
+            modelBuilder.Entity<BorrowRecord>().HasKey(b => new
+            {
                 b.BookID,
                 b.UserID
             });
@@ -39,7 +43,8 @@ namespace KYS.DataAccess.Context
             modelBuilder.Entity<Comment>().Ignore(x => x.Id);
 
             //Bunun yerine ProductID ve OrderID alanlarını Composite Key yapacağız:
-            modelBuilder.Entity<Comment>().HasKey(b => new {
+            modelBuilder.Entity<Comment>().HasKey(b => new
+            {
                 b.BookID,
                 b.UserID
             });

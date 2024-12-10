@@ -8,10 +8,10 @@ using System.Text;
 
 namespace KYS.Business.Services
 {
-    public class AutorService : IManager<Author>
+    public class AuthorService : IManager<Author>
     {
         private readonly AuthorRepository _authorRepository;
-        public AutorService(AuthorRepository aRepo)
+        public AuthorService(AuthorRepository aRepo)
         {
             _authorRepository = aRepo;
         }

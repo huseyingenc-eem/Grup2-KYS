@@ -12,18 +12,52 @@ namespace KYS.Business.Validators
     {
         public BookValidator() 
         {
-            RuleFor(b => b.Name).NotEmpty()
-               .WithMessage("Başlık Adı boş olamaz!");
-            RuleFor(b => b.ISBN).NotEmpty()
-               .WithMessage("ISBN numarası boş olamaz!");
-            RuleFor(b => b.Publisher).NotEmpty()
-               .WithMessage("Yayınci Adı boş olamaz!");
-            RuleFor(b => b.PublishedYear).NotEmpty()
-               .WithMessage("Yayın Yılı boş olamaz!");
-            RuleFor(b => b.Description).NotEmpty()
-               .WithMessage("Açıklama boş olamaz!");
+            RuleFor(b => b.Name)
+                .NotEmpty()
+                .WithMessage("Kitap adı boş olamaz!")
+                .MinimumLength(3)
+                .WithMessage("Kitap adı en az 3 karakter olmalıdır!");
 
+            RuleFor(b => b.ISBN)
+                .NotEmpty()
+                .WithMessage("ISBN numarası boş olamaz!")
+                .Length(13)
+                .WithMessage("ISBN numarası 13 karakter uzunluğunda olmalıdır!")
+                .Matches("^[0-9]*$")
+                .WithMessage("ISBN numarası yalnızca rakamlardan oluşmalıdır!");
 
+            RuleFor(b => b.Publisher)
+                .NotNull()
+                .WithMessage("Yayıncı seçimi yapılmalıdır!");
+
+            RuleFor(b => b.PublishedYear)
+                .GreaterThan(0).WithMessage("Yayınlanma yılı sıfırdan büyük olmalıdır!")
+                .LessThanOrEqualTo(DateTime.Now.Year)
+                .WithMessage($"Yayınlanma yılı {DateTime.Now.Year} yılını aşamaz!");
+
+            RuleFor(b => b.Pages)
+                .GreaterThan(0)
+                .WithMessage("Sayfa sayısı sıfırdan büyük olmalıdır!");
+
+            RuleFor(b => b.CopiesAvailable)
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Mevcut kopya sayısı sıfırdan küçük olamaz!");
+
+            RuleFor(b => b.Description)
+                .NotEmpty()
+                .WithMessage("Açıklama boş olamaz!");
+
+            // Kapak resmi URL kontrolü
+            RuleFor(b => b.CoverImageUrl)
+                .NotEmpty().WithMessage("Kapak resmi URL boş olamaz!");
+
+            // Dil boş olamaz
+            RuleFor(b => b.Language)
+                .NotEmpty()
+                .WithMessage("Kitabın dili boş olamaz!");
         }
+
+
     }
+    
 }

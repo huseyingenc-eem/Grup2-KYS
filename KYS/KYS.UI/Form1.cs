@@ -19,6 +19,7 @@ namespace KYS.UI
         public Form1(UserService userService)
         {
             InitializeComponent();
+            this.CenterToScreen();
             var dbContext = new ApplicationDBContext();
             _userService = userService;
         }
@@ -50,12 +51,12 @@ namespace KYS.UI
             if (user.IsAdmin)
             {
                 var adminPanel = Program.ServiceProvider.GetRequiredService<AdminPanel>();
-                adminPanel.ShowDialog();
+                adminPanel.Show();
             }
             else
             {
                 var userPanel = Program.ServiceProvider.GetRequiredService<UserPanel>();
-                userPanel.ShowDialog();
+                userPanel.Show();
             }
 
             this.Hide();
@@ -73,7 +74,7 @@ namespace KYS.UI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
     }
 }

@@ -1,72 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using KYS.Business.Services;
+﻿using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using System.Text;
 
 namespace KYS.UI.Forms
 {
     public partial class BookForm : BaseForm
     {
-        private readonly AutorService _authorService;
+        private readonly AuthorService _authorService;
         private readonly BookTypeService _bookTypeService;
         private readonly PublisherService _publisherService;
         private readonly BookService _bookService;
-        private readonly ApplicationDBContext _dbContext;
         public BookForm()
         {
             InitializeComponent();
-            _dbContext = new ApplicationDBContext();
-            var authorRepository = new AuthorRepository(_dbContext);
-            var bookTypeRepository = new BookTypeRepository(_dbContext);
-            var publisherRepository = new PublisherRepository(_dbContext);
-            var bookRepository = new BookRepository(_dbContext);
-            _authorService = new AutorService(authorRepository);
-            _bookTypeService = new BookTypeService(bookTypeRepository);
-            _publisherService = new PublisherService(publisherRepository);
-            _bookService = new BookService(bookRepository);
+            var dbContext = new ApplicationDBContext();
+            _authorService = new AuthorService(new AuthorRepository(dbContext));
+            _bookTypeService = new BookTypeService(new BookTypeRepository(dbContext));
+            _publisherService = new PublisherService(new PublisherRepository(dbContext));
+            _bookService = new BookService(new BookRepository(dbContext));
 
             pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void BookForm_Load(object sender, EventArgs e)
         {
-            CheckControl();
             GetAllData();
         }
-
-        private void CheckControl()
-        {
-            chckMevcutMu.Text = chckMevcutMu.Checked ? "Kitap Mevcut" : "Kitap Bulunmamakta";
-        }
-
         private void GetAllData()
         {
             //Yazarlar
             cmbAuthor.ValueMember = "Id";
             cmbAuthor.DisplayMember = "FullName";
             cmbAuthor.DataSource = _authorService.GetAll();
+            cmbAuthor.SelectedIndex = -1;
 
             //Kitap türü
             cmbType.ValueMember = "Id";
             cmbType.DisplayMember = "Name";
             cmbType.DataSource = _bookTypeService.GetAll();
+            cmbType.SelectedIndex = -1;
 
             //yayıncı
             cmbPublisher.ValueMember = "Id";
             cmbPublisher.DisplayMember = "Name";
             cmbPublisher.DataSource = _publisherService.GetAll();
+            cmbPublisher.SelectedIndex = -1;
 
             GetAllBooks();
         }
+        
         Book? secilenKitap;
         private void GetAllBooks()
         {
@@ -79,7 +63,34 @@ namespace KYS.UI.Forms
 
 
         }
+        private string GenerateRandomISBN()
+        {
+            Random random = new Random();
+            StringBuilder isbnBuilder = new StringBuilder();
 
+            // 13 haneli rastgele sayı oluştur
+            for (int i = 0; i < 13; i++)
+            {
+                isbnBuilder.Append(random.Next(0, 10)); // 0-9 arasında rastgele sayı ekle
+            }
+
+            return isbnBuilder.ToString();
+        }
+        private void FormuTemizle()
+        {
+            txtPublishedYear.Text = "";
+            txtPages.Text = "";
+            txtISBN.Text = GenerateRandomISBN();
+            txtDescription.Text = "";
+            txtCopiesAvailable.Text = "";
+            txtLanguage.Text = "";
+            cmbAuthor.SelectedIndex = -1;
+            cmbAuthor.SelectedIndex = -1;
+            cmbAuthor.SelectedIndex = -1;
+            pictureBoxPhoto.ImageLocation = null;
+            txtName.Text = "";
+            txtName.Focus();
+        }
         Author? selectedAuthor;
         private void cmbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -111,7 +122,13 @@ namespace KYS.UI.Forms
         {
             try
             {
-                Book b = new Book()
+                if (_bookService.IfEntityExists(a => a.ISBN == txtISBN.Text || a.CoverImageUrl == pictureBoxPhoto.ImageLocation))
+                {
+                    secilenKitap = (Book?)lstListe.SelectedItem;
+                    txtISBN.Text = secilenKitap?.ISBN;
+                    throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
+                }
+                Book newBook = new Book()
                 {
                     Name = txtName.Text,
                     ISBN = txtISBN.Text,
@@ -120,17 +137,14 @@ namespace KYS.UI.Forms
                     CopiesAvailable = Convert.ToInt32(txtCopiesAvailable.Text),
                     Description = txtDescription.Text,
                     Language = txtLanguage.Text,
-                    Author = selectedAuthor,
-                    BookType = selectedBookType,
+
+                    Author= selectedAuthor,
+                    BookType= selectedBookType,
                     Publisher = selectedPublisher,
                     CoverImageUrl = pictureBoxPhoto.ImageLocation,
-                    AvailabilityStatus = chckMevcutMu.Checked
                 };
-                if (_bookService.IfEntityExists(a => a.Name == b.Name))
-                {
-                    throw new Exception("Bu Kitap Daha Önce Kaydedilmiş");
-                }
-                _bookService.Create(b);
+
+                _bookService.Create(newBook);
                 MessageBox.Show("Kayıt Başarılı");
                 GetAllBooks();
                 FormuTemizle();
@@ -141,34 +155,6 @@ namespace KYS.UI.Forms
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void FormuTemizle()
-        {
-            txtPublishedYear.Text = "";
-            txtPages.Text = "";
-            txtISBN.Text = "";
-            txtDescription.Text = "";
-            txtCopiesAvailable.Text = "";
-            txtLanguage.Text = "";
-            if (cmbAuthor.Items.Count > 0)
-                cmbAuthor.SelectedIndex = 0;
-
-            if (cmbPublisher.Items.Count > 0)
-                cmbPublisher.SelectedIndex = 0;
-
-            if (cmbType.Items.Count > 0)
-                cmbType.SelectedIndex = 0;
-
-            chckMevcutMu.Checked = false;
-            pictureBoxPhoto.ImageLocation = null;
-            txtName.Text = "";
-            txtName.Focus();
-        }
-
-        private void chckMevcutMu_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckControl();
         }
 
         private void btnAddPhoto_Click(object sender, EventArgs e)
@@ -184,7 +170,6 @@ namespace KYS.UI.Forms
                 }
             }
         }
-
         protected override void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -207,19 +192,42 @@ namespace KYS.UI.Forms
         {
             try
             {
+                if (lstListe.SelectedIndex == -1)
+                    throw new Exception("Listeden Kitap seçiniz.");
+
+                if (_bookService.IfEntityExists(a => 
+                (a.ISBN == txtISBN.Text ||a.CoverImageUrl==pictureBoxPhoto.ImageLocation )&& 
+                a.Id != secilenKitap.Id))
+                {
+                    secilenKitap = (Book?)lstListe.SelectedItem;
+                    txtISBN.Text = secilenKitap?.ISBN;
+                    pictureBoxPhoto.ImageLocation= secilenKitap?.CoverImageUrl;
+                    throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
+                }
+
                 if (secilenKitap != null)
                 {
                     secilenKitap.Name = txtName.Text;
                     secilenKitap.ISBN = txtISBN.Text;
                     secilenKitap.PublishedYear=Convert.ToInt32(txtPublishedYear.Text);
+
                     secilenKitap.Pages=Convert.ToInt32(txtPages.Text);
                     secilenKitap.CopiesAvailable=Convert.ToInt32(txtCopiesAvailable.Text);
                     secilenKitap.Description=txtDescription.Text;
                     secilenKitap.Language=txtLanguage.Text;
-                    secilenKitap.AvailabilityStatus=chckMevcutMu.Checked;
-                    secilenKitap.Author = selectedAuthor;
-                    secilenKitap.Publisher=selectedPublisher;
-                    secilenKitap.BookType=selectedBookType;
+                    if (selectedAuthor!=null)
+                    {
+                        secilenKitap.Author = selectedAuthor;
+                    }
+                    if (selectedPublisher != null)
+                    {
+                        secilenKitap.Publisher = selectedPublisher;
+                    }
+                    if (selectedBookType != null)
+                    {
+                        secilenKitap.BookType = selectedBookType;
+                    }
+                    
                     secilenKitap.CoverImageUrl = pictureBoxPhoto.ImageLocation;
 
                     _bookService.Update(secilenKitap);
@@ -255,25 +263,14 @@ namespace KYS.UI.Forms
                     txtLanguage.Text = secilenKitap.Language;
                     pictureBoxPhoto.ImageLocation = secilenKitap.CoverImageUrl;
                     // Yazar bilgisi ComboBox'ta seç
-                    if (secilenKitap.Author != null)
-                    {
-                        cmbAuthor.SelectedValue = secilenKitap.Author.Id;
-                    }
-
-                    // Kitap türü bilgisi ComboBox'ta seç
-                    if (secilenKitap.BookType != null)
-                    {
-                        cmbType.SelectedValue = secilenKitap.BookType.Id;
-                    }
-
-                    // Yayıncı bilgisi ComboBox'ta seç
-                    if (secilenKitap.Publisher != null)
-                    {
-                        cmbPublisher.SelectedValue = secilenKitap.Publisher.Id;
-                    }
-                    chckMevcutMu.Checked = secilenKitap.AvailabilityStatus;
+                    cmbAuthor.SelectedValue = secilenKitap.AuthorID;
+                    cmbType.SelectedValue = secilenKitap.BookTypeID;
+                    cmbPublisher.SelectedValue = secilenKitap.PublisherID;
                 }
             }
         }
+
+
+
     }
 }

@@ -1,11 +1,13 @@
 ﻿using FluentValidation.Results;
 using KYS.Business.Abstractions;
 using KYS.Business.Validators;
+using KYS.DataAccess.Abstractions;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
 using System.Linq.Expressions;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
+using KYS.DataAccess.Context;
 namespace KYS.Business.Services
 {
     public class BookService : IManager<Book>
@@ -34,7 +36,13 @@ namespace KYS.Business.Services
 
         public IEnumerable<Book> GetAll()
         {
-            return _bookRepository.GetAll();
+            //return _bookRepository.GetAll();
+            using var context = new ApplicationDBContext();
+            return context.Books
+                .Include(b => b.Author)       // Author bilgilerini yükler
+                .Include(b => b.BookType)     // BookType bilgilerini yükler
+                .Include(b => b.Publisher)    // Publisher bilgilerini yükler
+                .ToList();
         }
 
         public Book GetByID(Guid Id)
