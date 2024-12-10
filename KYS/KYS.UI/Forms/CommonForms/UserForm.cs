@@ -52,14 +52,16 @@ namespace KYS.UI.Forms
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-
+            LoadUsers();
         }
         public UserForm() : this(UserFormMode.Admin) { }
         private void LoadUsers()
         {
-            lstUsers.DataSource = null;
-            lstUsers.DataSource = _userService.GetAll();
-            lstUsers.DisplayMember = "Username";
+
+            lstUsers.ValueMember = "Id";
+            lstUsers.DisplayMember = "FullName";
+            lstUsers.DataSource = _userService.GetAll().ToList();
+
         }
         private void ClearForm()
         {

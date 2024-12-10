@@ -167,7 +167,7 @@ namespace KYS.UI.Forms.UserPanelForms
                 var newComment = new Comment
                 {
                     BookID = selectedBook.Id,
-                    UserID = Guid.Parse("d727c25a-680f-44f7-9b80-410db9a3891b"),
+                    UserID = SessionManager.CurrentUser.Id,
                     Content = txtCommentContent.Text,
                     CreatedDate = DateTime.Now
                 };

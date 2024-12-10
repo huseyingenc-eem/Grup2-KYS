@@ -12,6 +12,7 @@ namespace KYS.UI.Forms.PanelForms
 
         private void UserPanel_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             adSoyadToolStripMenuItem.Text = $"Hoş geldiniz, {SessionManager.CurrentUser?.Name} {SessionManager.CurrentUser?.Surname}";
         }
 
@@ -45,7 +46,7 @@ namespace KYS.UI.Forms.PanelForms
 
         private void ödünçAldığımKitaplarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void yazarBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +54,14 @@ namespace KYS.UI.Forms.PanelForms
             AuthorDetailsForm authorDetailsForm = new AuthorDetailsForm();
             authorDetailsForm.MdiParent = this;
             FormControl(authorDetailsForm);
+        }
+
+        private void kullanıcıBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProfileForm profilForm=new ProfileForm();
+            profilForm.MdiParent = this;
+            FormControl(profilForm);
+
         }
     }
 }

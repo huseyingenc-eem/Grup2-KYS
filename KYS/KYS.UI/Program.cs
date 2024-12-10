@@ -31,7 +31,7 @@ namespace KYS.UI
             ApplicationConfiguration.Initialize();
 
             Application.Run(ServiceProvider.GetRequiredService<Form1>());
-            //Application.Run(new BookDetailForm());
+            //Application.Run(new ProfileForm());
         }
 
         static void EnsureAdminExists()

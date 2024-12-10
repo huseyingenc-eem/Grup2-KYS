@@ -12,23 +12,22 @@ using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using KYS.UI.Helpers;
 
 namespace KYS.UI.Forms.UserPanelForms
 {
     public partial class ProfileForm : Form
     {
+
         private readonly UserService _userService;
-        private User _currentUser; 
-        public ProfileForm(UserService userService, User currentUser)
+        User _currentUser = SessionManager.CurrentUser;
+        public ProfileForm()
         {
             InitializeComponent();
             var dbContext = new ApplicationDBContext();
-            _userService = userService;
-            _currentUser = currentUser;
-
-            LoadUserInfo();
+            _userService = new UserService(new UserRepository(dbContext));
+            
         }
-
         private void LoadUserInfo()
         {
             txtName.Text = _currentUser.Name;
@@ -40,7 +39,7 @@ namespace KYS.UI.Forms.UserPanelForms
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
-           
+            LoadUserInfo();
         }
 
 
