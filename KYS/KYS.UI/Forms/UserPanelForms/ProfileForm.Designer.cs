@@ -158,7 +158,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(665, 578);
+            ClientSize = new Size(569, 564);
             Controls.Add(groupBox1);
             Name = "ProfileForm";
             Text = "ProfileForm";

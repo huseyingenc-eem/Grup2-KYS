@@ -48,6 +48,13 @@ namespace KYS.UI.Forms
                 lstYazar.DisplayMember = "FullName";
                 lstYazar.DataSource = authorList.ToList();
             }
+            else if (searchText.Length <= 2)
+            {
+                lstYazar.ValueMember = "Id";
+                lstYazar.DisplayMember = "FullName";
+                lstYazar.DataSource = _autorService.GetAll().ToList();
+                lstYazar.SelectedIndex = -1;
+            }
         }
 
         private void lstYazar_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
+using KYS.UI.Helpers;
 using User = KYS.Entities.Models.User;
 
 namespace KYS.UI.Forms
@@ -57,10 +58,14 @@ namespace KYS.UI.Forms
         public UserForm() : this(UserFormMode.Admin) { }
         private void LoadUsers()
         {
+            Guid currentAdminId = SessionManager.CurrentUser.Id;
 
+            var users = _userService.GetAll()
+                .Where(u => u.Id != currentAdminId)
+                .ToList();
             lstUsers.ValueMember = "Id";
             lstUsers.DisplayMember = "FullName";
-            lstUsers.DataSource = _userService.GetAll().ToList();
+            lstUsers.DataSource = users;
 
         }
         private void ClearForm()

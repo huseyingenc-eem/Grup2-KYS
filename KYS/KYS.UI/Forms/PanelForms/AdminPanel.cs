@@ -1,6 +1,7 @@
 ﻿using KYS.Business.Services;
 using KYS.UI.Forms.UserPanelForms;
 using KYS.UI.Helpers;
+using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 
 namespace KYS.UI.Forms.PanelForms
 {
@@ -17,34 +18,73 @@ namespace KYS.UI.Forms.PanelForms
         private void AdminPanel_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
+
+            // Eğer oturum yoksa çıkış yap
+            if (SessionManager.CurrentUser == null)
+            {
+                MessageBox.Show("Oturumunuz sona erdi. Lütfen tekrar giriş yapın.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
+                return;
+            }
+
             adSoyadToolStripMenuItem.Text = $"Hoş geldiniz, {SessionManager.CurrentUser?.Name}";
         }
 
-        private void AdminPanel_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+
         private void FormControl(Form frm)
         {
             bool acikMi = false;
-            foreach (var item in Application.OpenForms)
+
+            // Açık olan formları kontrol et
+            foreach (Form item in Application.OpenForms)
             {
                 if (item.GetType() == frm.GetType())
                 {
                     acikMi = true;
+                    item.Activate(); // Açık olan formu etkinleştir
+                    item.BringToFront(); // Formu ön plana getir
                     break;
                 }
             }
-            if (acikMi)
-                MessageBox.Show("Form Zaten Açık duurmda");
-            else
+
+            if (!acikMi)
+            {
+                frm.MdiParent = this; // MDI Parent olarak ayarla
                 frm.Show();
-            
+            }
+            else
+            {
+                MessageBox.Show("Form zaten açık durumda.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void ShowFormWithAlignment(Form frm, bool isLeftAligned)
+        {
+            frm.StartPosition = FormStartPosition.Manual;
+
+            // MDI Parent genişlik ve yükseklik bilgilerini al
+            int parentWidth = this.ClientSize.Width;
+            int parentHeight = this.ClientSize.Height;
+
+            // Formun genişlik ve yüksekliği
+            int formWidth = frm.Width;
+            int formHeight = frm.Height;
+
+            // X koordinatını belirle
+            int x = isLeftAligned
+                ? 2 // Sola yaslı, girintili
+                : parentWidth - formWidth - 10; // Sağa yaslı, girintili
+
+            // Y koordinatını ortalamak için hesapla
+            int y = (parentHeight - formHeight) - (parentHeight - formHeight - 10);
+
+            // Formun konumunu ayarla
+            frm.Location = new Point(x, y);
         }
         private void kullanıcıTakipEtmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserForm userForm = new UserForm();
             userForm.MdiParent = this;
+            ShowFormWithAlignment(userForm, true);
             FormControl(userForm);
         }
 
@@ -52,6 +92,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             BookForm bookForm = new BookForm();
             bookForm.MdiParent = this;
+            ShowFormWithAlignment(bookForm, true);
             FormControl(bookForm);
         }
 
@@ -59,6 +100,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             BookTypeForm bookTypeForm = new BookTypeForm();
             bookTypeForm.MdiParent = this;
+            ShowFormWithAlignment(bookTypeForm, true);
             FormControl(bookTypeForm);
         }
 
@@ -66,6 +108,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             AnnouncementForm announcementForm = new AnnouncementForm();
             announcementForm.MdiParent = this;
+            ShowFormWithAlignment(announcementForm, true);
             FormControl(announcementForm);
         }
 
@@ -73,7 +116,34 @@ namespace KYS.UI.Forms.PanelForms
         {
             PublisherForm publisherForm = new PublisherForm();
             publisherForm.MdiParent = this;
+            ShowFormWithAlignment(publisherForm, true);
             FormControl(publisherForm);
+        }
+
+        private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SessionManager.ClearSession();
+            Application.Restart(); // Uygulamayı yeniden başlat
+        }
+        private void AdminPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void adminBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProfileForm profileForm = new ProfileForm();
+            profileForm.MdiParent = this;
+            ShowFormWithAlignment(profileForm, false);
+            FormControl(profileForm);
+        }
+
+        private void kitapHakkındaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BookDetailForm bookDetailForm = new BookDetailForm(BookDetailFormMod.Admin);
+            bookDetailForm.MdiParent = this;
+            ShowFormWithAlignment(bookDetailForm, false);
+            FormControl(bookDetailForm);
         }
     }
 }

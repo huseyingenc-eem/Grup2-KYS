@@ -1,6 +1,5 @@
 using KYS.Business.Services;
 using KYS.DataAccess.Context;
-using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
 using KYS.UI.Forms;
 using KYS.UI.Forms.PanelForms;
@@ -20,13 +19,19 @@ namespace KYS.UI
         {
             InitializeComponent();
             this.CenterToScreen();
-            var dbContext = new ApplicationDBContext();
+            //var dbContext = new ApplicationDBContext();
             _userService = userService;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SessionManager.LoadSession();
 
+            if (SessionManager.CurrentUser != null)
+            {
+                NavigateToPanel(SessionManager.CurrentUser);
+                this.Hide();
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -36,9 +41,9 @@ namespace KYS.UI
 
             try
             {
-                // Kullanýcýyý doðrula
                 var user = _userService.Authenticate(username, password);
                 SessionManager.CurrentUser = user;
+                SessionManager.SaveSession();
                 NavigateToPanel(user);
             }
             catch (Exception ex)
@@ -51,12 +56,12 @@ namespace KYS.UI
             if (user.IsAdmin)
             {
                 var adminPanel = Program.ServiceProvider.GetRequiredService<AdminPanel>();
-                adminPanel.Show();
+                adminPanel.ShowDialog();
             }
             else
             {
                 var userPanel = Program.ServiceProvider.GetRequiredService<UserPanel>();
-                userPanel.Show();
+                userPanel.ShowDialog();
             }
 
             this.Hide();
@@ -66,15 +71,15 @@ namespace KYS.UI
         {
             using (UserForm registerForm = new UserForm(UserFormMode.Register))
             {
-                this.Hide(); // Form1'i gizle
-                registerForm.ShowDialog(); // UserForm'u modal olarak aç
-                this.Show(); // UserForm kapandýktan sonra Form1'i tekrar göster
+                this.Hide();
+                registerForm.ShowDialog();
+                this.Show();
             }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Application.Exit();
+            SessionManager.SaveSession();
         }
     }
 }

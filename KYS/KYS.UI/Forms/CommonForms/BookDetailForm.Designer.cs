@@ -52,6 +52,7 @@
             label7 = new Label();
             txtCommentContent = new TextBox();
             btnSubmitComment = new Button();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCover).BeginInit();
             grpBoxBookDetail.SuspendLayout();
             SuspendLayout();
@@ -284,12 +285,22 @@
             btnSubmitComment.UseVisualStyleBackColor = true;
             btnSubmitComment.Click += btnSubmitComment_Click;
             // 
+            // label8
+            // 
+            label8.Location = new Point(616, 573);
+            label8.Name = "label8";
+            label8.Size = new Size(334, 51);
+            label8.TabIndex = 11;
+            label8.Text = "Kitaba Hızlı Yorum Yaz";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // BookDetailForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(970, 870);
+            Controls.Add(label8);
             Controls.Add(btnSubmitComment);
             Controls.Add(txtCommentContent);
             Controls.Add(lstBookListele);
@@ -338,5 +349,6 @@
         private ComboBox comboBox3;
         private TextBox txtCommentContent;
         private Button btnSubmitComment;
+        private Label label8;
     }
 }
