@@ -49,7 +49,6 @@
             cmbAuthor = new ComboBox();
             cmbType = new ComboBox();
             cmbPublisher = new ComboBox();
-            btnAddPhoto = new Button();
             pictureBoxPhoto = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).BeginInit();
             SuspendLayout();
@@ -148,9 +147,9 @@
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(559, 403);
+            lstListe.Location = new Point(559, 313);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(314, 244);
+            lstListe.Size = new Size(314, 334);
             lstListe.TabIndex = 16;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 
@@ -202,7 +201,7 @@
             txtDescription.Location = new Point(234, 445);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(287, 194);
+            txtDescription.Size = new Size(287, 202);
             txtDescription.TabIndex = 23;
             // 
             // cmbAuthor
@@ -232,23 +231,17 @@
             cmbPublisher.TabIndex = 26;
             cmbPublisher.SelectedIndexChanged += cmbPublisher_SelectedIndexChanged;
             // 
-            // btnAddPhoto
-            // 
-            btnAddPhoto.Location = new Point(559, 31);
-            btnAddPhoto.Name = "btnAddPhoto";
-            btnAddPhoto.Size = new Size(171, 49);
-            btnAddPhoto.TabIndex = 27;
-            btnAddPhoto.Text = "Resim  Ekle";
-            btnAddPhoto.UseVisualStyleBackColor = true;
-            btnAddPhoto.Click += btnAddPhoto_Click;
-            // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(559, 93);
+            pictureBoxPhoto.BackColor = SystemColors.ControlLightLight;
+            pictureBoxPhoto.Location = new Point(559, 31);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(314, 256);
+            pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 28;
             pictureBoxPhoto.TabStop = false;
+            pictureBoxPhoto.Click += pictureBoxPhoto_Click;
+            pictureBoxPhoto.Paint += pictureBoxPhoto_Paint;
             // 
             // BookForm
             // 
@@ -256,7 +249,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 887);
             Controls.Add(pictureBoxPhoto);
-            Controls.Add(btnAddPhoto);
             Controls.Add(cmbPublisher);
             Controls.Add(cmbType);
             Controls.Add(cmbAuthor);
@@ -303,7 +295,6 @@
             Controls.SetChildIndex(cmbAuthor, 0);
             Controls.SetChildIndex(cmbType, 0);
             Controls.SetChildIndex(cmbPublisher, 0);
-            Controls.SetChildIndex(btnAddPhoto, 0);
             Controls.SetChildIndex(pictureBoxPhoto, 0);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).EndInit();
             ResumeLayout(false);
@@ -333,7 +324,6 @@
         private ComboBox cmbAuthor;
         private ComboBox cmbType;
         private ComboBox cmbPublisher;
-        private Button btnAddPhoto;
         private PictureBox pictureBoxPhoto;
     }
 }

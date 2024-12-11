@@ -47,8 +47,6 @@
             label2 = new Label();
             label1 = new Label();
             flpComments = new FlowLayoutPanel();
-            txtBookSearch = new TextBox();
-            lstBookListele = new ListBox();
             label7 = new Label();
             txtCommentContent = new TextBox();
             btnSubmitComment = new Button();
@@ -86,21 +84,22 @@
             grpBoxBookDetail.Controls.Add(label2);
             grpBoxBookDetail.Controls.Add(label1);
             grpBoxBookDetail.Controls.Add(pictureBoxCover);
-            grpBoxBookDetail.Location = new Point(40, 152);
+            grpBoxBookDetail.Location = new Point(12, 40);
             grpBoxBookDetail.Name = "grpBoxBookDetail";
-            grpBoxBookDetail.Size = new Size(559, 693);
+            grpBoxBookDetail.Size = new Size(587, 787);
             grpBoxBookDetail.TabIndex = 2;
             grpBoxBookDetail.TabStop = false;
             grpBoxBookDetail.Text = "Kitap Hakkında";
             // 
             // btnBorrowBook
             // 
-            btnBorrowBook.Location = new Point(306, 629);
+            btnBorrowBook.Location = new Point(336, 726);
             btnBorrowBook.Name = "btnBorrowBook";
             btnBorrowBook.Size = new Size(232, 46);
             btnBorrowBook.TabIndex = 13;
             btnBorrowBook.Text = "Kitabı Ödünç Al";
             btnBorrowBook.UseVisualStyleBackColor = true;
+            btnBorrowBook.Click += btnBorrowBook_Click;
             // 
             // lblISBN
             // 
@@ -118,7 +117,8 @@
             txtBookDescription.Location = new Point(22, 400);
             txtBookDescription.Multiline = true;
             txtBookDescription.Name = "txtBookDescription";
-            txtBookDescription.Size = new Size(516, 223);
+            txtBookDescription.ReadOnly = true;
+            txtBookDescription.Size = new Size(546, 309);
             txtBookDescription.TabIndex = 13;
             // 
             // lblCopiesAvailable
@@ -133,35 +133,35 @@
             // 
             lblBookPage.Location = new Point(400, 290);
             lblBookPage.Name = "lblBookPage";
-            lblBookPage.Size = new Size(138, 30);
+            lblBookPage.Size = new Size(168, 30);
             lblBookPage.TabIndex = 11;
             // 
             // lblPublisherYear
             // 
             lblPublisherYear.Location = new Point(400, 240);
             lblPublisherYear.Name = "lblPublisherYear";
-            lblPublisherYear.Size = new Size(138, 30);
+            lblPublisherYear.Size = new Size(168, 30);
             lblPublisherYear.TabIndex = 10;
             // 
             // lblPublisherName
             // 
             lblPublisherName.Location = new Point(400, 190);
             lblPublisherName.Name = "lblPublisherName";
-            lblPublisherName.Size = new Size(138, 30);
+            lblPublisherName.Size = new Size(168, 30);
             lblPublisherName.TabIndex = 9;
             // 
             // lblAuthor
             // 
             lblAuthor.Location = new Point(400, 140);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(138, 30);
+            lblAuthor.Size = new Size(168, 30);
             lblAuthor.TabIndex = 8;
             // 
             // lblBookType
             // 
             lblBookType.Location = new Point(400, 90);
             lblBookType.Name = "lblBookType";
-            lblBookType.Size = new Size(138, 30);
+            lblBookType.Size = new Size(168, 30);
             lblBookType.TabIndex = 4;
             // 
             // lblBookName
@@ -239,29 +239,11 @@
             flpComments.TabIndex = 3;
             flpComments.WrapContents = false;
             // 
-            // txtBookSearch
-            // 
-            txtBookSearch.Location = new Point(40, 12);
-            txtBookSearch.Name = "txtBookSearch";
-            txtBookSearch.Size = new Size(559, 36);
-            txtBookSearch.TabIndex = 5;
-            txtBookSearch.TextChanged += txtBookSearch_TextChanged;
-            // 
-            // lstBookListele
-            // 
-            lstBookListele.FormattingEnabled = true;
-            lstBookListele.ItemHeight = 30;
-            lstBookListele.Location = new Point(40, 52);
-            lstBookListele.Name = "lstBookListele";
-            lstBookListele.Size = new Size(559, 94);
-            lstBookListele.TabIndex = 6;
-            lstBookListele.SelectedIndexChanged += lstBookListele_SelectedIndexChanged;
-            // 
             // label7
             // 
-            label7.Location = new Point(619, 12);
+            label7.Location = new Point(619, 26);
             label7.Name = "label7";
-            label7.Size = new Size(334, 68);
+            label7.Size = new Size(334, 54);
             label7.TabIndex = 8;
             label7.Text = "Kitaba Ait Yorumlar";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -303,9 +285,7 @@
             Controls.Add(label8);
             Controls.Add(btnSubmitComment);
             Controls.Add(txtCommentContent);
-            Controls.Add(lstBookListele);
             Controls.Add(label7);
-            Controls.Add(txtBookSearch);
             Controls.Add(flpComments);
             Controls.Add(grpBoxBookDetail);
             Font = new Font("Segoe UI", 16F);
@@ -341,8 +321,6 @@
         private Label lblISBN;
         private TextBox txtBookDescription;
         private Button btnBorrowBook;
-        private TextBox txtBookSearch;
-        private ListBox lstBookListele;
         private Label label7;
         private ComboBox cmbAuthor;
         private ComboBox comboBox2;

@@ -32,7 +32,7 @@
             kullanıcıİşlemleriToolStripMenuItem = new ToolStripMenuItem();
             kullanıcıTakipEtmeToolStripMenuItem = new ToolStripMenuItem();
             kitapİşlemleriToolStripMenuItem = new ToolStripMenuItem();
-            kitapHakkındaToolStripMenuItem = new ToolStripMenuItem();
+            kitapAraToolStripMenuItem = new ToolStripMenuItem();
             kitapEkleToolStripMenuItem = new ToolStripMenuItem();
             türEkleToolStripMenuItem = new ToolStripMenuItem();
             yayıncıİşlemleriToolStripMenuItem = new ToolStripMenuItem();
@@ -51,7 +51,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1941, 45);
+            menuStrip1.Size = new Size(2253, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -71,29 +71,29 @@
             // 
             // kitapİşlemleriToolStripMenuItem
             // 
-            kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapHakkındaToolStripMenuItem, kitapEkleToolStripMenuItem, türEkleToolStripMenuItem });
+            kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapAraToolStripMenuItem, kitapEkleToolStripMenuItem, türEkleToolStripMenuItem });
             kitapİşlemleriToolStripMenuItem.Name = "kitapİşlemleriToolStripMenuItem";
             kitapİşlemleriToolStripMenuItem.Size = new Size(197, 41);
             kitapİşlemleriToolStripMenuItem.Text = "Kitap İşlemleri";
             // 
-            // kitapHakkındaToolStripMenuItem
+            // kitapAraToolStripMenuItem
             // 
-            kitapHakkındaToolStripMenuItem.Name = "kitapHakkındaToolStripMenuItem";
-            kitapHakkındaToolStripMenuItem.Size = new Size(274, 42);
-            kitapHakkındaToolStripMenuItem.Text = "Kitap Hakkında";
-            kitapHakkındaToolStripMenuItem.Click += kitapHakkındaToolStripMenuItem_Click;
+            kitapAraToolStripMenuItem.Name = "kitapAraToolStripMenuItem";
+            kitapAraToolStripMenuItem.Size = new Size(211, 42);
+            kitapAraToolStripMenuItem.Text = "Kitap Ara";
+            kitapAraToolStripMenuItem.Click += kitapAraToolStripMenuItem_Click;
             // 
             // kitapEkleToolStripMenuItem
             // 
             kitapEkleToolStripMenuItem.Name = "kitapEkleToolStripMenuItem";
-            kitapEkleToolStripMenuItem.Size = new Size(274, 42);
+            kitapEkleToolStripMenuItem.Size = new Size(211, 42);
             kitapEkleToolStripMenuItem.Text = "Kitap Ekle";
             kitapEkleToolStripMenuItem.Click += kitapEkleToolStripMenuItem_Click;
             // 
             // türEkleToolStripMenuItem
             // 
             türEkleToolStripMenuItem.Name = "türEkleToolStripMenuItem";
-            türEkleToolStripMenuItem.Size = new Size(274, 42);
+            türEkleToolStripMenuItem.Size = new Size(211, 42);
             türEkleToolStripMenuItem.Text = "Tür Ekle";
             türEkleToolStripMenuItem.Click += türEkleToolStripMenuItem_Click;
             // 
@@ -151,7 +151,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1941, 984);
+            ClientSize = new Size(2253, 1247);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -179,6 +179,6 @@
         private ToolStripMenuItem yayıncıEkleToolStripMenuItem;
         private ToolStripMenuItem adminBilgileriToolStripMenuItem;
         private ToolStripMenuItem çıkışYapToolStripMenuItem;
-        private ToolStripMenuItem kitapHakkındaToolStripMenuItem;
+        private ToolStripMenuItem kitapAraToolStripMenuItem;
     }
 }

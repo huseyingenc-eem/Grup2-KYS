@@ -50,7 +50,7 @@ namespace KYS.UI.Forms
 
             GetAllBooks();
         }
-        
+
         Book? secilenKitap;
         private void GetAllBooks()
         {
@@ -85,8 +85,8 @@ namespace KYS.UI.Forms
             txtCopiesAvailable.Text = "";
             txtLanguage.Text = "";
             cmbAuthor.SelectedIndex = -1;
-            cmbAuthor.SelectedIndex = -1;
-            cmbAuthor.SelectedIndex = -1;
+            cmbPublisher.SelectedIndex = -1;
+            cmbType.SelectedIndex = -1;
             pictureBoxPhoto.ImageLocation = null;
             txtName.Text = "";
             txtName.Focus();
@@ -138,8 +138,8 @@ namespace KYS.UI.Forms
                     Description = txtDescription.Text,
                     Language = txtLanguage.Text,
 
-                    Author= selectedAuthor,
-                    BookType= selectedBookType,
+                    Author = selectedAuthor,
+                    BookType = selectedBookType,
                     Publisher = selectedPublisher,
                     CoverImageUrl = pictureBoxPhoto.ImageLocation,
                 };
@@ -157,19 +157,6 @@ namespace KYS.UI.Forms
             }
         }
 
-        private void btnAddPhoto_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = " Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
-                openFileDialog.Title = "Fotoğraf Seç";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBoxPhoto.ImageLocation = openFileDialog.FileName;
-                }
-            }
-        }
         protected override void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -195,13 +182,13 @@ namespace KYS.UI.Forms
                 if (lstListe.SelectedIndex == -1)
                     throw new Exception("Listeden Kitap seçiniz.");
 
-                if (_bookService.IfEntityExists(a => 
-                (a.ISBN == txtISBN.Text ||a.CoverImageUrl==pictureBoxPhoto.ImageLocation )&& 
+                if (_bookService.IfEntityExists(a =>
+                (a.ISBN == txtISBN.Text || a.CoverImageUrl == pictureBoxPhoto.ImageLocation) &&
                 a.Id != secilenKitap.Id))
                 {
                     secilenKitap = (Book?)lstListe.SelectedItem;
                     txtISBN.Text = secilenKitap?.ISBN;
-                    pictureBoxPhoto.ImageLocation= secilenKitap?.CoverImageUrl;
+                    pictureBoxPhoto.ImageLocation = secilenKitap?.CoverImageUrl;
                     throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
                 }
 
@@ -209,13 +196,13 @@ namespace KYS.UI.Forms
                 {
                     secilenKitap.Name = txtName.Text;
                     secilenKitap.ISBN = txtISBN.Text;
-                    secilenKitap.PublishedYear=Convert.ToInt32(txtPublishedYear.Text);
+                    secilenKitap.PublishedYear = Convert.ToInt32(txtPublishedYear.Text);
 
-                    secilenKitap.Pages=Convert.ToInt32(txtPages.Text);
-                    secilenKitap.CopiesAvailable=Convert.ToInt32(txtCopiesAvailable.Text);
-                    secilenKitap.Description=txtDescription.Text;
-                    secilenKitap.Language=txtLanguage.Text;
-                    if (selectedAuthor!=null)
+                    secilenKitap.Pages = Convert.ToInt32(txtPages.Text);
+                    secilenKitap.CopiesAvailable = Convert.ToInt32(txtCopiesAvailable.Text);
+                    secilenKitap.Description = txtDescription.Text;
+                    secilenKitap.Language = txtLanguage.Text;
+                    if (selectedAuthor != null)
                     {
                         secilenKitap.Author = selectedAuthor;
                     }
@@ -227,16 +214,12 @@ namespace KYS.UI.Forms
                     {
                         secilenKitap.BookType = selectedBookType;
                     }
-                    
+
                     secilenKitap.CoverImageUrl = pictureBoxPhoto.ImageLocation;
 
                     _bookService.Update(secilenKitap);
                     MessageBox.Show("Güncelleme işlemi başarılı");
                     GetAllBooks();
-                }
-                else
-                {
-                    MessageBox.Show("Lütfen bir şirket seçiniz");
                 }
             }
             catch (Exception ex)
@@ -256,7 +239,7 @@ namespace KYS.UI.Forms
                 {
                     txtName.Text = secilenKitap.Name;
                     txtISBN.Text = secilenKitap.ISBN;
-                    txtPublishedYear.Text=secilenKitap.PublishedYear.ToString();
+                    txtPublishedYear.Text = secilenKitap.PublishedYear.ToString();
                     txtPages.Text = secilenKitap.Pages.ToString();
                     txtCopiesAvailable.Text = secilenKitap.CopiesAvailable.ToString();
                     txtDescription.Text = secilenKitap.Description;
@@ -270,7 +253,52 @@ namespace KYS.UI.Forms
             }
         }
 
+        private void pictureBoxPhoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
+                openFileDialog.Title = "Fotoğraf Seç";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Proje klasöründe 'Resources/Images' dizinini oluştur
+                    string projectDirectory = AppDomain.CurrentDomain.BaseDirectory; // Çalışma dizini
+                    string imageFolderPath = Path.Combine(projectDirectory, "Resources", "Images");
 
+                    if (!Directory.Exists(imageFolderPath))
+                    {
+                        Directory.CreateDirectory(imageFolderPath); // Klasör yoksa oluştur
+                    }
+
+                    // Seçilen resmin yeni yolunu belirle
+                    string newImagePath = Path.Combine(imageFolderPath, Path.GetFileName(openFileDialog.FileName));
+
+                    // Resmi hedef klasöre kopyala
+                    File.Copy(openFileDialog.FileName, newImagePath, true);
+
+                    // PictureBox'ta yeni resmi göster
+                    pictureBoxPhoto.ImageLocation = newImagePath;
+
+                    MessageBox.Show($"Resim başarıyla eklendi: {newImagePath}", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void pictureBoxPhoto_Paint(object sender, PaintEventArgs e)
+        {
+            if (pictureBoxPhoto.Image == null) // Eğer resim yoksa yazı göster
+            {
+                string text = "Resim eklemek için tıklayınız";
+                Font font = new Font("Arial", 15, FontStyle.Bold);
+                SizeF textSize = e.Graphics.MeasureString(text, font);
+
+                // Yazıyı PictureBox'ın ortasına hizala
+                float x = (pictureBoxPhoto.Width - textSize.Width) / 2;
+                float y = (pictureBoxPhoto.Height - textSize.Height) / 2;
+
+                e.Graphics.DrawString(text, font, Brushes.Gray, x, y);
+            }
+        }
     }
 }

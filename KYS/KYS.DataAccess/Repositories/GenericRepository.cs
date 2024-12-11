@@ -51,7 +51,14 @@ namespace KYS.DataAccess.Repositories
 
         public void Update(T entity)
         {
-            _dbContext.SaveChanges();
+            var trackedEntity = _dbSet.Local.FirstOrDefault(e => e.Id == entity.Id);
+            if (trackedEntity != null)
+            {
+                _dbContext.Entry(trackedEntity).State = EntityState.Detached; // Daha önce izlenen nesneyi ayır
+            }
+
+            _dbSet.Update(entity); // Yeni nesneyi güncelle
+            _dbContext.SaveChanges(); // Değişiklikleri kaydet
         }
     }
 }

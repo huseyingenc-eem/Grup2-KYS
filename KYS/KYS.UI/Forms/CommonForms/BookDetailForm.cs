@@ -2,23 +2,18 @@
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using KYS.UI.Forms.PanelForms;
 using KYS.UI.Helpers;
 using System.Data;
-using System.Net;
-using static KYS.UI.Forms.UserForm;
 
 namespace KYS.UI.Forms.UserPanelForms
 {
     public partial class BookDetailForm : Form
     {
-        private readonly BookService _bookService;
-        private readonly BookRepository _bookRepository;
-
-        private readonly BookTypeService _bookTypeService;
-        private readonly AuthorService _authorService;
-        private readonly PublisherService _publisherService;
         private readonly CommentService _commentService;
 
+
+        public Book? selectedBook { get; set; }
         public enum BookDetailFormMod
         {
             Register,
@@ -29,14 +24,9 @@ namespace KYS.UI.Forms.UserPanelForms
         {
             InitializeComponent();
             var dbContext = new ApplicationDBContext();
-            _bookRepository = new BookRepository(dbContext);
-            _bookService = new BookService(_bookRepository);
-            _authorService = new AuthorService(new AuthorRepository(dbContext));
-            _bookTypeService = new BookTypeService(new BookTypeRepository(dbContext));
-            _publisherService = new PublisherService(new PublisherRepository(dbContext));
             _commentService = new CommentService(new CommentRepository(dbContext));
 
-            _currentMode = mode;
+            _currentMode= mode;
             if (mode == BookDetailFormMod.Register)
             {
                 btnBorrowBook.Visible = true;
@@ -46,67 +36,33 @@ namespace KYS.UI.Forms.UserPanelForms
                 btnBorrowBook.Visible = false;
             }
         }
+        
 
         private void BookDetailForm_Load(object sender, EventArgs e)
         {
-            FilterBooksInList(string.Empty);
-
+            BookDetailUpdate();
         }
 
-        private void FilterBooksInList(string searchText)
+        public void BookDetailUpdate()
         {
-            if (!string.IsNullOrEmpty(searchText.ToLower()) && searchText.Length >= 3)
+            if (selectedBook != null)
             {
-                var bookList = _bookService.GetAll()
-                    .Where(book => book.Name.ToLower().Contains(searchText.ToLower()))
-                    .ToList();
+                lblBookName.Text = selectedBook.Name ?? "Belirtilmemiş";
+                pictureBoxCover.ImageLocation = selectedBook.CoverImageUrl;
+                lblISBN.Text = selectedBook.ISBN ?? "Belirtilmemiş";
 
-                lstBookListele.ValueMember = "Id";
-                lstBookListele.DisplayMember = "Name";
-                lstBookListele.DataSource = bookList;
-                lstBookListele.SelectedIndex = -1;
-            }
-            else if (searchText.Length <= 2)
-            {
-                lstBookListele.ValueMember = "Id";
-                lstBookListele.DisplayMember = "Name";
-                lstBookListele.DataSource = _bookService.GetAll().ToList();
-                lstBookListele.SelectedIndex = -1;
-            }
-        }
+                lblBookType.Text = selectedBook.BookType?.Name ?? "Belirtilmemiş";
+                lblAuthor.Text = selectedBook.Author?.Name ?? "Belirtilmemiş";
+                lblPublisherName.Text = selectedBook.Publisher?.Name ?? "Belirtilmemiş";
 
-        private void txtBookSearch_TextChanged(object sender, EventArgs e)
-        {
-            FilterBooksInList(txtBookSearch.Text);
-        }
+                lblPublisherYear.Text = selectedBook.PublishedYear.ToString();
+                lblBookPage.Text = selectedBook.Pages.ToString();
+                lblCopiesAvailable.Text = selectedBook.CopiesAvailable.ToString();
+                txtBookDescription.Text = selectedBook.Description ?? string.Empty;
 
-        Book? selectedBook;
-
-        private void lstBookListele_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstBookListele.SelectedIndex != -1)
-            {
-                selectedBook = (Book?)lstBookListele.SelectedItem;
-
-                if (selectedBook != null)
-                {
-                    lblBookName.Text = selectedBook.Name ?? "Belirtilmemiş";
-                    pictureBoxCover.ImageLocation = selectedBook.CoverImageUrl;
-                    lblISBN.Text = selectedBook.ISBN ?? "Belirtilmemiş";
-
-                    lblBookType.Text = selectedBook.BookType?.Name;
-                    lblAuthor.Text = selectedBook.Author?.Name;
-                    lblPublisherName.Text = selectedBook.Publisher?.Name;
-
-                    lblPublisherYear.Text = selectedBook.PublishedYear.ToString();
-                    lblBookPage.Text = selectedBook.Pages.ToString();
-                    lblCopiesAvailable.Text = selectedBook.CopiesAvailable.ToString();
-                    txtBookDescription.Text = selectedBook.Description ?? string.Empty;
-                }
                 LoadComments(selectedBook.Id);
             }
         }
-
         private void LoadComments(Guid bookId)
         {
             var currentScrollPosition = flpComments.VerticalScroll.Value;
@@ -123,7 +79,7 @@ namespace KYS.UI.Forms.UserPanelForms
                 // Yorumun temel paneli
                 var commentPanel = new Panel
                 {
-                    Size = new Size(flpComments.Width - 20, 100),
+                    Size = new Size(flpComments.Width - 10, 100),
                     BorderStyle = BorderStyle.FixedSingle,
                     Margin = new Padding(3),
                     Padding = new Padding(5)
@@ -222,6 +178,19 @@ namespace KYS.UI.Forms.UserPanelForms
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBorrowBook_Click(object sender, EventArgs e)
+        {
+            BorrowRecordForm borrowRecordForm = new BorrowRecordForm()
+            {
+                borrowBook=selectedBook,
+            };
+            borrowRecordForm = new BorrowRecordForm();
+            borrowRecordForm.StartPosition = FormStartPosition.CenterScreen;
+            borrowRecordForm.ShowDialog();
+
+            
         }
     }
 }

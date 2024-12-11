@@ -57,7 +57,7 @@ namespace KYS.UI.Forms.PanelForms
                 MessageBox.Show("Form zaten açık durumda.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void ShowFormWithAlignment(Form frm, bool isLeftAligned)
+        public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
         {
             frm.StartPosition = FormStartPosition.Manual;
 
@@ -144,6 +144,14 @@ namespace KYS.UI.Forms.PanelForms
             bookDetailForm.MdiParent = this;
             ShowFormWithAlignment(bookDetailForm, false);
             FormControl(bookDetailForm);
+        }
+
+        private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BookSearchForm bookSearchForm = new BookSearchForm();
+            bookSearchForm.MdiParent = this;
+            ShowFormWithAlignment(bookSearchForm, true);
+            FormControl(bookSearchForm);
         }
     }
 }

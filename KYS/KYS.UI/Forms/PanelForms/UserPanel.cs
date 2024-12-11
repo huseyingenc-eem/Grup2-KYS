@@ -24,7 +24,7 @@ namespace KYS.UI.Forms.PanelForms
         }
 
 
-        private void FormControl(Form frm)
+        public void FormControl(Form frm)
         {
             bool acikMi = false;
             foreach (var item in Application.OpenForms)
@@ -46,7 +46,7 @@ namespace KYS.UI.Forms.PanelForms
             }
 
         }
-        private void ShowFormWithAlignment(Form frm, bool isLeftAligned)
+        public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
         {
             frm.StartPosition = FormStartPosition.Manual;
 
