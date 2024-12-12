@@ -2,12 +2,7 @@ using KYS.DataAccess.Abstractions;
 using KYS.DataAccess.Context;
 using KYS.Entities.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KYS.DataAccess.Repositories
 {
@@ -51,7 +46,16 @@ namespace KYS.DataAccess.Repositories
 
         public void Update(T entity)
         {
-            _dbContext.SaveChanges();
+            var trackedEntity = _dbSet.Local.FirstOrDefault(e => e.Id == entity.Id);
+            if (trackedEntity != null)
+            {
+                _dbContext.Entry(trackedEntity).State = EntityState.Detached; // Daha önce izlenen nesneyi ayır
+            }
+
+            _dbSet.Update(entity); // Yeni nesneyi güncelle
+            _dbContext.SaveChanges(); // Değişiklikleri kaydet
         }
+
+        
     }
 }

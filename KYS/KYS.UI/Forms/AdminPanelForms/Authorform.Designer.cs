@@ -51,32 +51,32 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 42);
             label1.Name = "label1";
-            label1.Size = new Size(112, 30);
+            label1.Size = new Size(154, 30);
             label1.TabIndex = 3;
-            label1.Text = "Yazar Adı :";
+            label1.Text = "Yazar Adı        :";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(12, 103);
             label2.Name = "label2";
-            label2.Size = new Size(145, 30);
+            label2.Size = new Size(151, 30);
             label2.TabIndex = 4;
-            label2.Text = "Yazar Soyadı :";
+            label2.Text = "Yazar Soyadı  :";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(12, 161);
             label3.Name = "label3";
-            label3.Size = new Size(81, 30);
+            label3.Size = new Size(153, 30);
             label3.TabIndex = 5;
-            label3.Text = "Ülkesi :";
+            label3.Text = "Ülkesi             :";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 222);
+            label4.Location = new Point(12, 210);
             label4.Name = "label4";
             label4.Size = new Size(159, 30);
             label4.TabIndex = 6;
@@ -85,61 +85,61 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 273);
+            label5.Location = new Point(12, 256);
             label5.Name = "label5";
-            label5.Size = new Size(134, 30);
+            label5.Size = new Size(152, 30);
             label5.TabIndex = 7;
-            label5.Text = "Ölüm Tarihi :";
+            label5.Text = "Ölüm Tarihi    :";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 331);
+            label6.Location = new Point(12, 314);
             label6.Name = "label6";
-            label6.Size = new Size(124, 30);
+            label6.Size = new Size(154, 30);
             label6.TabIndex = 8;
-            label6.Text = "Biyografisi :";
+            label6.Text = "Biyografisi      :";
             // 
             // txtName
             // 
             txtName.Location = new Point(177, 39);
             txtName.Name = "txtName";
-            txtName.Size = new Size(376, 36);
+            txtName.Size = new Size(309, 36);
             txtName.TabIndex = 10;
             // 
             // txtSurname
             // 
             txtSurname.Location = new Point(177, 100);
             txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(376, 36);
+            txtSurname.Size = new Size(309, 36);
             txtSurname.TabIndex = 11;
             // 
             // txtCountry
             // 
             txtCountry.Location = new Point(177, 161);
             txtCountry.Name = "txtCountry";
-            txtCountry.Size = new Size(376, 36);
+            txtCountry.Size = new Size(309, 36);
             txtCountry.TabIndex = 12;
             // 
             // txtBiography
             // 
-            txtBiography.Location = new Point(177, 328);
+            txtBiography.Location = new Point(177, 311);
             txtBiography.Multiline = true;
             txtBiography.Name = "txtBiography";
-            txtBiography.Size = new Size(376, 172);
+            txtBiography.Size = new Size(309, 184);
             txtBiography.TabIndex = 13;
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(195, 506);
+            pictureBoxPhoto.Location = new Point(497, 39);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(346, 245);
+            pictureBoxPhoto.Size = new Size(359, 247);
             pictureBoxPhoto.TabIndex = 16;
             pictureBoxPhoto.TabStop = false;
             // 
             // btnSelectPhoto
             // 
-            btnSelectPhoto.Location = new Point(12, 614);
+            btnSelectPhoto.Location = new Point(708, 290);
             btnSelectPhoto.Name = "btnSelectPhoto";
             btnSelectPhoto.Size = new Size(148, 43);
             btnSelectPhoto.TabIndex = 17;
@@ -151,27 +151,27 @@
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(634, 30);
+            lstListe.Location = new Point(12, 501);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(296, 664);
+            lstListe.Size = new Size(844, 184);
             lstListe.TabIndex = 18;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 
             // txtBirthDate
             // 
-            txtBirthDate.Location = new Point(177, 227);
+            txtBirthDate.Location = new Point(177, 210);
             txtBirthDate.Mask = "00/00/0000";
             txtBirthDate.Name = "txtBirthDate";
-            txtBirthDate.Size = new Size(204, 36);
+            txtBirthDate.Size = new Size(137, 36);
             txtBirthDate.TabIndex = 19;
             txtBirthDate.ValidatingType = typeof(DateTime);
             // 
             // txtDeathDate
             // 
-            txtDeathDate.Location = new Point(177, 286);
+            txtDeathDate.Location = new Point(177, 252);
             txtDeathDate.Mask = "00/00/0000";
             txtDeathDate.Name = "txtDeathDate";
-            txtDeathDate.Size = new Size(204, 36);
+            txtDeathDate.Size = new Size(137, 36);
             txtDeathDate.TabIndex = 20;
             txtDeathDate.ValidatingType = typeof(DateTime);
             // 
@@ -179,7 +179,7 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1003, 882);
+            ClientSize = new Size(886, 882);
             Controls.Add(txtDeathDate);
             Controls.Add(txtBirthDate);
             Controls.Add(lstListe);

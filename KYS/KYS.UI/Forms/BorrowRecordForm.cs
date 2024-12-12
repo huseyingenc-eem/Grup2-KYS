@@ -1,15 +1,6 @@
-﻿using KYS.Business.Services;
+using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using KYS.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using KYS.DataAccess.Abstractions;
@@ -39,7 +30,7 @@ namespace KYS.UI.Forms
             if (borrowBook != null)
             {
                 txtBookName.Text = borrowBook.Name;
-                txtAuthorName.Text = borrowBook.AuthorName;
+                txtAuthorName.Text = borrowBook.Author.Name;
                 pictureBoxPhoto.ImageLocation = borrowBook.ImagePath;
             }
 

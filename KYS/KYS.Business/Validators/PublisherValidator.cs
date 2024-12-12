@@ -12,7 +12,14 @@ namespace KYS.Business.Validators
     {
         public PublisherValidator() 
         {
+            RuleFor(a => a.Name).NotEmpty()
+               .WithMessage("Yayıncı Adı boş olamaz!")
+               .MinimumLength(3)
+               .WithMessage("Yayıncı adı en az 3 karakter olmalıdır!");
 
+            RuleFor(a => a.Country)
+                .NotEmpty()
+                .WithMessage("Ülke boş olamaz!");
         }
     }
 }
