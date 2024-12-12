@@ -1,4 +1,5 @@
 ﻿using KYS.Business.Services;
+using KYS.Entities.Models;
 using KYS.UI.Forms.UserPanelForms;
 using KYS.UI.Helpers;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
@@ -153,5 +154,44 @@ namespace KYS.UI.Forms.PanelForms
             ShowFormWithAlignment(bookSearchForm, true);
             FormControl(bookSearchForm);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var users = _userService.GetAll().ToList();
+            ExportaData(users);
+        }
+
+        private void ExportaData(List<User> users)
+        {
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Verileri Dışa Aktar";
+                    saveFileDialog.DefaultExt = "xlsx";
+                    saveFileDialog.AddExtension = true;
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+
+                        // Örnek veri (herhangi bir tip olabilir)
+                        var userList = _userService.GetAll().Cast<object>().ToList();
+
+                        if (filePath.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+                        {
+                            GenericExporter.ExportToExcel(userList, filePath);
+                            MessageBox.Show("Veriler Excel olarak dışa aktarıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

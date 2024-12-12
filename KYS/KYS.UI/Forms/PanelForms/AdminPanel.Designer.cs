@@ -42,6 +42,7 @@
             çıkışYapToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem1 = new ToolStripMenuItem();
+            button1 = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -147,11 +148,22 @@
             duyuruEkleToolStripMenuItem1.Text = "Duyuru Ekle";
             duyuruEkleToolStripMenuItem1.Click += duyuruEkleToolStripMenuItem1_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(578, 431);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 3;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2253, 1247);
+            Controls.Add(button1);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -180,5 +192,6 @@
         private ToolStripMenuItem adminBilgileriToolStripMenuItem;
         private ToolStripMenuItem çıkışYapToolStripMenuItem;
         private ToolStripMenuItem kitapAraToolStripMenuItem;
+        private Button button1;
     }
 }

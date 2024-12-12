@@ -46,7 +46,7 @@ namespace KYS.UI
                         Id = Guid.NewGuid(),
                         Username = "admin",
                         Name = "Admin",
-                        Surname = "User",
+                        Surname = "admin",
                         Password = "admin1",
                         Email = "admin@example.com",
                         IsAdmin = true,
