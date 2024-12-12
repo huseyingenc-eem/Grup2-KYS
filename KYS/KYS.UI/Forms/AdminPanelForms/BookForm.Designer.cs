@@ -38,7 +38,6 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
-            chckMevcutMu = new CheckBox();
             lstListe = new ListBox();
             txtName = new TextBox();
             txtPublishedYear = new TextBox();
@@ -50,7 +49,6 @@
             cmbAuthor = new ComboBox();
             cmbType = new ComboBox();
             cmbPublisher = new ComboBox();
-            btnAddPhoto = new Button();
             pictureBoxPhoto = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).BeginInit();
             SuspendLayout();
@@ -145,24 +143,13 @@
             label10.TabIndex = 13;
             label10.Text = "Kitap Açıklaması :";
             // 
-            // chckMevcutMu
-            // 
-            chckMevcutMu.AutoSize = true;
-            chckMevcutMu.Location = new Point(536, 712);
-            chckMevcutMu.Name = "chckMevcutMu";
-            chckMevcutMu.Size = new Size(366, 34);
-            chckMevcutMu.TabIndex = 15;
-            chckMevcutMu.Text = "Kitap Mevcut/Kitap Bulunmamakta";
-            chckMevcutMu.UseVisualStyleBackColor = true;
-            chckMevcutMu.CheckedChanged += chckMevcutMu_CheckedChanged;
-            // 
             // lstListe
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(588, 395);
+            lstListe.Location = new Point(559, 313);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(314, 244);
+            lstListe.Size = new Size(314, 334);
             lstListe.TabIndex = 16;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 
@@ -184,6 +171,7 @@
             // 
             txtISBN.Location = new Point(234, 269);
             txtISBN.Name = "txtISBN";
+            txtISBN.ReadOnly = true;
             txtISBN.Size = new Size(287, 36);
             txtISBN.TabIndex = 19;
             // 
@@ -213,7 +201,7 @@
             txtDescription.Location = new Point(234, 445);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(316, 194);
+            txtDescription.Size = new Size(287, 202);
             txtDescription.TabIndex = 23;
             // 
             // cmbAuthor
@@ -243,23 +231,17 @@
             cmbPublisher.TabIndex = 26;
             cmbPublisher.SelectedIndexChanged += cmbPublisher_SelectedIndexChanged;
             // 
-            // btnAddPhoto
-            // 
-            btnAddPhoto.Location = new Point(559, 31);
-            btnAddPhoto.Name = "btnAddPhoto";
-            btnAddPhoto.Size = new Size(171, 49);
-            btnAddPhoto.TabIndex = 27;
-            btnAddPhoto.Text = "Resim  Ekle";
-            btnAddPhoto.UseVisualStyleBackColor = true;
-            btnAddPhoto.Click += btnAddPhoto_Click;
-            // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(588, 102);
+            pictureBoxPhoto.BackColor = SystemColors.ControlLightLight;
+            pictureBoxPhoto.Location = new Point(559, 31);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(314, 256);
+            pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 28;
             pictureBoxPhoto.TabStop = false;
+            pictureBoxPhoto.Click += pictureBoxPhoto_Click;
+            pictureBoxPhoto.Paint += pictureBoxPhoto_Paint;
             // 
             // BookForm
             // 
@@ -267,7 +249,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 887);
             Controls.Add(pictureBoxPhoto);
-            Controls.Add(btnAddPhoto);
             Controls.Add(cmbPublisher);
             Controls.Add(cmbType);
             Controls.Add(cmbAuthor);
@@ -279,7 +260,6 @@
             Controls.Add(txtPublishedYear);
             Controls.Add(txtName);
             Controls.Add(lstListe);
-            Controls.Add(chckMevcutMu);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -304,7 +284,6 @@
             Controls.SetChildIndex(label8, 0);
             Controls.SetChildIndex(label9, 0);
             Controls.SetChildIndex(label10, 0);
-            Controls.SetChildIndex(chckMevcutMu, 0);
             Controls.SetChildIndex(lstListe, 0);
             Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(txtPublishedYear, 0);
@@ -316,7 +295,6 @@
             Controls.SetChildIndex(cmbAuthor, 0);
             Controls.SetChildIndex(cmbType, 0);
             Controls.SetChildIndex(cmbPublisher, 0);
-            Controls.SetChildIndex(btnAddPhoto, 0);
             Controls.SetChildIndex(pictureBoxPhoto, 0);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).EndInit();
             ResumeLayout(false);
@@ -335,7 +313,6 @@
         private Label label8;
         private Label label9;
         private Label label10;
-        private CheckBox chckMevcutMu;
         private ListBox lstListe;
         private TextBox txtName;
         private TextBox txtPublishedYear;
@@ -347,7 +324,6 @@
         private ComboBox cmbAuthor;
         private ComboBox cmbType;
         private ComboBox cmbPublisher;
-        private Button btnAddPhoto;
         private PictureBox pictureBoxPhoto;
     }
 }

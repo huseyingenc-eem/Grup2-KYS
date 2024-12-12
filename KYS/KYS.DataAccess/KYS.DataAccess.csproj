@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameWorkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Tools" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>

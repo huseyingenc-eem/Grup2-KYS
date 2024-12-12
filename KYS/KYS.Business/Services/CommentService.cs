@@ -5,7 +5,8 @@ using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
 using System.Linq.Expressions;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
+using KYS.DataAccess.Context;
 namespace KYS.Business.Services
 {
     public class CommentService : IManager<Comment>
@@ -23,18 +24,18 @@ namespace KYS.Business.Services
 
             _cRepository.Create(entity);
         }
-
         public void Delete(Guid Id)
         {
-
-
-
             _cRepository.Delete(Id);
         }
 
         public IEnumerable<Comment> GetAll()
         {
-            return _cRepository.GetAll();
+            using var context = new ApplicationDBContext();
+            return context.Comments
+                .Include(b => b.Book)
+                .Include(b => b.User)            
+                .ToList();
         }
 
         public Comment GetByID(Guid Id)

@@ -32,52 +32,48 @@ Entityler üzerinde herhangi bir deðiþiklik yapýldýðýnda aþaðýdaki komutlar sýras
 6-update-database
 
 
+Yapýlmayan Formlar
+BookSearchForm yapacak Kiþi: Hüseyin
 
-Yapýlacak Listesi:
+MyCommentForm Yapacak Kiþi :Özlem
+{
+	Kullanýcnýn kendi yorumlarýnýn olduðu form olsun. 
 
-Bilinmesi Gerekenler: UserForm ve Admin de UserEntity kullanýrken örneðin kitap ödünç alýrken falan deðiþken olarak
-	SessionManager.CurrentUser kullanýn noktaya bastiðiniza giriþ yapan kullanýcýnýn User özellikleri gelecek. o yüzden kullancýý textboxlarý oluþturup setlemenize gerek yok. SessionManager.CurrentUser ile setleyebilirsiniz.
+}
 
-Admin Panel Formlarý
+BorrowRecordForm Yapacak Kiþi :Eda
+{
+	Yaparken tasarým kýsmý güzel olsun. UserPanel ile ulaþabilirsin
+}
 
-AdminPanelForms Klasörü:
+User PanelForms: yapacak kiþi: eda
+{
+	Direkt ana sayfasýnda grbboxýn içinde Duyurular bölümü olsun.  
+}
+MyBorrowrecord: Esmanur
+{
+	Kullanýcnýn aldýðý kitaplar olsun. ve son iade edildiði ve aldýðý tarihlerin Hepsi olsun Önceden aldýðý kitaplarýnda bilgileri olsun datagridwiew kullan. searchboxda olsun kitaplarý aratýrsýn.
+}
 
-	AdminPanelForm.cs --Yapýlmadý. En Son Yapýlacak.
+adminPanel: yapaca kiþi esma
+{
+	kaç kullanýcý var. kaç kitap var tarzý elemanlar gözüksün canlý dersde vardý öyle yapan birisi.
+}
 
-	BookForm.cs --Yapýldý.
-
-	BookTypeForm.cs  --Yapýlmadý. Yapacak Kiþi:Hüseyin
-
-	PublisherForm.cs --Yapýldý. 
-
-	ReportForm.cs  --Yapýlmadý. Beklesin en son bakarýz.
-
-	DuyuruForm.cs --Yapýlmadý Yapacak Kiþi:Esma
+Düzenlenecek Formlar
+AuthorDetailsForm: Özlem
 	{
-		baseformdan türetme. kendi tasarýmýný yapar mýsýn?
+		Eline Saðlýk bir iki deðiþiklik yaptým veriler ilk seferde gelmiyordu diye. birde tasarým kýsmýný düzeltir misin?
+		tasarýmdaki deðiþiklikler:
+		yazar hakkýnda bölümünü bir group boxýn içine koy orda BookDetailform veya AuthorFormda ki gibi yazar adýfalan sýrasýyla gözüksün textbox biraz orda kötü gözüktü. grbBoxýn içinde yazar hakkýnda bilgi kitaplarýnýda alta koyar mýsýn?
 	}
+Diðer Formlar: Esmanur 
+{
+	Gözüne batan tasarým deðiþiklikleri 
+}
 
-	AuthorForm.cs --Yapýldý.
-
-	BorrowRecord --yapýlmadý.
 
 
-Kullanýcý Panel Formlarý
 
-UserPanelForms Klasörü:
 
-	UserPanelForm.cs --Yapýlmadý. en son yapýlacak
 
-	BookDetailForm.cs --Yapýlmadý. Yapacak Kiþi: Hüseyin
-
-	AuthorDetailsForm.cs --yapýlmadý. Yapacak Kiþi: Özlem
-
-	ProfileForm.cs --Yapýlmadý. Yapacak Kiþi: Esmanur
-
-	BorrowRecordDetailForm.cs --Yapýlmadý. Yapacak Kiþi:Eda
-
-Ortak Kullanýlabilecek Formlar
-CommonForms Klasörü:
-
-	UserForm.cs   --Yapýldý.
-	

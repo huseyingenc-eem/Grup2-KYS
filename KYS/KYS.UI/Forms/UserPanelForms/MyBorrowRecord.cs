@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KYS.UI.Forms
+namespace KYS.UI.Forms.UserPanelForms
 {
-    public partial class BookTypeForm : Form
+    public partial class MyBorrowRecord : Form
     {
-        public BookTypeForm()
+        public MyBorrowRecord()
         {
             InitializeComponent();
         }
