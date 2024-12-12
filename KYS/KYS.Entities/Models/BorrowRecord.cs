@@ -13,7 +13,7 @@ namespace KYS.Entities.Models
         public string? UserName => User?.Name;
 
         //public DateTime BorrowDate { get; set; }  // Ödünç alma tarihi :baseentiyde var
-        public DateTime DueDate { get; set; } // İade edilmesi gereken son tarih
+        public DateTime? BorrowDate { get; set; } // İade edilmesi gereken son tarih
         public DateTime? ReturnDate { get; set; } // Gerçek iade tarihi (opsiyonel)
 
         public string? Status { get; set; } = "Borrowed"; // Ödünç alma durumu (ör. "Borrowed", "Returned", "Overdue")
