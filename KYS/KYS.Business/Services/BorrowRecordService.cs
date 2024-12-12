@@ -68,5 +68,16 @@ namespace KYS.Business.Services
             }
 
         }
+
+        public IEnumerable<BorrowRecord> GetBorrowRecordsByUser(Guid userId)
+        {
+            return _bRepository.GetByUserId(userId);
+        }
+
+        public IEnumerable<BorrowRecord> SearchBorrowRecordsByBookName(Guid userId, string searchTerm)
+        {
+            return _bRepository.SearchByBookName(userId, searchTerm);
+        }
+
     }
 }
