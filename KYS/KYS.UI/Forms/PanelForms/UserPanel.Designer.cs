@@ -48,7 +48,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kitapİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, yazarHakkındaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(2108, 45);
+            menuStrip1.Size = new Size(1444, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -93,6 +93,7 @@
             ödünçAldığımKitaplarToolStripMenuItem1.Name = "ödünçAldığımKitaplarToolStripMenuItem1";
             ödünçAldığımKitaplarToolStripMenuItem1.Size = new Size(371, 42);
             ödünçAldığımKitaplarToolStripMenuItem1.Text = "Ödünç Aldığım Kitaplar";
+            ödünçAldığımKitaplarToolStripMenuItem1.Click += ödünçAldığımKitaplarToolStripMenuItem1_Click;
             // 
             // kullanıcıBilgileriToolStripMenuItem
             // 
@@ -126,7 +127,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2108, 1233);
+            ClientSize = new Size(1444, 881);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;

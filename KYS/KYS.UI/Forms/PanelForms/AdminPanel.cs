@@ -1,7 +1,10 @@
-﻿using KYS.Business.Services;
+﻿using System.Data;
+using KYS.Business.Services;
+using KYS.DataAccess.Context;
 using KYS.Entities.Models;
 using KYS.UI.Forms.UserPanelForms;
 using KYS.UI.Helpers;
+using Microsoft.Data.SqlClient;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 
 namespace KYS.UI.Forms.PanelForms
@@ -9,12 +12,101 @@ namespace KYS.UI.Forms.PanelForms
     public partial class AdminPanel : Form
     {
         private readonly UserService _userService;
+        private readonly ApplicationDBContext _context;
 
-        public AdminPanel(UserService userService)
+
+        public AdminPanel(UserService userService, ApplicationDBContext context)
         {
             InitializeComponent();
             _userService = userService;
+            _context = context;
+
+            LoadYazarSayisi();
+            LoadKitapTurSayisi();
+            LoadDuyuruSayisi();
+            LoadKullaniciSayisi();
+            LoadYayinciSayisi();
+            LoadKitapSayisi();
         }
+
+        private void LoadKitapSayisi()
+        {
+            try
+            {
+                int kitapSayisi = _context.Books.Count();
+                lblBook.Text = $"Kitap Sayısı: {kitapSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadYayinciSayisi()
+        {
+            try
+            {
+                int yayinciSayisi = _context.Publishers.Count();
+                lblPublisher.Text = $"Yayıncı Sayısı: {yayinciSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadKullaniciSayisi()
+        {
+            try
+            {
+                int kullaniciSayisi = _context.Users.Count();
+                lblUser.Text = $"Kullanıcı Sayısı: {kullaniciSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadDuyuruSayisi()
+        {
+            try
+            {
+                int duyuruSayisi = _context.Duyurular.Count();
+                lblAnnouncement.Text = $"Duyuru Sayısı: {duyuruSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadKitapTurSayisi()
+        {
+            try
+            {
+                int turSayisi = _context.BookTypes.Count();
+                lblType.Text = $"Kitap Tür Sayısı: {turSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadYazarSayisi()
+        {
+            try
+            {
+                int yazarSayisi = _context.Authors.Count();
+                lblAuthor.Text = $"Yazar Sayısı: {yazarSayisi}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
@@ -32,7 +124,7 @@ namespace KYS.UI.Forms.PanelForms
         }
 
 
-        private void FormControl(Form frm)
+        private void FormControl(Form frm, Action onClose = null)
         {
             bool acikMi = false;
 
@@ -47,10 +139,14 @@ namespace KYS.UI.Forms.PanelForms
                     break;
                 }
             }
-
+            
             if (!acikMi)
             {
-                frm.MdiParent = this; // MDI Parent olarak ayarla
+                if (onClose != null)
+                {
+                    frm.FormClosed += (s, e) => onClose();
+                }
+                frm.TopMost = true;
                 frm.Show();
             }
             else
@@ -84,41 +180,36 @@ namespace KYS.UI.Forms.PanelForms
         private void kullanıcıTakipEtmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserForm userForm = new UserForm();
-            userForm.MdiParent = this;
             ShowFormWithAlignment(userForm, true);
-            FormControl(userForm);
+            FormControl(userForm, LoadKullaniciSayisi);
         }
 
         private void kitapEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookForm bookForm = new BookForm();
-            bookForm.MdiParent = this;
             ShowFormWithAlignment(bookForm, true);
-            FormControl(bookForm);
+            FormControl(bookForm, LoadKitapSayisi);
         }
 
         private void türEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookTypeForm bookTypeForm = new BookTypeForm();
-            bookTypeForm.MdiParent = this;
             ShowFormWithAlignment(bookTypeForm, true);
-            FormControl(bookTypeForm);
+            FormControl(bookTypeForm, LoadKitapTurSayisi);
         }
 
         private void duyuruEkleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AnnouncementForm announcementForm = new AnnouncementForm();
-            announcementForm.MdiParent = this;
             ShowFormWithAlignment(announcementForm, true);
-            FormControl(announcementForm);
+            FormControl(announcementForm, LoadDuyuruSayisi);
         }
 
         private void yayıncıEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PublisherForm publisherForm = new PublisherForm();
-            publisherForm.MdiParent = this;
             ShowFormWithAlignment(publisherForm, true);
-            FormControl(publisherForm);
+            FormControl(publisherForm, LoadYayinciSayisi);
         }
 
         private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,7 +225,6 @@ namespace KYS.UI.Forms.PanelForms
         private void adminBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProfileForm profileForm = new ProfileForm();
-            profileForm.MdiParent = this;
             ShowFormWithAlignment(profileForm, false);
             FormControl(profileForm);
         }
@@ -142,7 +232,6 @@ namespace KYS.UI.Forms.PanelForms
         private void kitapHakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookDetailForm bookDetailForm = new BookDetailForm(BookDetailFormMod.Admin);
-            bookDetailForm.MdiParent = this;
             ShowFormWithAlignment(bookDetailForm, false);
             FormControl(bookDetailForm);
         }
@@ -150,9 +239,8 @@ namespace KYS.UI.Forms.PanelForms
         private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookSearchForm bookSearchForm = new BookSearchForm();
-            bookSearchForm.MdiParent = this;
             ShowFormWithAlignment(bookSearchForm, true);
-            FormControl(bookSearchForm);
+            FormControl(bookSearchForm, LoadKitapSayisi);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -193,5 +281,11 @@ namespace KYS.UI.Forms.PanelForms
             }
         }
 
+        private void yazarEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Authorform authorForm = new Authorform();
+            ShowFormWithAlignment(authorForm, true);
+            FormControl(authorForm, LoadYazarSayisi);
+        }
     }
 }
