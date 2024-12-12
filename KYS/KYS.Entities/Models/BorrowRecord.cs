@@ -17,6 +17,7 @@ namespace KYS.Entities.Models
         public DateTime? ReturnDate { get; set; } // Gerçek iade tarihi (opsiyonel)
 
         public string? Status { get; set; } = "Borrowed"; // Ödünç alma durumu (ör. "Borrowed", "Returned", "Overdue")
+        
     }
 
 }

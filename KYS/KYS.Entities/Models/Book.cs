@@ -9,6 +9,8 @@ namespace KYS.Entities.Models
 {
     public class Book : BaseEntity
     {
+        public readonly string ImagePath;
+
         public string? Name { get; set; }                  // Kitap Başlığı
         public string? ISBN { get; set; }                   // ISBN Numarası
         public int PublishedYear { get; set; }              // Yayınlanma Yılı

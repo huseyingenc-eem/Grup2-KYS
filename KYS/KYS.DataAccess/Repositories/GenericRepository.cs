@@ -22,7 +22,7 @@ namespace KYS.DataAccess.Repositories
             _dbSet = _dbContext.Set<T>();
         }
         
-        public void Create(T entity)
+        public void Create(string query, T entity)
         {
             _dbSet.Add(entity);
             _dbContext.SaveChanges();
