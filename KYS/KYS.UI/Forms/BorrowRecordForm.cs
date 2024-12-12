@@ -1,18 +1,9 @@
 using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
-﻿using KYS.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using KYS.Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace KYS.UI.Forms
 {
@@ -58,22 +49,22 @@ namespace KYS.UI.Forms
         private void LoadBorrowRecords()
         {
             try
-            { 
-            using (var context = new LibraryContext())
             {
-                dgvRecords.DataSource = context.BorrowRecords
-                    .Include(br => br.Book)
-                    .Include(br => br.User)
-                    .Select(br => new
-                    {
-                        br.Id,
-                        BookName = br.Book.Name,
-                        UserName = br.User.Name,
-                        br.DueDate,
-                        br.Status
-                    })
-                    .ToList();
-            }
+                using (var context = new LibraryContext())
+                {
+                    dgvRecords.DataSource = context.BorrowRecords
+                        .Include(br => br.Book)
+                        .Include(br => br.User)
+                        .Select(br => new
+                        {
+                            br.Id,
+                            BookName = br.Book.Name,
+                            UserName = br.User.Name,
+                            br.DueDate,
+                            br.Status
+                        })
+                        .ToList();
+                }
 
             }
             catch (Exception ex)
@@ -84,7 +75,7 @@ namespace KYS.UI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 using (var context = new LibraryContext())
                 {
@@ -133,7 +124,7 @@ namespace KYS.UI.Forms
 
                     LoadBorrowRecords();
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -144,27 +135,27 @@ namespace KYS.UI.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try 
-            { 
-
-            if (dgvRecords.SelectedRows.Count > 0)
+            try
             {
-                var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
 
-                using (var context = new LibraryContext())
+                if (dgvRecords.SelectedRows.Count > 0)
                 {
-                    var record = context.BorrowRecords.Find(selectedId);
+                    var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
 
-                    if (record != null)
+                    using (var context = new LibraryContext())
                     {
-                        context.BorrowRecords.Remove(record);
-                        context.SaveChanges();
-                        MessageBox.Show("Kayıt başarıyla silindi.");
-                    }
-                }
+                        var record = context.BorrowRecords.Find(selectedId);
 
-                LoadBorrowRecords();
-            }
+                        if (record != null)
+                        {
+                            context.BorrowRecords.Remove(record);
+                            context.SaveChanges();
+                            MessageBox.Show("Kayıt başarıyla silindi.");
+                        }
+                    }
+
+                    LoadBorrowRecords();
+                }
 
             }
             catch (Exception ex)
@@ -201,11 +192,6 @@ namespace KYS.UI.Forms
             {
                 MessageBox.Show(ex.Message);
             }
-          
-        }
-
-        private void BorrowRecordForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

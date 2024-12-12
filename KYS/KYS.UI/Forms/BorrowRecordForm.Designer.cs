@@ -196,17 +196,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvRecords).EndInit();
             ResumeLayout(false);
             PerformLayout();
-            SuspendLayout();
-            // 
-            // BorrowRecordForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "BorrowRecordForm";
-            Text = "BorrowRecordForm";
-            Load += BorrowRecordForm_Load;
-            ResumeLayout(false);
         }
 
         #endregion
