@@ -65,7 +65,14 @@ namespace KYS.UI.Forms
                 secilenYazar = (Author?)lstYazar.SelectedItem;
                 if (secilenYazar != null)
                 {
-                    textBox1.Text= $"Ad : {secilenYazar.FullName}\r\n Doğum Tarihi : {secilenYazar.BirthDate}\r\n Ülke : {secilenYazar.Country}";
+                    lblFullName.Text = secilenYazar.FullName ?? "Belirtilmemiştir";
+                    lblDogumTarih.Text =secilenYazar.BirthDate.ToString() ?? "Belirtilmemiştir";
+                    lblUlke.Text = secilenYazar.Country ?? "Belirtilmemiştir";
+                    lblBiografy.Text = secilenYazar.Biography ?? "Belirtilmemiştir";
+                    pictureBox1.ImageLocation = secilenYazar.PhotoUrl;
+                    
+                    
+                    /* textBox1.Text= $"Ad : {secilenYazar.FullName}\r\n Doğum Tarihi : {secilenYazar.BirthDate}\r\n Ülke : {secilenYazar.Country}";*/
 
                     lstKitap.DisplayMember = "Name";
                     lstKitap.ValueMember = "Id";
