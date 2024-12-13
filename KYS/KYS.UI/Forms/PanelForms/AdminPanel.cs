@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Windows.Forms;
 using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.Entities.Models;
@@ -124,14 +125,15 @@ namespace KYS.UI.Forms.PanelForms
         }
 
 
-        private void FormControl(Form frm, Action onClose = null)
+        
+        private void ShowChildForm(Form childForm)
         {
             bool acikMi = false;
 
             // Açık olan formları kontrol et
             foreach (Form item in Application.OpenForms)
             {
-                if (item.GetType() == frm.GetType())
+                if (item.GetType() == childForm.GetType())
                 {
                     acikMi = true;
                     item.Activate(); // Açık olan formu etkinleştir
@@ -139,21 +141,36 @@ namespace KYS.UI.Forms.PanelForms
                     break;
                 }
             }
-            
+            foreach (Control control in this.Controls)
+            {
+                if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
+                {
+                    control.Visible = false; // Tüm diğer kontrolleri gizle
+                }
+            }
             if (!acikMi)
             {
-                if (onClose != null)
-                {
-                    frm.FormClosed += (s, e) => onClose();
-                }
-                frm.TopMost = true;
-                frm.Show();
+                childForm.FormClosed += AdminPanel_MdiChildFormClosed;
+                childForm.MdiParent = this;
+                childForm.TopMost = true;
+                childForm.Show();
             }
             else
-            {
                 MessageBox.Show("Form zaten açık durumda.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void AdminPanel_MdiChildFormClosed(object? sender, FormClosedEventArgs e)
+        {
+            // Admin Panel'deki gizlenen kontrolleri tekrar görünür yap
+            foreach (Control control in this.Controls)
+            {
+                if (!(control is MdiClient)) // Sadece MDI Container hariç
+                {
+                    control.Visible = true; // Kontrolleri göster
+                }
             }
         }
+
         public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
         {
             frm.StartPosition = FormStartPosition.Manual;
@@ -181,41 +198,53 @@ namespace KYS.UI.Forms.PanelForms
         {
             UserForm userForm = new UserForm();
             ShowFormWithAlignment(userForm, true);
-            FormControl(userForm, LoadKullaniciSayisi);
+            ShowChildForm(userForm);
         }
-
+        private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BookSearchForm bookSearchForm = new BookSearchForm();
+            ShowFormWithAlignment(bookSearchForm, true);
+            ShowChildForm(bookSearchForm);
+        }
         private void kitapEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookForm bookForm = new BookForm();
             ShowFormWithAlignment(bookForm, true);
-            FormControl(bookForm, LoadKitapSayisi);
+            ShowChildForm(bookForm);
         }
 
         private void türEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookTypeForm bookTypeForm = new BookTypeForm();
             ShowFormWithAlignment(bookTypeForm, true);
-            FormControl(bookTypeForm, LoadKitapTurSayisi);
+            ShowChildForm(bookTypeForm);
+        }
+        private void yazarEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Authorform authorForm = new Authorform();
+            ShowFormWithAlignment(authorForm, true);
+            ShowChildForm(authorForm);
+        }
+        private void yayıncıEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PublisherForm publisherForm = new PublisherForm();
+            ShowFormWithAlignment(publisherForm, true);
+            ShowChildForm(publisherForm);
         }
 
         private void duyuruEkleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AnnouncementForm announcementForm = new AnnouncementForm();
             ShowFormWithAlignment(announcementForm, true);
-            FormControl(announcementForm, LoadDuyuruSayisi);
+            ShowChildForm(announcementForm);
         }
 
-        private void yayıncıEkleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PublisherForm publisherForm = new PublisherForm();
-            ShowFormWithAlignment(publisherForm, true);
-            FormControl(publisherForm, LoadYayinciSayisi);
-        }
+        
 
         private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SessionManager.ClearSession();
-            Application.Restart(); // Uygulamayı yeniden başlat
+            Application.Restart();
         }
         private void AdminPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -226,27 +255,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             ProfileForm profileForm = new ProfileForm();
             ShowFormWithAlignment(profileForm, false);
-            FormControl(profileForm);
-        }
-
-        private void kitapHakkındaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BookDetailForm bookDetailForm = new BookDetailForm(BookDetailFormMod.Admin);
-            ShowFormWithAlignment(bookDetailForm, false);
-            FormControl(bookDetailForm);
-        }
-
-        private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BookSearchForm bookSearchForm = new BookSearchForm();
-            ShowFormWithAlignment(bookSearchForm, true);
-            FormControl(bookSearchForm, LoadKitapSayisi);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var users = _userService.GetAll().ToList();
-            ExportaData(users);
+            ShowChildForm(profileForm);
         }
 
         private void ExportaData(List<User> users)
@@ -281,11 +290,6 @@ namespace KYS.UI.Forms.PanelForms
             }
         }
 
-        private void yazarEkleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Authorform authorForm = new Authorform();
-            ShowFormWithAlignment(authorForm, true);
-            FormControl(authorForm, LoadYazarSayisi);
-        }
+        
     }
 }

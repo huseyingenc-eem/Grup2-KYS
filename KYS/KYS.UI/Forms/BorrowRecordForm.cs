@@ -26,19 +26,19 @@ namespace KYS.UI.Forms
         {
             try
             {
-                using (var context = new LibraryContext())
-                {
-                    cmbBook.DataSource = context.Books.ToList();
-                    cmbBook.DisplayMember = "Name";
-                    cmbBook.ValueMember = "Id";
+                //using (var context = new LibraryContext())
+                //{
+                //    cmbBook.DataSource = context.Books.ToList();
+                //    cmbBook.DisplayMember = "Name";
+                //    cmbBook.ValueMember = "Id";
 
-                    cmbUser.DataSource = context.Users.ToList();
-                    cmbUser.DisplayMember = "Name";
-                    cmbUser.ValueMember = "Id";
+                //    cmbUser.DataSource = context.Users.ToList();
+                //    cmbUser.DisplayMember = "Name";
+                //    cmbUser.ValueMember = "Id";
 
 
-                    LoadBorrowRecords();
-                }
+                //    LoadBorrowRecords();
+                //}
             }
             catch (Exception ex)
             {
@@ -50,21 +50,21 @@ namespace KYS.UI.Forms
         {
             try
             {
-                using (var context = new LibraryContext())
-                {
-                    dgvRecords.DataSource = context.BorrowRecords
-                        .Include(br => br.Book)
-                        .Include(br => br.User)
-                        .Select(br => new
-                        {
-                            br.Id,
-                            BookName = br.Book.Name,
-                            UserName = br.User.Name,
-                            br.DueDate,
-                            br.Status
-                        })
-                        .ToList();
-                }
+                //using (var context = new LibraryContext())
+                //{
+                //    dgvRecords.DataSource = context.BorrowRecords
+                //        .Include(br => br.Book)
+                //        .Include(br => br.User)
+                //        .Select(br => new
+                //        {
+                //            br.Id,
+                //            BookName = br.Book.Name,
+                //            UserName = br.User.Name,
+                //            br.DueDate,
+                //            br.Status
+                //        })
+                //        .ToList();
+                //}
 
             }
             catch (Exception ex)
@@ -77,20 +77,20 @@ namespace KYS.UI.Forms
         {
             try
             {
-                using (var context = new LibraryContext())
-                {
-                    var newRecord = new BorrowRecord
-                    {
-                        BookID = (Guid)cmbBook.SelectedValue,
-                        UserID = (Guid)cmbUser.SelectedValue,
-                        DueDate = dtpDueDate.Value,
-                        Status = "Borrowed"
-                    }
+                //using (var context = new LibraryContext())
+                //{
+                //    var newRecord = new BorrowRecord
+                //    {
+                //        BookID = (Guid)cmbBook.SelectedValue,
+                //        UserID = (Guid)cmbUser.SelectedValue,
+                //        DueDate = dtpDueDate.Value,
+                //        Status = "Borrowed"
+                //    }
 
-                context.BorrowRecords.Add(newRecord);
-                    context.SaveChanges();
-                    MessageBox.Show("Kayıt başarıyla eklendi.");
-                }
+                //context.BorrowRecords.Add(newRecord);
+                //    context.SaveChanges();
+                //    MessageBox.Show("Kayıt başarıyla eklendi.");
+                //}
 
                 LoadBorrowRecords();
             }
@@ -107,20 +107,20 @@ namespace KYS.UI.Forms
             {
                 if (dgvRecords.SelectedRows.Count > 0)
                 {
-                    var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
+                    //var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
 
-                    using (var context = new LibraryContext())
-                    {
-                        var record = context.BorrowRecords.Find(selectedId);
+                    //using (var context = new LibraryContext())
+                    //{
+                    //    var record = context.BorrowRecords.Find(selectedId);
 
-                        if (record != null)
-                        {
-                            record.DueDate = dtpDueDate.Value;
-                            record.Status = "Borrowed";
-                            context.SaveChanges();
-                            MessageBox.Show("Kayıt başarıyla güncellendi.");
-                        }
-                    }
+                    //    if (record != null)
+                    //    {
+                    //        record.DueDate = dtpDueDate.Value;
+                    //        record.Status = "Borrowed";
+                    //        context.SaveChanges();
+                    //        MessageBox.Show("Kayıt başarıyla güncellendi.");
+                    //    }
+                    //}
 
                     LoadBorrowRecords();
                 }
@@ -142,17 +142,17 @@ namespace KYS.UI.Forms
                 {
                     var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
 
-                    using (var context = new LibraryContext())
-                    {
-                        var record = context.BorrowRecords.Find(selectedId);
+                    //using (var context = new LibraryContext())
+                    //{
+                    //    var record = context.BorrowRecords.Find(selectedId);
 
-                        if (record != null)
-                        {
-                            context.BorrowRecords.Remove(record);
-                            context.SaveChanges();
-                            MessageBox.Show("Kayıt başarıyla silindi.");
-                        }
-                    }
+                    //    if (record != null)
+                    //    {
+                    //        context.BorrowRecords.Remove(record);
+                    //        context.SaveChanges();
+                    //        MessageBox.Show("Kayıt başarıyla silindi.");
+                    //    }
+                    //}
 
                     LoadBorrowRecords();
                 }
@@ -173,17 +173,17 @@ namespace KYS.UI.Forms
                 {
                     var selectedId = (int)dgvRecords.SelectedRows[0].Cells["Id"].Value;
 
-                    using (var context = new LibraryContext())
-                    {
-                        var record = context.BorrowRecords.Find(selectedId);
+                    //using (var context = new LibraryContext())
+                    //{
+                    //    var record = context.BorrowRecords.Find(selectedId);
 
-                        if (record != null)
-                        {
-                            record.Status = "Returned";
-                            context.SaveChanges();
-                            MessageBox.Show("Kitap başarıyla iade edildi.");
-                        }
-                    }
+                    //    if (record != null)
+                    //    {
+                    //        record.Status = "Returned";
+                    //        context.SaveChanges();
+                    //        MessageBox.Show("Kitap başarıyla iade edildi.");
+                    //    }
+                    //}
 
                     LoadBorrowRecords();
                 }

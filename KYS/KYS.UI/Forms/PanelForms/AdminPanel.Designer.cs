@@ -35,6 +35,7 @@
             kitapAraToolStripMenuItem = new ToolStripMenuItem();
             kitapEkleToolStripMenuItem = new ToolStripMenuItem();
             türEkleToolStripMenuItem = new ToolStripMenuItem();
+            yazarEkleToolStripMenuItem = new ToolStripMenuItem();
             yayıncıİşlemleriToolStripMenuItem = new ToolStripMenuItem();
             yayıncıEkleToolStripMenuItem = new ToolStripMenuItem();
             adSoyadToolStripMenuItem = new ToolStripMenuItem();
@@ -42,14 +43,12 @@
             çıkışYapToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem1 = new ToolStripMenuItem();
-            button1 = new Button();
             lblBook = new Label();
             lblUser = new Label();
             lblType = new Label();
             lblPublisher = new Label();
             lblAnnouncement = new Label();
             lblAuthor = new Label();
-            yazarEkleToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,7 +58,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1444, 45);
+            menuStrip1.Size = new Size(2387, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -104,6 +103,13 @@
             türEkleToolStripMenuItem.Size = new Size(211, 42);
             türEkleToolStripMenuItem.Text = "Tür Ekle";
             türEkleToolStripMenuItem.Click += türEkleToolStripMenuItem_Click;
+            // 
+            // yazarEkleToolStripMenuItem
+            // 
+            yazarEkleToolStripMenuItem.Name = "yazarEkleToolStripMenuItem";
+            yazarEkleToolStripMenuItem.Size = new Size(211, 42);
+            yazarEkleToolStripMenuItem.Text = "Yazar Ekle";
+            yazarEkleToolStripMenuItem.Click += yazarEkleToolStripMenuItem_Click;
             // 
             // yayıncıİşlemleriToolStripMenuItem
             // 
@@ -154,16 +160,6 @@
             duyuruEkleToolStripMenuItem1.Size = new Size(235, 42);
             duyuruEkleToolStripMenuItem1.Text = "Duyuru Ekle";
             duyuruEkleToolStripMenuItem1.Click += duyuruEkleToolStripMenuItem1_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(578, 431);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // lblBook
             // 
@@ -225,25 +221,17 @@
             lblAuthor.TabIndex = 10;
             lblAuthor.Text = "Yazar Sayısı :";
             // 
-            // yazarEkleToolStripMenuItem
-            // 
-            yazarEkleToolStripMenuItem.Name = "yazarEkleToolStripMenuItem";
-            yazarEkleToolStripMenuItem.Size = new Size(211, 42);
-            yazarEkleToolStripMenuItem.Text = "Yazar Ekle";
-            yazarEkleToolStripMenuItem.Click += yazarEkleToolStripMenuItem_Click;
-            // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1444, 881);
+            ClientSize = new Size(2387, 1264);
             Controls.Add(lblAuthor);
             Controls.Add(lblAnnouncement);
             Controls.Add(lblPublisher);
             Controls.Add(lblType);
             Controls.Add(lblUser);
             Controls.Add(lblBook);
-            Controls.Add(button1);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -272,7 +260,6 @@
         private ToolStripMenuItem adminBilgileriToolStripMenuItem;
         private ToolStripMenuItem çıkışYapToolStripMenuItem;
         private ToolStripMenuItem kitapAraToolStripMenuItem;
-        private Button button1;
         private Label lblBook;
         private Label lblUser;
         private Label lblType;
