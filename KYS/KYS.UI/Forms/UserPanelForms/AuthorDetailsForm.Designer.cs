@@ -34,7 +34,7 @@
             lstKitap = new ListBox();
             label2 = new Label();
             groupBox1 = new GroupBox();
-            button1 = new Button();
+            btnSendToBook = new Button();
             lblUlke = new Label();
             lblBiografy = new Label();
             lblDogumTarih = new Label();
@@ -50,51 +50,58 @@
             // 
             // txtAra
             // 
-            txtAra.Location = new Point(80, 39);
+            txtAra.Location = new Point(126, 73);
+            txtAra.Margin = new Padding(6);
             txtAra.Name = "txtAra";
-            txtAra.Size = new Size(171, 23);
+            txtAra.Size = new Size(266, 34);
             txtAra.TabIndex = 0;
+            txtAra.TextChanged += txtAra_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(26, 42);
+            label1.Location = new Point(40, 78);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(30, 15);
+            label1.Size = new Size(50, 28);
             label1.TabIndex = 1;
             label1.Text = "ARA";
             // 
             // lstYazar
             // 
             lstYazar.FormattingEnabled = true;
-            lstYazar.ItemHeight = 15;
-            lstYazar.Location = new Point(38, 77);
+            lstYazar.ItemHeight = 28;
+            lstYazar.Location = new Point(60, 144);
+            lstYazar.Margin = new Padding(6);
             lstYazar.Name = "lstYazar";
-            lstYazar.Size = new Size(213, 364);
+            lstYazar.Size = new Size(332, 592);
             lstYazar.TabIndex = 2;
             lstYazar.SelectedIndexChanged += lstYazar_SelectedIndexChanged;
             // 
             // lstKitap
             // 
             lstKitap.FormattingEnabled = true;
-            lstKitap.ItemHeight = 15;
-            lstKitap.Location = new Point(14, 207);
+            lstKitap.ItemHeight = 28;
+            lstKitap.Location = new Point(12, 387);
+            lstKitap.Margin = new Padding(6);
             lstKitap.Name = "lstKitap";
-            lstKitap.Size = new Size(329, 184);
+            lstKitap.Size = new Size(515, 256);
             lstKitap.TabIndex = 3;
+            lstKitap.SelectedIndexChanged += lstKitap_SelectedIndexChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 189);
+            label2.Location = new Point(22, 353);
+            label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(90, 15);
+            label2.Size = new Size(151, 28);
             label2.TabIndex = 4;
             label2.Text = "Yazarın Kitapları";
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnSendToBook);
             groupBox1.Controls.Add(lblUlke);
             groupBox1.Controls.Add(lblBiografy);
             groupBox1.Controls.Add(lblDogumTarih);
@@ -106,112 +113,129 @@
             groupBox1.Controls.Add(lblFullName);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(pictureBox1);
-            groupBox1.Location = new Point(316, 12);
+            groupBox1.Location = new Point(404, 24);
+            groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(378, 429);
+            groupBox1.Padding = new Padding(6);
+            groupBox1.Size = new Size(572, 712);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Yazar Hakkında";
             // 
-            // button1
+            // btnSendToBook
             // 
-            button1.Location = new Point(268, 400);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 9;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnSendToBook.Location = new Point(66, 656);
+            btnSendToBook.Margin = new Padding(6);
+            btnSendToBook.Name = "btnSendToBook";
+            btnSendToBook.Size = new Size(461, 43);
+            btnSendToBook.TabIndex = 9;
+            btnSendToBook.Text = "Kitap Detayı Hakkında Bilgi Almak içinTıklayınız";
+            btnSendToBook.UseVisualStyleBackColor = true;
+            btnSendToBook.Click += btnSendToBook_Click;
             // 
             // lblUlke
             // 
-            lblUlke.AutoSize = true;
             lblUlke.BorderStyle = BorderStyle.FixedSingle;
-            lblUlke.Location = new Point(199, 89);
+            lblUlke.Font = new Font("Segoe UI", 15F);
+            lblUlke.Location = new Point(314, 166);
+            lblUlke.Margin = new Padding(6, 0, 6, 0);
             lblUlke.Name = "lblUlke";
-            lblUlke.Size = new Size(2, 17);
+            lblUlke.Size = new Size(213, 30);
             lblUlke.TabIndex = 8;
             // 
             // lblBiografy
             // 
-            lblBiografy.AutoSize = true;
+            lblBiografy.AutoEllipsis = true;
             lblBiografy.BorderStyle = BorderStyle.FixedSingle;
-            lblBiografy.Location = new Point(199, 114);
+            lblBiografy.Font = new Font("Segoe UI", 10F);
+            lblBiografy.Location = new Point(270, 211);
+            lblBiografy.Margin = new Padding(6, 0, 6, 0);
             lblBiografy.Name = "lblBiografy";
-            lblBiografy.Size = new Size(2, 17);
+            lblBiografy.Size = new Size(257, 166);
             lblBiografy.TabIndex = 7;
             // 
             // lblDogumTarih
             // 
-            lblDogumTarih.AutoSize = true;
             lblDogumTarih.BackColor = SystemColors.Control;
             lblDogumTarih.BorderStyle = BorderStyle.FixedSingle;
-            lblDogumTarih.Location = new Point(199, 65);
+            lblDogumTarih.Font = new Font("Segoe UI", 15F);
+            lblDogumTarih.Location = new Point(314, 121);
+            lblDogumTarih.Margin = new Padding(6, 0, 6, 0);
             lblDogumTarih.Name = "lblDogumTarih";
-            lblDogumTarih.Size = new Size(2, 17);
+            lblDogumTarih.Size = new Size(213, 30);
             lblDogumTarih.TabIndex = 6;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(112, 89);
+            label6.Location = new Point(176, 166);
+            label6.Margin = new Padding(6, 0, 6, 0);
             label6.Name = "label6";
-            label6.Size = new Size(33, 15);
+            label6.Size = new Size(55, 28);
             label6.TabIndex = 5;
             label6.Text = "Ülke:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(112, 114);
+            label5.Location = new Point(176, 213);
+            label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
-            label5.Size = new Size(57, 15);
+            label5.Size = new Size(94, 28);
             label5.TabIndex = 5;
             label5.Text = "Biyografi:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(112, 65);
+            label4.Location = new Point(176, 121);
+            label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
-            label4.Size = new Size(81, 15);
+            label4.Size = new Size(133, 28);
             label4.TabIndex = 5;
             label4.Text = "Doğum Tarihi:";
             // 
             // lblFullName
             // 
             lblFullName.AutoSize = true;
-            lblFullName.Location = new Point(158, 26);
+            lblFullName.Location = new Point(248, 50);
+            lblFullName.Margin = new Padding(6, 0, 6, 0);
             lblFullName.Name = "lblFullName";
             lblFullName.RightToLeft = RightToLeft.No;
-            lblFullName.Size = new Size(0, 15);
+            lblFullName.Size = new Size(0, 28);
             lblFullName.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 26);
+            label3.Location = new Point(22, 50);
+            label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
-            label3.Size = new Size(61, 15);
+            label3.Size = new Size(101, 28);
             label3.TabIndex = 1;
             label3.Text = "Yazar Adı: ";
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(6, 60);
+            pictureBox1.Location = new Point(9, 112);
+            pictureBox1.Margin = new Padding(6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 120);
+            pictureBox1.Size = new Size(158, 224);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // AuthorDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(991, 840);
             Controls.Add(groupBox1);
             Controls.Add(lstYazar);
             Controls.Add(label1);
             Controls.Add(txtAra);
+            Font = new Font("Segoe UI", 15F);
+            Margin = new Padding(6);
             Name = "AuthorDetailsForm";
             Text = "AuthorDetailsForm";
             Load += AuthorDetailsForm_Load;
@@ -238,7 +262,7 @@
         private Label lblDogumTarih;
         private Label label6;
         private Label lblUlke;
-        private Button button1;
+        private Button btnSendToBook;
         private PictureBox pictureBox1;
     }
 }
