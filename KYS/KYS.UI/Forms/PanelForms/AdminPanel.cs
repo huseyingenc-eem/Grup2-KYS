@@ -161,12 +161,14 @@ namespace KYS.UI.Forms.PanelForms
 
         private void AdminPanel_MdiChildFormClosed(object? sender, FormClosedEventArgs e)
         {
-            // Admin Panel'deki gizlenen kontrolleri tekrar görünür yap
-            foreach (Control control in this.Controls)
+            if (this.MdiChildren.Length == 1)
             {
-                if (!(control is MdiClient)) // Sadece MDI Container hariç
+                foreach (Control control in this.Controls)
                 {
-                    control.Visible = true; // Kontrolleri göster
+                    if (!(control is MdiClient) && !(control is MenuStrip)) // Sadece MDI Container hariç
+                    {
+                        control.Visible = true;
+                    }
                 }
             }
         }

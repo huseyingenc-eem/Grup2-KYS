@@ -38,6 +38,8 @@
             çıkışToolStripMenuItem = new ToolStripMenuItem();
             yazarHakkındaToolStripMenuItem = new ToolStripMenuItem();
             yazarBilgileriToolStripMenuItem = new ToolStripMenuItem();
+            flpAnnouncements = new FlowLayoutPanel();
+            label1 = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -115,11 +117,30 @@
             yazarBilgileriToolStripMenuItem.Text = "Yazar Bilgileri";
             yazarBilgileriToolStripMenuItem.Click += yazarBilgileriToolStripMenuItem_Click;
             // 
+            // flpAnnouncements
+            // 
+            flpAnnouncements.Location = new Point(1598, 122);
+            flpAnnouncements.Name = "flpAnnouncements";
+            flpAnnouncements.Size = new Size(435, 935);
+            flpAnnouncements.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 25F);
+            label1.Location = new Point(1598, 64);
+            label1.Name = "label1";
+            label1.Size = new Size(435, 55);
+            label1.TabIndex = 5;
+            label1.Text = "Duyurular";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // UserPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2087, 1220);
+            Controls.Add(label1);
+            Controls.Add(flpAnnouncements);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -145,5 +166,7 @@
         private ToolStripMenuItem kitapAraToolStripMenuItem;
         private ToolStripMenuItem yaptığımYorumlarToolStripMenuItem;
         private ToolStripMenuItem ödünçAldığımKitaplarToolStripMenuItem1;
+        private FlowLayoutPanel flpAnnouncements;
+        private Label label1;
     }
 }

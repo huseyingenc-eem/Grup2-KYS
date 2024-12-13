@@ -9,9 +9,12 @@ namespace KYS.UI.Forms.PanelForms
 {
     public partial class UserPanel : Form
     {
+        private readonly DuyurularService _duyurularService;
         public UserPanel()
         {
             InitializeComponent();
+            var dbContext = new ApplicationDBContext();
+            _duyurularService = new DuyurularService(new DuyurularRepository(dbContext));
         }
 
         private void UserPanel_Load(object sender, EventArgs e)
@@ -24,18 +27,30 @@ namespace KYS.UI.Forms.PanelForms
                 return;
             }
             adSoyadToolStripMenuItem.Text = $"Hoş geldiniz, {SessionManager.CurrentUser?.Name} {SessionManager.CurrentUser?.Surname}";
+
+            LoadAnnouncements();
         }
 
+        
 
         public void FormControl(Form frm)
         {
             bool acikMi = false;
-            foreach (var item in Application.OpenForms)
+            foreach (Form openForm in Application.OpenForms)
             {
-                if (item.GetType() == frm.GetType())
+                if (openForm.GetType() == frm.GetType())
                 {
                     acikMi = true;
+                    openForm.Activate(); // Mevcut formu etkinleştir
+                    openForm.BringToFront(); // Formu ön plana getir
                     break;
+                }
+            }
+            foreach (Control control in this.Controls)
+            {
+                if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
+                {
+                    control.Visible = false; // Tüm diğer kontrolleri gizle
                 }
             }
             if (acikMi)
@@ -44,10 +59,32 @@ namespace KYS.UI.Forms.PanelForms
             }
             else
             {
+                foreach (Control control in this.Controls)
+                {
+                    if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
+                    {
+                        control.Visible = false; // Tüm diğer kontrolleri gizle
+                    }
+                }
+                frm.FormClosed += UserPanelChildFormClosed; ;
                 frm.MdiParent = this;
                 frm.Show();
             }
 
+        }
+
+        private void UserPanelChildFormClosed(object? sender, FormClosedEventArgs e)
+        {
+            if (this.MdiChildren.Length == 1)
+            {
+                foreach (Control control in this.Controls)
+                {
+                    if (!(control is MdiClient) && !(control is MenuStrip)) // Sadece MDI Container hariç
+                    {
+                        control.Visible = true;
+                    }
+                }
+            }
         }
         public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
         {
@@ -149,6 +186,72 @@ namespace KYS.UI.Forms.PanelForms
                 MessageBox.Show($"Hata oluştu: {ex.Message}");
             }
 
+        }
+
+        private void LoadAnnouncements()
+        {
+            var currentScrollPosition = flpAnnouncements.VerticalScroll.Value;
+
+            // Mevcut duyuruları temizle
+            flpAnnouncements.Controls.Clear();
+
+            // Duyuruları veritabanından al
+            var announcements = _duyurularService.GetAll()
+                .OrderByDescending(a => a.CreatedDate)
+                .ToList();
+
+            foreach (var announcement in announcements)
+            {
+                // Duyuru paneli
+                var announcementPanel = new Panel
+                {
+                    Size = new Size(flpAnnouncements.Width - 10, 100),
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Margin = new Padding(3),
+                    Padding = new Padding(5)
+                };
+
+                // Duyuru başlık label'ı (Sol üstte yaslı)
+                var titleLabel = new Label
+                {
+                    Text = announcement.Baslik,
+                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(5, 5) // Sol üst köşe
+                };
+
+                // Tarih label'ı (Sağ üst köşe)
+                var dateLabel = new Label
+                {
+                    Text = $"{announcement.CreatedDate:dd.MM.yyyy HH:mm}",
+                    Font = new Font("Arial", 8, FontStyle.Regular),
+                    AutoSize = true,
+                    Location = new Point(announcementPanel.Width - 105, 5),
+                    TextAlign = ContentAlignment.TopRight
+                };
+
+                // Duyuru içeriği label'ı (Başlık altında)
+                var contentLabel = new Label
+                {
+                    Text = announcement.Icerik,
+                    Font = new Font("Arial", 9, FontStyle.Regular),
+                    AutoSize = false,
+                    Size = new Size(announcementPanel.Width - 20, 50),
+                    Location = new Point(15, 30)
+                };
+
+                // Panellere label'ları ekle
+                announcementPanel.Controls.Add(titleLabel);
+                announcementPanel.Controls.Add(dateLabel);
+                announcementPanel.Controls.Add(contentLabel);
+
+                // Paneli FlowLayoutPanel'e ekle
+                flpAnnouncements.Controls.Add(announcementPanel);
+            }
+
+            // Scroll pozisyonunu geri yükle
+            flpAnnouncements.VerticalScroll.Value = currentScrollPosition;
+            flpAnnouncements.PerformLayout();
         }
     }
 }
