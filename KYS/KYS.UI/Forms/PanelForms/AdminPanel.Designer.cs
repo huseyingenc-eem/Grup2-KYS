@@ -35,6 +35,7 @@
             kitapAraToolStripMenuItem = new ToolStripMenuItem();
             kitapEkleToolStripMenuItem = new ToolStripMenuItem();
             türEkleToolStripMenuItem = new ToolStripMenuItem();
+            yazarEkleToolStripMenuItem = new ToolStripMenuItem();
             yayıncıİşlemleriToolStripMenuItem = new ToolStripMenuItem();
             yayıncıEkleToolStripMenuItem = new ToolStripMenuItem();
             adSoyadToolStripMenuItem = new ToolStripMenuItem();
@@ -42,7 +43,12 @@
             çıkışYapToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem1 = new ToolStripMenuItem();
-            button1 = new Button();
+            lblBook = new Label();
+            lblUser = new Label();
+            lblType = new Label();
+            lblPublisher = new Label();
+            lblAnnouncement = new Label();
+            lblAuthor = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +58,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(2253, 45);
+            menuStrip1.Size = new Size(2387, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -72,7 +78,7 @@
             // 
             // kitapİşlemleriToolStripMenuItem
             // 
-            kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapAraToolStripMenuItem, kitapEkleToolStripMenuItem, türEkleToolStripMenuItem });
+            kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapAraToolStripMenuItem, kitapEkleToolStripMenuItem, türEkleToolStripMenuItem, yazarEkleToolStripMenuItem });
             kitapİşlemleriToolStripMenuItem.Name = "kitapİşlemleriToolStripMenuItem";
             kitapİşlemleriToolStripMenuItem.Size = new Size(197, 41);
             kitapİşlemleriToolStripMenuItem.Text = "Kitap İşlemleri";
@@ -97,6 +103,13 @@
             türEkleToolStripMenuItem.Size = new Size(211, 42);
             türEkleToolStripMenuItem.Text = "Tür Ekle";
             türEkleToolStripMenuItem.Click += türEkleToolStripMenuItem_Click;
+            // 
+            // yazarEkleToolStripMenuItem
+            // 
+            yazarEkleToolStripMenuItem.Name = "yazarEkleToolStripMenuItem";
+            yazarEkleToolStripMenuItem.Size = new Size(211, 42);
+            yazarEkleToolStripMenuItem.Text = "Yazar Ekle";
+            yazarEkleToolStripMenuItem.Click += yazarEkleToolStripMenuItem_Click;
             // 
             // yayıncıİşlemleriToolStripMenuItem
             // 
@@ -148,22 +161,77 @@
             duyuruEkleToolStripMenuItem1.Text = "Duyuru Ekle";
             duyuruEkleToolStripMenuItem1.Click += duyuruEkleToolStripMenuItem1_Click;
             // 
-            // button1
+            // lblBook
             // 
-            button1.Location = new Point(578, 431);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            lblBook.BackColor = Color.LightSeaGreen;
+            lblBook.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblBook.Location = new Point(27, 66);
+            lblBook.Name = "lblBook";
+            lblBook.Size = new Size(181, 126);
+            lblBook.TabIndex = 5;
+            lblBook.Text = "Kitap Sayısı :";
+            // 
+            // lblUser
+            // 
+            lblUser.BackColor = Color.LightSeaGreen;
+            lblUser.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblUser.Location = new Point(238, 66);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(181, 126);
+            lblUser.TabIndex = 6;
+            lblUser.Text = "Kullanıcı Sayısı :";
+            // 
+            // lblType
+            // 
+            lblType.BackColor = Color.LightSeaGreen;
+            lblType.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblType.Location = new Point(446, 66);
+            lblType.Name = "lblType";
+            lblType.Size = new Size(181, 126);
+            lblType.TabIndex = 7;
+            lblType.Text = "Kitap Tür Sayısı :";
+            // 
+            // lblPublisher
+            // 
+            lblPublisher.BackColor = Color.LightSeaGreen;
+            lblPublisher.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblPublisher.Location = new Point(27, 229);
+            lblPublisher.Name = "lblPublisher";
+            lblPublisher.Size = new Size(181, 126);
+            lblPublisher.TabIndex = 8;
+            lblPublisher.Text = "Yayıncı Sayısı :";
+            // 
+            // lblAnnouncement
+            // 
+            lblAnnouncement.BackColor = Color.LightSeaGreen;
+            lblAnnouncement.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblAnnouncement.Location = new Point(238, 229);
+            lblAnnouncement.Name = "lblAnnouncement";
+            lblAnnouncement.Size = new Size(181, 126);
+            lblAnnouncement.TabIndex = 9;
+            lblAnnouncement.Text = "Duyuru Sayısı :";
+            // 
+            // lblAuthor
+            // 
+            lblAuthor.BackColor = Color.LightSeaGreen;
+            lblAuthor.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblAuthor.Location = new Point(446, 229);
+            lblAuthor.Name = "lblAuthor";
+            lblAuthor.Size = new Size(181, 126);
+            lblAuthor.TabIndex = 10;
+            lblAuthor.Text = "Yazar Sayısı :";
             // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2253, 1247);
-            Controls.Add(button1);
+            ClientSize = new Size(2387, 1264);
+            Controls.Add(lblAuthor);
+            Controls.Add(lblAnnouncement);
+            Controls.Add(lblPublisher);
+            Controls.Add(lblType);
+            Controls.Add(lblUser);
+            Controls.Add(lblBook);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -192,6 +260,12 @@
         private ToolStripMenuItem adminBilgileriToolStripMenuItem;
         private ToolStripMenuItem çıkışYapToolStripMenuItem;
         private ToolStripMenuItem kitapAraToolStripMenuItem;
-        private Button button1;
+        private Label lblBook;
+        private Label lblUser;
+        private Label lblType;
+        private Label lblPublisher;
+        private Label lblAnnouncement;
+        private Label lblAuthor;
+        private ToolStripMenuItem yazarEkleToolStripMenuItem;
     }
 }

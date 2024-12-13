@@ -1,4 +1,7 @@
-﻿using KYS.UI.Forms.UserPanelForms;
+﻿using KYS.Business.Services;
+using KYS.DataAccess.Context;
+using KYS.DataAccess.Repositories;
+using KYS.UI.Forms.UserPanelForms;
 using KYS.UI.Helpers;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 
@@ -86,10 +89,6 @@ namespace KYS.UI.Forms.PanelForms
 
         }
 
-        private void ödünçAldığımKitaplarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void yazarBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -132,6 +131,27 @@ namespace KYS.UI.Forms.PanelForms
             borrowRecordForm.MdiParent = this;
             ShowFormWithAlignment(borrowRecordForm, false);
             FormControl(borrowRecordForm);
+        }
+
+        private void ödünçAldığımKitaplarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BorrowRecordService borrowRecordService = new BorrowRecordService(new BorrowRecordRepository(new ApplicationDBContext()));
+                Guid currentUserId = SessionManager.CurrentUser.Id;
+
+                MyBorrowRecord myBorrowRecord = new MyBorrowRecord(borrowRecordService, currentUserId);
+                myBorrowRecord.MdiParent = this;
+
+                ShowFormWithAlignment(myBorrowRecord, false);
+                FormControl(myBorrowRecord);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata oluştu: {ex.Message}");
+            }
+
         }
     }
 }
