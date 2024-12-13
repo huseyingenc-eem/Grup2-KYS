@@ -137,10 +137,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             try
             {
-                BorrowRecordService borrowRecordService = new BorrowRecordService(new BorrowRecordRepository(new ApplicationDBContext()));
-                Guid currentUserId = SessionManager.CurrentUser.Id;
-
-                MyBorrowRecord myBorrowRecord = new MyBorrowRecord(borrowRecordService, currentUserId);
+                MyBorrowRecord myBorrowRecord = new MyBorrowRecord();
                 myBorrowRecord.MdiParent = this;
 
                 ShowFormWithAlignment(myBorrowRecord, false);

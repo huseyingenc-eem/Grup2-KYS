@@ -2,26 +2,28 @@ using KYS.Business.Services;
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
-using Microsoft.EntityFrameworkCore;
-using KYS.DataAccess.Abstractions;
+using KYS.UI.Helpers;
 
 namespace KYS.UI.Forms
 {
     public partial class BorrowRecordForm : Form
     {
         private readonly BorrowRecordService _borrowRecordService;
-        private readonly BorrowRecordRepository _borrowRecordRepository;
-
+        private readonly UserService _userService;
+        private readonly BookService _bookService;
         public Book? borrowBook;
-        public User? currentUser;
-        // burası bookdetailformda bulunan butondan gelecek. kitap hazır geliyor bunun içinde ona göre yap.
-        private int _defaultBorrowDuration = 14;
+
+        User currentUser = SessionManager.CurrentUser;
+
+        private const int _defaultBorrowDuration = 14;
+
         public BorrowRecordForm()
         {
             InitializeComponent();
             var dBContext = new ApplicationDBContext();
-            _borrowRecordRepository = new BorrowRecordRepository(dBContext);
-            _borrowRecordService = new BorrowRecordService(_borrowRecordRepository);
+            _borrowRecordService = new BorrowRecordService(new BorrowRecordRepository(dBContext));
+            _userService=new UserService(new UserRepository(dBContext));
+            _bookService=new BookService(new BookRepository(dBContext));
         }
 
         private void BorrowRecordForm_Load(object sender, EventArgs e)
@@ -31,58 +33,59 @@ namespace KYS.UI.Forms
             {
                 txtBookName.Text = borrowBook.Name;
                 txtAuthorName.Text = borrowBook.Author.Name;
-                pictureBoxPhoto.ImageLocation = borrowBook.ImagePath;
+                pictureBoxPhoto.ImageLocation = borrowBook.CoverImageUrl;
             }
-
 
             if (currentUser != null)
             {
-                txtUserName.Text = currentUser.Name;
-
+                txtUserName.Text = currentUser.FullName;
             }
-
-
             dtpBorrowDate.Value = DateTime.Now;
-            dtpReturnDate.Value = dtpBorrowDate.Value.AddDays(_defaultBorrowDuration);
+            dtpBorrowDate.Enabled = false;
 
-            lblMessage.Text = $"{_defaultBorrowDuration} gün içinde teslim edilmelidir.";
+            dtpReturnDate.Value = DateTime.Now.AddDays(_defaultBorrowDuration);
+            dtpReturnDate.Enabled = false;
+            // Ödünç alma tarihini ve mesajı ayarla
+            dtpBorrowDate.Value = DateTime.Now;
+            lblMessage.Text = $"Bu kitabı {_defaultBorrowDuration} gün içinde iade etmelisiniz!";
 
         }
-        private void dtpBorrowDate_ValueChanged(object sender, EventArgs e)
-        {
-
-            dtpReturnDate.Value = dtpBorrowDate.Value.AddDays(_defaultBorrowDuration);
-        }
-        
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            if (borrowBook == null || currentUser == null)
-            {
-                MessageBox.Show("Kitap veya kullanıcı bilgileri eksik!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            
-            var borrowRecord = new BorrowRecord
-            {
-                BookID = borrowBook.Id,
-                UserID = currentUser.Id,
-                BorrowDate = dtpBorrowDate.Value,
-                ReturnDate = dtpReturnDate.Value
-            };
-
-            
             try
             {
-                
-                string query = "INSERT INTO BorrowRecord (BookId, UserId, BorrowDate, ReturnDate) " +
-                               "VALUES (@BookId, @UserId, @BorrowDate, @ReturnDate)";
-                           
-                _borrowRecordRepository.Create(query, borrowRecord);
+                if (borrowBook == null || currentUser == null)
+                {
+                    MessageBox.Show("Kitap veya kullanıcı bilgileri eksik!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (currentUser.MaxBorrowLimit <= 0)
+                {
+                    throw new Exception("Kitap ödünç alamazsınız çünkü ödünç alma hakkınız kalmadı!");
+                }
+                var existingRecord = _borrowRecordService.GetAll()
+                    .FirstOrDefault(r => r.UserID == currentUser.Id && r.BookID == borrowBook.Id && r.Status == "Borrowed");
 
+                if (existingRecord != null)
+                {
+                    throw new Exception("Bu kitabı zaten ödünç aldınız! Aynı kitabı birden fazla ödünç alamazsınız.");
+                }
+                var borrowRecord = new BorrowRecord
+                {
+                    BookID = borrowBook.Id,
+                    UserID = currentUser.Id,
+                    
+                };
+
+                _borrowRecordService.Create(borrowRecord);
+
+                currentUser.MaxBorrowLimit--;
+                _userService.Update(currentUser);
+
+                borrowBook.CopiesAvailable--;
+                _bookService.Update(borrowBook);
                 MessageBox.Show("Kayıt başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Close();
             }
             catch (Exception ex)
@@ -100,7 +103,7 @@ namespace KYS.UI.Forms
                                  MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close(); 
+                this.Close();
             }
         }
     }

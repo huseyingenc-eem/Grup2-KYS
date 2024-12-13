@@ -1,13 +1,13 @@
 ﻿using FluentValidation.Results;
 using KYS.Business.Abstractions;
 using KYS.Business.Validators;
-using KYS.DataAccess.Abstractions;
+using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using KYS.DataAccess.Context;
+
 namespace KYS.Business.Services
 {
     public class BookService : IManager<Book>

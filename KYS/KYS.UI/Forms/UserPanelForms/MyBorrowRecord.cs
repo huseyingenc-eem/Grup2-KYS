@@ -1,57 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using KYS.Business.Services;
+﻿using KYS.Business.Services;
+using KYS.DataAccess.Context;
+using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using KYS.UI.Helpers;
+using System.Data;
 
 namespace KYS.UI.Forms.UserPanelForms
 {
     public partial class MyBorrowRecord : Form
     {
         private readonly BorrowRecordService _borrowRecordService;
-        private Guid _currentUserId;
-        public MyBorrowRecord(BorrowRecordService borrowRecordService, Guid currentUserId)
+
+        private User currentuser = SessionManager.CurrentUser;
+
+        public MyBorrowRecord()
         {
             InitializeComponent();
-            _borrowRecordService = borrowRecordService;
-            _currentUserId = currentUserId;
-
-
-        }
-
-        private void LoadBorrowRecords()
-        {
-            var records = _borrowRecordService.GetBorrowRecordsByUser(_currentUserId);
-            BindToDataGrid(records);
-        }
-
-        private void BindToDataGrid(IEnumerable<BorrowRecord> records)
-        {
-            dgvBorrowRecords.DataSource = records.Select(r => new
-            {
-                BookName = r.Book?.Name,
-                BorrowDate = r.DueDate.ToString("yyyy-MM-dd"),
-                ReturnDate = r.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not Returned",
-                Status = r.Status
-            }).ToList();
+            var dBContext = new ApplicationDBContext();
+            _borrowRecordService = new BorrowRecordService(new BorrowRecordRepository(dBContext));
         }
         private void MyBorrowRecord_Load(object sender, EventArgs e)
         {
             LoadBorrowRecords();
         }
+        private void LoadBorrowRecords()
+        {
 
+            var records = _borrowRecordService.GetAll()
+                .Where(record => record.UserID == currentuser.Id);
+            BindToDataGrid(records);
+        }
 
+        private void BindToDataGrid(IEnumerable<BorrowRecord> records)
+        {
+            dgvBorrowRecords.DataSource = records.Select(records => new
+            {
+                BookName = records.Book?.Name ?? "Belirtilmemiş",
+                BorrowDate = records.CreatedDate.ToString("dd-MM-yyyy"),
+                DueDate = records.BorrowDate?.ToString("dd-MM-yyyy") ?? "Belirtilmemiş",
+                ReturnDate = records.ReturnDate?.ToString("dd-MM-yyyy") ?? "Teslim Edilmedi", // Geri getirilen tarih
+                Status = records.Status
+            }).ToList();
+        }
+        
 
-        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim();
-            var records = _borrowRecordService.GetBorrowRecordsByUser(_currentUserId);
+            var records = _borrowRecordService.GetAll().Where(record => record.UserID == currentuser.Id); // Kullanıcıya göre filtrele
 
             // Eğer arama metni 3 karakterden azsa tüm kayıtları göster.
             if (string.IsNullOrEmpty(searchText) || searchText.Length < 3)

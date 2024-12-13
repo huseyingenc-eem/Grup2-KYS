@@ -1,8 +1,10 @@
 ﻿using FluentValidation.Results;
 using KYS.Business.Abstractions;
 using KYS.Business.Validators;
+using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -33,7 +35,12 @@ namespace KYS.Business.Services
 
         public IEnumerable<BorrowRecord> GetAll()
         {
-            return _bRepository.GetAll();
+            //return _bRepository.GetAll();
+            using var context = new ApplicationDBContext();
+            return context.BorrowRecords
+                .Include(borrow => borrow.Book)       
+                .Include(borrow => borrow.User)     
+                .ToList();
         }
 
         public BorrowRecord GetByID(Guid Id)
@@ -68,15 +75,20 @@ namespace KYS.Business.Services
             }
 
         }
+        private const decimal DailyLateFee = 2; 
 
-        public IEnumerable<BorrowRecord> GetBorrowRecordsByUser(Guid userId)
+        public decimal CalculateLateFee(BorrowRecord record)
         {
-            return _bRepository.GetByUserId(userId);
-        }
+            // Eğer iade edilmemişse, bugüne kadar olan gecikmeyi hesapla
+            DateTime referenceDate = record.ReturnDate ?? DateTime.Now;
 
-        public IEnumerable<BorrowRecord> SearchBorrowRecordsByBookName(Guid userId, string searchTerm)
-        {
-            return _bRepository.SearchByBookName(userId, searchTerm);
+            if (record.BorrowDate.HasValue && referenceDate > record.BorrowDate)
+            {
+                int lateDays = (referenceDate - record.BorrowDate.Value).Days;
+                return lateDays * DailyLateFee; // Günlük gecikme çarpanı
+            }
+
+            return 0;
         }
 
     }

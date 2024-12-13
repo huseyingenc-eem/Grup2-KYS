@@ -182,11 +182,17 @@ namespace KYS.UI.Forms.UserPanelForms
 
         private void btnBorrowBook_Click(object sender, EventArgs e)
         {
+            if (selectedBook.AvailabilityStatus == false)
+            {
+                MessageBox.Show($"Kütüphanede Kitap Kalmadı", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             BorrowRecordForm borrowRecordForm = new BorrowRecordForm()
             {
                 borrowBook=selectedBook,
             };
-            borrowRecordForm = new BorrowRecordForm();
             borrowRecordForm.StartPosition = FormStartPosition.CenterScreen;
             borrowRecordForm.ShowDialog();
 

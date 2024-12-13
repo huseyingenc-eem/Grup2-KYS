@@ -40,7 +40,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(329, 32);
             txtSearch.TabIndex = 0;
-            txtSearch.TextChanged += txtSearch_TextChanged_1;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // dgvBorrowRecords
             // 

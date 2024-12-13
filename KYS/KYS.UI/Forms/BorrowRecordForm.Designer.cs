@@ -52,32 +52,33 @@
             pictureBoxPhoto.Location = new Point(37, 54);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(196, 197);
+            pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 0;
             pictureBoxPhoto.TabStop = false;
             // 
             // dtpBorrowDate
             // 
-            dtpBorrowDate.Location = new Point(402, 128);
+            dtpBorrowDate.Location = new Point(410, 130);
             dtpBorrowDate.Name = "dtpBorrowDate";
             dtpBorrowDate.Size = new Size(220, 29);
             dtpBorrowDate.TabIndex = 1;
             // 
             // dtpReturnDate
             // 
-            dtpReturnDate.Location = new Point(402, 163);
+            dtpReturnDate.Location = new Point(410, 163);
             dtpReturnDate.Name = "dtpReturnDate";
             dtpReturnDate.Size = new Size(220, 29);
             dtpReturnDate.TabIndex = 2;
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(185, 9);
+            label1.Location = new Point(36, 9);
             label1.Name = "label1";
-            label1.Size = new Size(232, 37);
+            label1.Size = new Size(586, 37);
             label1.TabIndex = 3;
             label1.Text = "Kitap Ödünç Alma";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblBookName
             // 
@@ -103,9 +104,9 @@
             label4.Font = new Font("Segoe UI", 15F);
             label4.Location = new Point(252, 54);
             label4.Name = "label4";
-            label4.Size = new Size(155, 28);
+            label4.Size = new Size(273, 28);
             label4.TabIndex = 6;
-            label4.Text = "Kullanıcı Bilgileri";
+            label4.Text = "Kitabı Alacak Kullanıcı Bilgileri";
             // 
             // lblUserName
             // 
@@ -121,18 +122,18 @@
             lblBorrowDate.AutoSize = true;
             lblBorrowDate.Location = new Point(252, 136);
             lblBorrowDate.Name = "lblBorrowDate";
-            lblBorrowDate.Size = new Size(144, 21);
+            lblBorrowDate.Size = new Size(152, 21);
             lblBorrowDate.TabIndex = 9;
-            lblBorrowDate.Text = "Ödünç Alma Tarihi :";
+            lblBorrowDate.Text = "Ödünç Alma Tarihi   :";
             // 
             // lblDeliveryDate
             // 
             lblDeliveryDate.AutoSize = true;
             lblDeliveryDate.Location = new Point(252, 169);
             lblDeliveryDate.Name = "lblDeliveryDate";
-            lblDeliveryDate.Size = new Size(101, 21);
+            lblDeliveryDate.Size = new Size(152, 21);
             lblDeliveryDate.TabIndex = 10;
-            lblDeliveryDate.Text = "Teslim Tarihi :";
+            lblDeliveryDate.Text = "En Geç Teslim Tarihi :";
             // 
             // txtBookName
             // 
@@ -150,26 +151,27 @@
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(356, 95);
+            txtUserName.Enabled = false;
+            txtUserName.Location = new Point(356, 98);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(266, 29);
+            txtUserName.Size = new Size(274, 29);
             txtUserName.TabIndex = 13;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(302, 286);
+            btnSave.Location = new Point(421, 304);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(115, 47);
+            btnSave.Size = new Size(201, 29);
             btnSave.TabIndex = 14;
-            btnSave.Text = "Kaydet";
+            btnSave.Text = "Kitabı Ödünç Al";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(459, 286);
+            btnCancel.Location = new Point(321, 304);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(118, 47);
+            btnCancel.Size = new Size(75, 33);
             btnCancel.TabIndex = 15;
             btnCancel.Text = "İptal";
             btnCancel.UseVisualStyleBackColor = true;
@@ -181,6 +183,7 @@
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(370, 56);
             lblMessage.TabIndex = 17;
+            lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // BorrowRecordForm
             // 
