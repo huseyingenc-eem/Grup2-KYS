@@ -41,7 +41,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 58);
+            label1.Location = new Point(12, 56);
             label1.Name = "label1";
             label1.Size = new Size(144, 30);
             label1.TabIndex = 4;
@@ -50,42 +50,46 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 119);
+            label2.Location = new Point(24, 135);
             label2.Name = "label2";
-            label2.Size = new Size(81, 30);
+            label2.Size = new Size(129, 30);
             label2.TabIndex = 5;
-            label2.Text = "Ülkesi :";
+            label2.Text = "Ülkesi         :";
             // 
             // txtName
             // 
-            txtName.Location = new Point(201, 56);
+            txtName.Location = new Point(162, 56);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(251, 36);
+            txtName.Size = new Size(316, 36);
             txtName.TabIndex = 6;
             // 
             // txtCountry
             // 
-            txtCountry.Location = new Point(201, 115);
+            txtCountry.Location = new Point(162, 135);
             txtCountry.Margin = new Padding(3, 4, 3, 4);
             txtCountry.Name = "txtCountry";
-            txtCountry.Size = new Size(251, 36);
+            txtCountry.Size = new Size(316, 36);
             txtCountry.TabIndex = 7;
             // 
             // lstListe
             // 
+            lstListe.DrawMode = DrawMode.OwnerDrawFixed;
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(478, 56);
+            lstListe.Location = new Point(502, 47);
             lstListe.Margin = new Padding(3, 4, 3, 4);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(227, 364);
+            lstListe.Size = new Size(353, 484);
             lstListe.TabIndex = 8;
+            lstListe.MouseClick += lstListe_MouseClick;
+            lstListe.DrawItem += lstListe_DrawItem;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
+            lstListe.MouseMove += lstListe_MouseMove;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(125, 185);
+            btnUpdate.Location = new Point(143, 225);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(104, 43);
             btnUpdate.TabIndex = 11;
@@ -95,7 +99,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(235, 185);
+            btnDelete.Location = new Point(253, 225);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(104, 43);
             btnDelete.TabIndex = 10;
@@ -105,7 +109,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(345, 185);
+            btnAdd.Location = new Point(374, 225);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(104, 43);
             btnAdd.TabIndex = 9;
@@ -117,8 +121,8 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(720, 475);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);

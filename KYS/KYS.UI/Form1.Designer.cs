@@ -41,7 +41,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.FromArgb(128, 255, 128);
+            btnLogin.BackColor = Color.PowderBlue;
             btnLogin.Font = new Font("Segoe UI", 15F);
             btnLogin.Location = new Point(87, 338);
             btnLogin.Margin = new Padding(6, 7, 6, 7);
@@ -135,7 +135,7 @@
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.CadetBlue;
             ClientSize = new Size(404, 472);
             Controls.Add(pictureKYS);
             Controls.Add(lnkCreateAccout);

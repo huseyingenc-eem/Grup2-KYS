@@ -57,11 +57,12 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = Color.Gray;
             menuStrip1.Font = new Font("Segoe UI", 20F);
             menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem, raporToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(2387, 45);
+            menuStrip1.Size = new Size(1444, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -179,61 +180,61 @@
             // 
             // lblBook
             // 
-            lblBook.BackColor = Color.LightSeaGreen;
-            lblBook.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblBook.BackColor = Color.FromArgb(192, 192, 255);
+            lblBook.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblBook.Location = new Point(27, 66);
             lblBook.Name = "lblBook";
-            lblBook.Size = new Size(181, 126);
+            lblBook.Size = new Size(231, 126);
             lblBook.TabIndex = 5;
             lblBook.Text = "Kitap Sayısı :";
             // 
             // lblUser
             // 
-            lblUser.BackColor = Color.LightSeaGreen;
-            lblUser.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblUser.Location = new Point(238, 66);
+            lblUser.BackColor = Color.FromArgb(192, 192, 255);
+            lblUser.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblUser.Location = new Point(303, 66);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(181, 126);
+            lblUser.Size = new Size(231, 126);
             lblUser.TabIndex = 6;
             lblUser.Text = "Kullanıcı Sayısı :";
             // 
             // lblType
             // 
-            lblType.BackColor = Color.LightSeaGreen;
-            lblType.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblType.Location = new Point(446, 66);
+            lblType.BackColor = Color.FromArgb(192, 192, 255);
+            lblType.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblType.Location = new Point(607, 66);
             lblType.Name = "lblType";
-            lblType.Size = new Size(181, 126);
+            lblType.Size = new Size(231, 126);
             lblType.TabIndex = 7;
             lblType.Text = "Kitap Tür Sayısı :";
             // 
             // lblPublisher
             // 
-            lblPublisher.BackColor = Color.LightSeaGreen;
-            lblPublisher.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblPublisher.BackColor = Color.FromArgb(192, 192, 255);
+            lblPublisher.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblPublisher.Location = new Point(27, 229);
             lblPublisher.Name = "lblPublisher";
-            lblPublisher.Size = new Size(181, 126);
+            lblPublisher.Size = new Size(231, 126);
             lblPublisher.TabIndex = 8;
             lblPublisher.Text = "Yayıncı Sayısı :";
             // 
             // lblAnnouncement
             // 
-            lblAnnouncement.BackColor = Color.LightSeaGreen;
-            lblAnnouncement.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblAnnouncement.Location = new Point(238, 229);
+            lblAnnouncement.BackColor = Color.FromArgb(192, 192, 255);
+            lblAnnouncement.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblAnnouncement.Location = new Point(303, 229);
             lblAnnouncement.Name = "lblAnnouncement";
-            lblAnnouncement.Size = new Size(181, 126);
+            lblAnnouncement.Size = new Size(231, 126);
             lblAnnouncement.TabIndex = 9;
             lblAnnouncement.Text = "Duyuru Sayısı :";
             // 
             // lblAuthor
             // 
-            lblAuthor.BackColor = Color.LightSeaGreen;
-            lblAuthor.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblAuthor.Location = new Point(446, 229);
+            lblAuthor.BackColor = Color.FromArgb(192, 192, 255);
+            lblAuthor.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblAuthor.Location = new Point(607, 229);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(181, 126);
+            lblAuthor.Size = new Size(231, 126);
             lblAuthor.TabIndex = 10;
             lblAuthor.Text = "Yazar Sayısı :";
             // 
@@ -248,7 +249,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2387, 1264);
+            ClientSize = new Size(1444, 881);
             Controls.Add(panel1);
             Controls.Add(lblAuthor);
             Controls.Add(lblAnnouncement);

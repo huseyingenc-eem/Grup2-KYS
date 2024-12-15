@@ -37,6 +37,9 @@ namespace KYS.UI.Forms
         {
             txtName.Clear();
             txtDescription.Clear();
+            hoveredIndex = -1;
+            clickedIndex = -1;
+            lstType.Invalidate();
             txtName.Focus();
         }
         private void BookTypeForm_Load(object sender, EventArgs e)
@@ -72,7 +75,7 @@ namespace KYS.UI.Forms
         private void lstType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            selectedBookType = (BookType?)lstType.SelectedItem; 
+            selectedBookType = (BookType?)lstType.SelectedItem;
 
             if (selectedBookType != null)
             {
@@ -111,6 +114,15 @@ namespace KYS.UI.Forms
             }
         }
 
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            if (this.GetChildAtPoint(e.Location) == null)
+            {
+                FormuTemizle();
+            }
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -129,6 +141,54 @@ namespace KYS.UI.Forms
             }
         }
 
+        private int hoveredIndex = -1;
+        private int clickedIndex = -1;
 
+        private void lstType_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstType.Items[e.Index] as BookType;
+                string text = item != null ? item.Name : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void lstType_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstType.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstType.Invalidate();
+            }
+        }
+
+        private void lstType_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstType.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstType.Invalidate();
+            }
+        }
     }
 }

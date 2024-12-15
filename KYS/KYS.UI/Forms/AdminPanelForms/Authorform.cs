@@ -38,6 +38,9 @@ namespace KYS.UI.Forms
             txtBirthDate.Text = "";
             txtDeathDate.Text = "";
             pictureBoxPhoto.ImageLocation = null;
+            hoveredIndex = -1;
+            clickedIndex = -1;
+            lstListe.Invalidate();
             txtName.Text = "";
             txtName.Focus();
         }
@@ -106,7 +109,7 @@ namespace KYS.UI.Forms
                 {
                     secilenYazar = (Author?)lstListe.SelectedItem;
                     txtName.Text = secilenYazar?.Name;
-                    pictureBoxPhoto.ImageLocation =secilenYazar?.PhotoUrl;
+                    pictureBoxPhoto.ImageLocation = secilenYazar?.PhotoUrl;
                     throw new Exception("Güncellemeye çalıştığınız yazar zaten kaydedilmiştir.");
 
                 }
@@ -151,6 +154,19 @@ namespace KYS.UI.Forms
             }
         }
 
+        private int hoveredIndex = -1;
+        private int clickedIndex = -1;
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            if (this.GetChildAtPoint(e.Location) == null)
+            {
+                FormuTemizle(); // Sadece boş alana tıklanırsa çalışır
+            }
+        }
+
         private void btnSelectPhoto_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -165,8 +181,51 @@ namespace KYS.UI.Forms
             }
         }
 
-        
+        private void lstListe_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
 
-        
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstListe.Items[e.Index] as Author;
+                string text = item != null ? item.FullName : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void lstListe_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstListe.Invalidate();
+            }
+        }
+
+        private void lstListe_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstListe.Invalidate();
+            }
+        }
     }
 }

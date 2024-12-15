@@ -69,10 +69,15 @@ namespace KYS.UI.Forms
             FormuTemizle();
         }
 
+        private int hoveredIndex = -1;
+        private int clickedIndex = -1;
         private void FormuTemizle()
         {
             txtDescription.Text = "";
             dtpDate.Value = DateTime.Now;
+            hoveredIndex = -1;
+            clickedIndex = -1;
+            lstListe.Invalidate(); // Renk değişikliklerini sıfırla
             txtTitle.Text = "";
             txtTitle.Focus();
         }
@@ -143,6 +148,55 @@ namespace KYS.UI.Forms
                     txtDescription.Text = secilenDuyuru.Icerik;
                     dtpDate.Value = secilenDuyuru.DuyuruTarihi;
                 }
+            }
+        }
+
+        private void lstListe_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstListe.Items[e.Index] as Duyurular;
+                string text = item != null ? item.Baslik : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+
+
+        }
+
+        private void lstListe_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstListe.Invalidate();
+            }
+        }
+
+        private void lstListe_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstListe.Invalidate();
             }
         }
     }

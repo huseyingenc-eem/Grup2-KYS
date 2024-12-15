@@ -42,16 +42,16 @@
             // flpBooks
             // 
             flpBooks.BackColor = SystemColors.Control;
-            flpBooks.Location = new Point(186, 151);
+            flpBooks.Location = new Point(214, 151);
             flpBooks.Name = "flpBooks";
-            flpBooks.Size = new Size(787, 663);
+            flpBooks.Size = new Size(651, 698);
             flpBooks.TabIndex = 0;
             // 
             // txtBookSearch
             // 
-            txtBookSearch.Location = new Point(186, 122);
+            txtBookSearch.Location = new Point(214, 122);
             txtBookSearch.Name = "txtBookSearch";
-            txtBookSearch.Size = new Size(787, 23);
+            txtBookSearch.Size = new Size(651, 23);
             txtBookSearch.TabIndex = 1;
             txtBookSearch.TextChanged += txtBookSearch_TextChanged;
             // 
@@ -72,16 +72,17 @@
             treeNode5.Name = "Node1";
             treeNode5.Text = "Node1";
             treeViewBookType.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode5 });
-            treeViewBookType.Size = new Size(168, 692);
+            treeViewBookType.Size = new Size(196, 727);
             treeViewBookType.TabIndex = 2;
             treeViewBookType.AfterSelect += treeViewBookType_AfterSelect;
             // 
             // label1
             // 
-            label1.Font = new Font("Segoe UI", 50F);
-            label1.Location = new Point(12, 9);
+            label1.BackColor = Color.CadetBlue;
+            label1.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label1.Location = new Point(138, 9);
             label1.Name = "label1";
-            label1.Size = new Size(1058, 110);
+            label1.Size = new Size(727, 110);
             label1.TabIndex = 3;
             label1.Text = "Kitap Arama Ekranı";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -90,8 +91,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(988, 836);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(label1);
             Controls.Add(treeViewBookType);
             Controls.Add(txtBookSearch);

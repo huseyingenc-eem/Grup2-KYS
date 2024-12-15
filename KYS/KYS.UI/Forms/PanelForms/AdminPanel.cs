@@ -7,6 +7,8 @@ using KYS.UI.Forms.UserPanelForms;
 using KYS.UI.Helpers;
 using Microsoft.Data.SqlClient;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace KYS.UI.Forms.PanelForms
 {
@@ -27,8 +29,31 @@ namespace KYS.UI.Forms.PanelForms
             LoadKullaniciSayisi();
             LoadYayinciSayisi();
             LoadKitapSayisi();
-        }
 
+            menuStrip1.Renderer = new CustomMenuRenderer();
+        }
+        public class CustomMenuRenderer : ToolStripProfessionalRenderer
+        {
+            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            {
+                base.OnRenderMenuItemBackground(e);
+
+                if (e.Item.Owner is MenuStrip)
+                {
+                    e.Graphics.FillRectangle(Brushes.Gray, new Rectangle(Point.Empty, e.Item.Size));
+                }
+                else if (e.Item.OwnerItem != null)
+                {
+                    e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(Point.Empty, e.Item.Size));
+                }
+            }
+
+            protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+            {
+                base.OnRenderItemText(e);
+                e.TextColor = Color.White;
+            }
+        }
         private void LoadKitapSayisi()
         {
             try

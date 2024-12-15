@@ -36,17 +36,17 @@
             // dgvCommentRecords
             // 
             dgvCommentRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCommentRecords.Location = new Point(54, 101);
+            dgvCommentRecords.Location = new Point(25, 101);
             dgvCommentRecords.Name = "dgvCommentRecords";
-            dgvCommentRecords.Size = new Size(693, 316);
+            dgvCommentRecords.Size = new Size(840, 700);
             dgvCommentRecords.TabIndex = 3;
             // 
             // txtSearch
             // 
             txtSearch.Font = new Font("Segoe UI", 14F);
-            txtSearch.Location = new Point(54, 34);
+            txtSearch.Location = new Point(25, 51);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(329, 32);
+            txtSearch.Size = new Size(401, 32);
             txtSearch.TabIndex = 2;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -54,7 +54,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(dgvCommentRecords);
             Controls.Add(txtSearch);
             Name = "MyCommentForm";

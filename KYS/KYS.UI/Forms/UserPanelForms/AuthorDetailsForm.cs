@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 
 namespace KYS.UI.Forms
@@ -113,6 +114,33 @@ namespace KYS.UI.Forms
             SecilenBook();
         }
 
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            if (this.GetChildAtPoint(e.Location) == null)
+            {
+                FormuTemizle();
+            }
+        }
+
+        private void FormuTemizle()
+        {
+            lblBiografy.Text = "";
+            lblUlke.Text = "";
+            lblDogumTarih.Text = "";
+            pictureBox1.ImageLocation = null;
+            lstKitap.DataSource = null; // Listeyi temizlemek için
+            hoveredIndex = -1;
+            clickedIndex = -1;
+            lstYazar.Invalidate();
+            hovered2Index = -1;
+            clicked2Index = -1;
+            lstKitap.Invalidate();
+            lblFullName.Text = "";
+            lblFullName.Focus();
+        }
+
         private void SecilenBook()
         {
             if (secilenKitap == null)
@@ -182,7 +210,104 @@ namespace KYS.UI.Forms
                 newBookDetailForm.Show();
             }
         }
+        private int hoveredIndex = -1;
+        private int clickedIndex = -1;
 
-       
+        private void lstYazar_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstYazar.Items[e.Index] as Author;
+                string text = item != null ? item.FullName : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void lstYazar_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstYazar.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstYazar.Invalidate();
+            }
+        }
+
+        private void lstYazar_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstYazar.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstYazar.Invalidate();
+            }
+        }
+
+
+        private int hovered2Index = -1;
+        private int clicked2Index = -1;
+        private void lstKitap_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstKitap.Items[e.Index] as Book;
+                string text = item != null ? item.Name : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void lstKitap_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstKitap.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstKitap.Invalidate();
+            }
+        }
+
+        private void lstKitap_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstKitap.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstKitap.Invalidate();
+            }
+        }
     }
 }

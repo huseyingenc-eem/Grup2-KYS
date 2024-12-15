@@ -38,7 +38,7 @@
             txtSearch.Font = new Font("Segoe UI", 14F);
             txtSearch.Location = new Point(26, 25);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(329, 32);
+            txtSearch.Size = new Size(401, 32);
             txtSearch.TabIndex = 0;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -47,14 +47,15 @@
             dgvBorrowRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBorrowRecords.Location = new Point(26, 92);
             dgvBorrowRecords.Name = "dgvBorrowRecords";
-            dgvBorrowRecords.Size = new Size(693, 316);
+            dgvBorrowRecords.Size = new Size(840, 700);
             dgvBorrowRecords.TabIndex = 1;
             // 
             // MyBorrowRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(dgvBorrowRecords);
             Controls.Add(txtSearch);
             Name = "MyBorrowRecord";

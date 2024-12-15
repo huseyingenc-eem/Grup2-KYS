@@ -56,51 +56,54 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            groupBox1.Location = new Point(22, 27);
+            groupBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(523, 503);
+            groupBox1.Size = new Size(569, 503);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Üyelik Bilgilerim";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(138, 290);
+            txtPassword.Location = new Point(150, 290);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(349, 33);
+            txtPassword.Size = new Size(374, 35);
             txtPassword.TabIndex = 10;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label4.Location = new Point(6, 298);
             label4.Name = "label4";
-            label4.Size = new Size(59, 25);
+            label4.Size = new Size(65, 30);
             label4.TabIndex = 9;
             label4.Text = "Şifre :";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(138, 226);
+            txtEmail.Location = new Point(150, 226);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(349, 33);
+            txtEmail.Size = new Size(374, 35);
             txtEmail.TabIndex = 8;
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label6.Location = new Point(6, 234);
             label6.Name = "label6";
-            label6.Size = new Size(67, 25);
+            label6.Size = new Size(74, 30);
             label6.TabIndex = 7;
             label6.Text = "Email :";
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(334, 371);
+            btnUpdate.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnUpdate.Location = new Point(336, 366);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(153, 49);
+            btnUpdate.Size = new Size(188, 49);
             btnUpdate.TabIndex = 6;
             btnUpdate.Text = "Güncelle";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -108,49 +111,52 @@
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(138, 167);
+            txtUserName.Location = new Point(150, 167);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(349, 33);
+            txtUserName.Size = new Size(374, 35);
             txtUserName.TabIndex = 5;
             // 
             // txtSurname
             // 
-            txtSurname.Location = new Point(138, 105);
+            txtSurname.Location = new Point(150, 105);
             txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(349, 33);
+            txtSurname.Size = new Size(374, 35);
             txtSurname.TabIndex = 4;
             // 
             // txtName
             // 
-            txtName.Location = new Point(138, 44);
+            txtName.Location = new Point(150, 47);
             txtName.Name = "txtName";
-            txtName.Size = new Size(349, 33);
+            txtName.Size = new Size(374, 35);
             txtName.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label3.Location = new Point(6, 170);
             label3.Name = "label3";
-            label3.Size = new Size(126, 25);
+            label3.Size = new Size(138, 30);
             label3.TabIndex = 2;
             label3.Text = "Kullanıcı Adı :";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label2.Location = new Point(6, 108);
             label2.Name = "label2";
-            label2.Size = new Size(72, 25);
+            label2.Size = new Size(80, 30);
             label2.TabIndex = 1;
             label2.Text = "Soyad :";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label1.Location = new Point(6, 47);
             label1.Name = "label1";
-            label1.Size = new Size(44, 25);
+            label1.Size = new Size(50, 30);
             label1.TabIndex = 0;
             label1.Text = "Ad :";
             // 
@@ -158,7 +164,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(569, 564);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(680, 564);
             Controls.Add(groupBox1);
             Name = "ProfileForm";
             Text = "ProfileForm";

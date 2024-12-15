@@ -41,16 +41,16 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(151, 68);
+            txtName.Location = new Point(151, 107);
             txtName.Margin = new Padding(5, 6, 5, 6);
             txtName.Name = "txtName";
-            txtName.Size = new Size(224, 36);
+            txtName.Size = new Size(327, 36);
             txtName.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 68);
+            label1.Location = new Point(23, 110);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(118, 30);
@@ -59,19 +59,23 @@
             // 
             // lstType
             // 
+            lstType.DrawMode = DrawMode.OwnerDrawFixed;
             lstType.FormattingEnabled = true;
             lstType.ItemHeight = 30;
-            lstType.Location = new Point(412, 62);
+            lstType.Location = new Point(512, 59);
             lstType.Margin = new Padding(5, 6, 5, 6);
             lstType.Name = "lstType";
-            lstType.Size = new Size(261, 334);
+            lstType.Size = new Size(341, 574);
             lstType.TabIndex = 2;
+            lstType.MouseClick += lstType_MouseClick;
+            lstType.DrawItem += lstType_DrawItem;
             lstType.SelectedIndexChanged += lstType_SelectedIndexChanged;
+            lstType.MouseMove += lstType_MouseMove;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(31, 116);
+            label2.Location = new Point(25, 177);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(116, 30);
@@ -80,16 +84,16 @@
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(151, 116);
+            txtDescription.Location = new Point(151, 177);
             txtDescription.Margin = new Padding(5, 6, 5, 6);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(224, 179);
+            txtDescription.Size = new Size(339, 278);
             txtDescription.TabIndex = 3;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(271, 319);
+            btnAdd.Location = new Point(386, 489);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(104, 43);
             btnAdd.TabIndex = 5;
@@ -99,7 +103,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(161, 319);
+            btnDelete.Location = new Point(276, 489);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(104, 43);
             btnDelete.TabIndex = 6;
@@ -109,7 +113,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(51, 319);
+            btnUpdate.Location = new Point(151, 489);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(104, 43);
             btnUpdate.TabIndex = 7;
@@ -120,7 +124,7 @@
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Location = new Point(31, 19);
+            lblWelcome.Location = new Point(23, 29);
             lblWelcome.Margin = new Padding(5, 0, 5, 0);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(118, 30);
@@ -131,8 +135,8 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(703, 441);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(lblWelcome);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);

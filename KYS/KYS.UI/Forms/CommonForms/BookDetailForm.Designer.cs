@@ -59,7 +59,7 @@
             // 
             pictureBoxCover.Location = new Point(22, 90);
             pictureBoxCover.Name = "pictureBoxCover";
-            pictureBoxCover.Size = new Size(199, 269);
+            pictureBoxCover.Size = new Size(177, 257);
             pictureBoxCover.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxCover.TabIndex = 0;
             pictureBoxCover.TabStop = false;
@@ -86,14 +86,14 @@
             grpBoxBookDetail.Controls.Add(pictureBoxCover);
             grpBoxBookDetail.Location = new Point(12, 40);
             grpBoxBookDetail.Name = "grpBoxBookDetail";
-            grpBoxBookDetail.Size = new Size(587, 787);
+            grpBoxBookDetail.Size = new Size(558, 787);
             grpBoxBookDetail.TabIndex = 2;
             grpBoxBookDetail.TabStop = false;
             grpBoxBookDetail.Text = "Kitap Hakkında";
             // 
             // btnBorrowBook
             // 
-            btnBorrowBook.Location = new Point(336, 726);
+            btnBorrowBook.Location = new Point(306, 735);
             btnBorrowBook.Name = "btnBorrowBook";
             btnBorrowBook.Size = new Size(232, 46);
             btnBorrowBook.TabIndex = 13;
@@ -118,50 +118,50 @@
             txtBookDescription.Multiline = true;
             txtBookDescription.Name = "txtBookDescription";
             txtBookDescription.ReadOnly = true;
-            txtBookDescription.Size = new Size(546, 309);
+            txtBookDescription.Size = new Size(516, 309);
             txtBookDescription.TabIndex = 13;
             // 
             // lblCopiesAvailable
             // 
             lblCopiesAvailable.Font = new Font("Segoe UI", 10F);
-            lblCopiesAvailable.Location = new Point(437, 340);
+            lblCopiesAvailable.Location = new Point(410, 340);
             lblCopiesAvailable.Name = "lblCopiesAvailable";
-            lblCopiesAvailable.Size = new Size(92, 19);
+            lblCopiesAvailable.Size = new Size(106, 19);
             lblCopiesAvailable.TabIndex = 12;
             // 
             // lblBookPage
             // 
-            lblBookPage.Location = new Point(400, 290);
+            lblBookPage.Location = new Point(353, 290);
             lblBookPage.Name = "lblBookPage";
-            lblBookPage.Size = new Size(168, 30);
+            lblBookPage.Size = new Size(185, 30);
             lblBookPage.TabIndex = 11;
             // 
             // lblPublisherYear
             // 
-            lblPublisherYear.Location = new Point(400, 240);
+            lblPublisherYear.Location = new Point(353, 240);
             lblPublisherYear.Name = "lblPublisherYear";
-            lblPublisherYear.Size = new Size(168, 30);
+            lblPublisherYear.Size = new Size(185, 30);
             lblPublisherYear.TabIndex = 10;
             // 
             // lblPublisherName
             // 
-            lblPublisherName.Location = new Point(400, 190);
+            lblPublisherName.Location = new Point(353, 190);
             lblPublisherName.Name = "lblPublisherName";
-            lblPublisherName.Size = new Size(168, 30);
+            lblPublisherName.Size = new Size(185, 30);
             lblPublisherName.TabIndex = 9;
             // 
             // lblAuthor
             // 
-            lblAuthor.Location = new Point(400, 140);
+            lblAuthor.Location = new Point(353, 140);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(168, 30);
+            lblAuthor.Size = new Size(199, 30);
             lblAuthor.TabIndex = 8;
             // 
             // lblBookType
             // 
-            lblBookType.Location = new Point(400, 90);
+            lblBookType.Location = new Point(353, 90);
             lblBookType.Name = "lblBookType";
-            lblBookType.Size = new Size(168, 30);
+            lblBookType.Size = new Size(185, 30);
             lblBookType.TabIndex = 4;
             // 
             // lblBookName
@@ -177,7 +177,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F);
-            label5.Location = new Point(240, 340);
+            label5.Location = new Point(220, 340);
             label5.Name = "label5";
             label5.Size = new Size(191, 19);
             label5.TabIndex = 6;
@@ -186,7 +186,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(240, 290);
+            label6.Location = new Point(210, 290);
             label6.Name = "label6";
             label6.Size = new Size(147, 30);
             label6.TabIndex = 5;
@@ -195,7 +195,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(240, 240);
+            label3.Location = new Point(209, 240);
             label3.Name = "label3";
             label3.Size = new Size(148, 30);
             label3.TabIndex = 4;
@@ -204,7 +204,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(240, 190);
+            label4.Location = new Point(207, 190);
             label4.Name = "label4";
             label4.Size = new Size(150, 30);
             label4.TabIndex = 3;
@@ -213,7 +213,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(240, 140);
+            label2.Location = new Point(206, 140);
             label2.Name = "label2";
             label2.Size = new Size(151, 30);
             label2.TabIndex = 2;
@@ -222,7 +222,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(240, 90);
+            label1.Location = new Point(205, 90);
             label1.Name = "label1";
             label1.Size = new Size(152, 30);
             label1.TabIndex = 1;
@@ -233,17 +233,17 @@
             flpComments.AutoScroll = true;
             flpComments.BackColor = SystemColors.ButtonFace;
             flpComments.FlowDirection = FlowDirection.TopDown;
-            flpComments.Location = new Point(616, 83);
+            flpComments.Location = new Point(591, 83);
             flpComments.Name = "flpComments";
-            flpComments.Size = new Size(337, 474);
+            flpComments.Size = new Size(275, 474);
             flpComments.TabIndex = 3;
             flpComments.WrapContents = false;
             // 
             // label7
             // 
-            label7.Location = new Point(619, 26);
+            label7.Location = new Point(565, 26);
             label7.Name = "label7";
-            label7.Size = new Size(334, 54);
+            label7.Size = new Size(279, 54);
             label7.TabIndex = 8;
             label7.Text = "Kitaba Ait Yorumlar";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -251,17 +251,17 @@
             // 
             // txtCommentContent
             // 
-            txtCommentContent.Location = new Point(619, 627);
+            txtCommentContent.Location = new Point(591, 627);
             txtCommentContent.Multiline = true;
             txtCommentContent.Name = "txtCommentContent";
-            txtCommentContent.Size = new Size(334, 148);
+            txtCommentContent.Size = new Size(275, 148);
             txtCommentContent.TabIndex = 9;
             // 
             // btnSubmitComment
             // 
-            btnSubmitComment.Location = new Point(619, 782);
+            btnSubmitComment.Location = new Point(591, 782);
             btnSubmitComment.Name = "btnSubmitComment";
-            btnSubmitComment.Size = new Size(334, 45);
+            btnSubmitComment.Size = new Size(291, 45);
             btnSubmitComment.TabIndex = 10;
             btnSubmitComment.Text = "Yorum Eklemek İçin Basınız";
             btnSubmitComment.UseVisualStyleBackColor = true;
@@ -269,9 +269,9 @@
             // 
             // label8
             // 
-            label8.Location = new Point(616, 573);
+            label8.Location = new Point(628, 573);
             label8.Name = "label8";
-            label8.Size = new Size(334, 51);
+            label8.Size = new Size(228, 51);
             label8.TabIndex = 11;
             label8.Text = "Kitaba Hızlı Yorum Yaz";
             label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -280,8 +280,8 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(970, 870);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(label8);
             Controls.Add(btnSubmitComment);
             Controls.Add(txtCommentContent);

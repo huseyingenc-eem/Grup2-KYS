@@ -31,12 +31,11 @@
             btnAdd = new Button();
             btnDelete = new Button();
             btnUpdate = new Button();
-            btnClear = new Button();
             SuspendLayout();
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(45, 776);
+            btnAdd.Location = new Point(14, 746);
             btnAdd.Margin = new Padding(5, 6, 5, 6);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(176, 70);
@@ -47,7 +46,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(260, 776);
+            btnDelete.Location = new Point(229, 746);
             btnDelete.Margin = new Padding(5, 6, 5, 6);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(176, 70);
@@ -58,7 +57,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(475, 776);
+            btnUpdate.Location = new Point(444, 746);
             btnUpdate.Margin = new Padding(5, 6, 5, 6);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(176, 70);
@@ -67,24 +66,12 @@
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
-            // btnClear
-            // 
-            btnClear.Location = new Point(680, 776);
-            btnClear.Margin = new Padding(5, 6, 5, 6);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(176, 70);
-            btnClear.TabIndex = 3;
-            btnClear.Text = "Temizle";
-            btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
-            // 
             // BaseForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1284, 900);
-            Controls.Add(btnClear);
+            ClientSize = new Size(1284, 881);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
@@ -101,6 +88,5 @@
         private Button btnAdd;
         private Button btnDelete;
         private Button btnUpdate;
-        private Button btnClear;
     }
 }

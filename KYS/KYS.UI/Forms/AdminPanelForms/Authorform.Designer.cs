@@ -104,21 +104,21 @@
             // 
             txtName.Location = new Point(177, 39);
             txtName.Name = "txtName";
-            txtName.Size = new Size(309, 36);
+            txtName.Size = new Size(277, 36);
             txtName.TabIndex = 10;
             // 
             // txtSurname
             // 
             txtSurname.Location = new Point(177, 100);
             txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(309, 36);
+            txtSurname.Size = new Size(277, 36);
             txtSurname.TabIndex = 11;
             // 
             // txtCountry
             // 
             txtCountry.Location = new Point(177, 161);
             txtCountry.Name = "txtCountry";
-            txtCountry.Size = new Size(309, 36);
+            txtCountry.Size = new Size(277, 36);
             txtCountry.TabIndex = 12;
             // 
             // txtBiography
@@ -126,20 +126,20 @@
             txtBiography.Location = new Point(177, 311);
             txtBiography.Multiline = true;
             txtBiography.Name = "txtBiography";
-            txtBiography.Size = new Size(309, 184);
+            txtBiography.Size = new Size(277, 242);
             txtBiography.TabIndex = 13;
             // 
             // pictureBoxPhoto
             // 
             pictureBoxPhoto.Location = new Point(516, 39);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(322, 201);
+            pictureBoxPhoto.Size = new Size(298, 201);
             pictureBoxPhoto.TabIndex = 16;
             pictureBoxPhoto.TabStop = false;
             // 
             // btnSelectPhoto
             // 
-            btnSelectPhoto.Location = new Point(690, 246);
+            btnSelectPhoto.Location = new Point(666, 249);
             btnSelectPhoto.Name = "btnSelectPhoto";
             btnSelectPhoto.Size = new Size(148, 43);
             btnSelectPhoto.TabIndex = 17;
@@ -149,13 +149,17 @@
             // 
             // lstListe
             // 
+            lstListe.DrawMode = DrawMode.OwnerDrawFixed;
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(498, 314);
+            lstListe.Location = new Point(478, 316);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(340, 184);
+            lstListe.Size = new Size(336, 394);
             lstListe.TabIndex = 18;
+            lstListe.MouseClick += lstListe_MouseClick;
+            lstListe.DrawItem += lstListe_DrawItem;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
+            lstListe.MouseMove += lstListe_MouseMove;
             // 
             // txtBirthDate
             // 
@@ -179,7 +183,8 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(886, 882);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(txtDeathDate);
             Controls.Add(txtBirthDate);
             Controls.Add(lstListe);

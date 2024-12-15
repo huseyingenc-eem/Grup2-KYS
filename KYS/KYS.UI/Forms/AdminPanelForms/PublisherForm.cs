@@ -38,6 +38,9 @@ namespace KYS.UI.Forms
         private void FormuTemizle()
         {
             txtCountry.Text = "";
+            hoveredIndex = -1;
+            clickedIndex = -1;
+            lstListe.Invalidate();
             txtName.Text = "";
             txtName.Focus();
         }
@@ -71,8 +74,16 @@ namespace KYS.UI.Forms
             }
         }
 
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
 
-        
+            if (this.GetChildAtPoint(e.Location) == null)
+            {
+                FormuTemizle();
+            }
+        }
+
 
         Publisher? secilenYayinci;
         private void lstListe_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,6 +150,53 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
+        private int hoveredIndex = -1;   
+        private int clickedIndex = -1;
+        private void lstListe_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
 
+            Color backColor = Color.White;
+            Color textColor = Color.Black;
+
+            if (e.Index == hoveredIndex)
+                backColor = Color.LightSteelBlue;
+
+            if (e.Index == clickedIndex)
+                backColor = Color.LightBlue;
+
+            e.DrawBackground();
+            using (Brush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, e.Bounds);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+            {
+                var item = lstListe.Items[e.Index] as Publisher;
+                string text = item != null ? item.Name : "Bilinmeyen";
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void lstListe_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index != hoveredIndex)
+            {
+                hoveredIndex = index;
+                lstListe.Invalidate();
+            }
+        }
+
+        private void lstListe_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = lstListe.IndexFromPoint(e.Location);
+            if (index >= 0)
+            {
+                clickedIndex = index;
+                lstListe.Invalidate();
+            }
+        }
     }
 }

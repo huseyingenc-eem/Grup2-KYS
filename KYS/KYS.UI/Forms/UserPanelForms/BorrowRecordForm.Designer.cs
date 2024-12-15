@@ -49,33 +49,34 @@
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(37, 54);
+            pictureBoxPhoto.Location = new Point(37, 107);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(196, 197);
+            pictureBoxPhoto.Size = new Size(303, 307);
             pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 0;
             pictureBoxPhoto.TabStop = false;
             // 
             // dtpBorrowDate
             // 
-            dtpBorrowDate.Location = new Point(410, 130);
+            dtpBorrowDate.Location = new Point(545, 230);
             dtpBorrowDate.Name = "dtpBorrowDate";
-            dtpBorrowDate.Size = new Size(220, 29);
+            dtpBorrowDate.Size = new Size(259, 29);
             dtpBorrowDate.TabIndex = 1;
             // 
             // dtpReturnDate
             // 
-            dtpReturnDate.Location = new Point(410, 163);
+            dtpReturnDate.Location = new Point(546, 286);
             dtpReturnDate.Name = "dtpReturnDate";
-            dtpReturnDate.Size = new Size(220, 29);
+            dtpReturnDate.Size = new Size(259, 29);
             dtpReturnDate.TabIndex = 2;
             // 
             // label1
             // 
-            label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(36, 9);
+            label1.BackColor = SystemColors.GradientActiveCaption;
+            label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label1.Location = new Point(128, 9);
             label1.Name = "label1";
-            label1.Size = new Size(586, 37);
+            label1.Size = new Size(583, 55);
             label1.TabIndex = 3;
             label1.Text = "Kitap Ödünç Alma";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -83,105 +84,115 @@
             // lblBookName
             // 
             lblBookName.AutoSize = true;
-            lblBookName.Location = new Point(36, 269);
+            lblBookName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblBookName.Location = new Point(35, 495);
             lblBookName.Name = "lblBookName";
-            lblBookName.Size = new Size(79, 21);
+            lblBookName.Size = new Size(97, 25);
             lblBookName.TabIndex = 4;
             lblBookName.Text = "Kitap Adı :";
             // 
             // lblAuthor
             // 
             lblAuthor.AutoSize = true;
-            lblAuthor.Location = new Point(34, 304);
+            lblAuthor.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblAuthor.Location = new Point(35, 559);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(81, 21);
+            lblAuthor.Size = new Size(99, 25);
             lblAuthor.TabIndex = 5;
             lblAuthor.Text = "Yazar Adı :";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(252, 54);
+            label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label4.Location = new Point(348, 90);
             label4.Name = "label4";
-            label4.Size = new Size(273, 28);
+            label4.Size = new Size(331, 32);
             label4.TabIndex = 6;
             label4.Text = "Kitabı Alacak Kullanıcı Bilgileri";
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(252, 101);
+            lblUserName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblUserName.Location = new Point(348, 171);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(98, 21);
+            lblUserName.Size = new Size(191, 25);
             lblUserName.TabIndex = 7;
-            lblUserName.Text = "Kullanıcı Adı:";
+            lblUserName.Text = "Kullanıcı Adı              :";
             // 
             // lblBorrowDate
             // 
             lblBorrowDate.AutoSize = true;
-            lblBorrowDate.Location = new Point(252, 136);
+            lblBorrowDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblBorrowDate.Location = new Point(348, 230);
             lblBorrowDate.Name = "lblBorrowDate";
-            lblBorrowDate.Size = new Size(152, 21);
+            lblBorrowDate.Size = new Size(191, 25);
             lblBorrowDate.TabIndex = 9;
-            lblBorrowDate.Text = "Ödünç Alma Tarihi   :";
+            lblBorrowDate.Text = "Ödünç Alma Tarihi    :";
             // 
             // lblDeliveryDate
             // 
             lblDeliveryDate.AutoSize = true;
-            lblDeliveryDate.Location = new Point(252, 169);
+            lblDeliveryDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblDeliveryDate.Location = new Point(348, 290);
             lblDeliveryDate.Name = "lblDeliveryDate";
-            lblDeliveryDate.Size = new Size(152, 21);
+            lblDeliveryDate.Size = new Size(192, 25);
             lblDeliveryDate.TabIndex = 10;
-            lblDeliveryDate.Text = "En Geç Teslim Tarihi :";
+            lblDeliveryDate.Text = "En Geç Teslim Tarihi  :";
             // 
             // txtBookName
             // 
-            txtBookName.Location = new Point(121, 266);
+            txtBookName.Location = new Point(142, 491);
             txtBookName.Name = "txtBookName";
-            txtBookName.Size = new Size(146, 29);
+            txtBookName.Size = new Size(198, 29);
             txtBookName.TabIndex = 11;
             // 
             // txtAuthorName
             // 
-            txtAuthorName.Location = new Point(121, 304);
+            txtAuthorName.Location = new Point(142, 555);
             txtAuthorName.Name = "txtAuthorName";
-            txtAuthorName.Size = new Size(146, 29);
+            txtAuthorName.Size = new Size(198, 29);
             txtAuthorName.TabIndex = 12;
             // 
             // txtUserName
             // 
             txtUserName.Enabled = false;
-            txtUserName.Location = new Point(356, 98);
+            txtUserName.Location = new Point(546, 171);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(274, 29);
+            txtUserName.Size = new Size(259, 29);
             txtUserName.TabIndex = 13;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(421, 304);
+            btnSave.BackColor = SystemColors.GradientActiveCaption;
+            btnSave.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnSave.Location = new Point(624, 631);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(201, 29);
+            btnSave.Size = new Size(215, 40);
             btnSave.TabIndex = 14;
             btnSave.Text = "Kitabı Ödünç Al";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(321, 304);
+            btnCancel.BackColor = SystemColors.GradientActiveCaption;
+            btnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnCancel.Location = new Point(400, 631);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 33);
+            btnCancel.Size = new Size(93, 40);
             btnCancel.TabIndex = 15;
             btnCancel.Text = "İptal";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // lblMessage
             // 
-            lblMessage.Location = new Point(252, 195);
+            lblMessage.BackColor = SystemColors.GradientActiveCaption;
+            lblMessage.Location = new Point(400, 370);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(370, 56);
+            lblMessage.Size = new Size(439, 240);
             lblMessage.TabIndex = 17;
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -189,8 +200,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            ClientSize = new Size(646, 366);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(lblMessage);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);

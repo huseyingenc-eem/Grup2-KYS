@@ -45,11 +45,12 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = Color.Gray;
             menuStrip1.Font = new Font("Segoe UI", 20F);
             menuStrip1.Items.AddRange(new ToolStripItem[] { kitapİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, yazarHakkındaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(2087, 45);
+            menuStrip1.Size = new Size(1444, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -138,7 +139,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2087, 1220);
+            ClientSize = new Size(1444, 881);
             Controls.Add(label1);
             Controls.Add(flpAnnouncements);
             Controls.Add(menuStrip1);

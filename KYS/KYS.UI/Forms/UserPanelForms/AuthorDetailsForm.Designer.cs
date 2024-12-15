@@ -50,7 +50,7 @@
             // 
             // txtAra
             // 
-            txtAra.Location = new Point(126, 73);
+            txtAra.Location = new Point(71, 75);
             txtAra.Margin = new Padding(6);
             txtAra.Name = "txtAra";
             txtAra.Size = new Size(266, 34);
@@ -60,7 +60,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 78);
+            label1.Location = new Point(15, 75);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
             label1.Size = new Size(50, 28);
@@ -69,25 +69,33 @@
             // 
             // lstYazar
             // 
+            lstYazar.DrawMode = DrawMode.OwnerDrawFixed;
             lstYazar.FormattingEnabled = true;
             lstYazar.ItemHeight = 28;
-            lstYazar.Location = new Point(60, 144);
+            lstYazar.Location = new Point(26, 131);
             lstYazar.Margin = new Padding(6);
             lstYazar.Name = "lstYazar";
-            lstYazar.Size = new Size(332, 592);
+            lstYazar.Size = new Size(311, 676);
             lstYazar.TabIndex = 2;
+            lstYazar.MouseClick += lstYazar_MouseClick;
+            lstYazar.DrawItem += lstYazar_DrawItem;
             lstYazar.SelectedIndexChanged += lstYazar_SelectedIndexChanged;
+            lstYazar.MouseMove += lstYazar_MouseMove;
             // 
             // lstKitap
             // 
+            lstKitap.DrawMode = DrawMode.OwnerDrawFixed;
             lstKitap.FormattingEnabled = true;
             lstKitap.ItemHeight = 28;
             lstKitap.Location = new Point(12, 387);
             lstKitap.Margin = new Padding(6);
             lstKitap.Name = "lstKitap";
-            lstKitap.Size = new Size(515, 256);
+            lstKitap.Size = new Size(482, 284);
             lstKitap.TabIndex = 3;
+            lstKitap.MouseClick += lstKitap_MouseClick;
+            lstKitap.DrawItem += lstKitap_DrawItem;
             lstKitap.SelectedIndexChanged += lstKitap_SelectedIndexChanged;
+            lstKitap.MouseMove += lstKitap_MouseMove;
             // 
             // label2
             // 
@@ -113,21 +121,21 @@
             groupBox1.Controls.Add(lblFullName);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(pictureBox1);
-            groupBox1.Location = new Point(404, 24);
+            groupBox1.Location = new Point(349, 25);
             groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(6);
-            groupBox1.Size = new Size(572, 712);
+            groupBox1.Size = new Size(515, 782);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Yazar Hakkında";
             // 
             // btnSendToBook
             // 
-            btnSendToBook.Location = new Point(66, 656);
+            btnSendToBook.Location = new Point(35, 699);
             btnSendToBook.Margin = new Padding(6);
             btnSendToBook.Name = "btnSendToBook";
-            btnSendToBook.Size = new Size(461, 43);
+            btnSendToBook.Size = new Size(445, 43);
             btnSendToBook.TabIndex = 9;
             btnSendToBook.Text = "Kitap Detayı Hakkında Bilgi Almak içinTıklayınız";
             btnSendToBook.UseVisualStyleBackColor = true;
@@ -140,7 +148,7 @@
             lblUlke.Location = new Point(314, 166);
             lblUlke.Margin = new Padding(6, 0, 6, 0);
             lblUlke.Name = "lblUlke";
-            lblUlke.Size = new Size(213, 30);
+            lblUlke.Size = new Size(180, 30);
             lblUlke.TabIndex = 8;
             // 
             // lblBiografy
@@ -151,7 +159,7 @@
             lblBiografy.Location = new Point(270, 211);
             lblBiografy.Margin = new Padding(6, 0, 6, 0);
             lblBiografy.Name = "lblBiografy";
-            lblBiografy.Size = new Size(257, 166);
+            lblBiografy.Size = new Size(224, 166);
             lblBiografy.TabIndex = 7;
             // 
             // lblDogumTarih
@@ -162,7 +170,7 @@
             lblDogumTarih.Location = new Point(314, 121);
             lblDogumTarih.Margin = new Padding(6, 0, 6, 0);
             lblDogumTarih.Name = "lblDogumTarih";
-            lblDogumTarih.Size = new Size(213, 30);
+            lblDogumTarih.Size = new Size(180, 30);
             lblDogumTarih.TabIndex = 6;
             // 
             // label6
@@ -229,7 +237,8 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(991, 840);
+            BackColor = Color.CadetBlue;
+            ClientSize = new Size(887, 881);
             Controls.Add(groupBox1);
             Controls.Add(lstYazar);
             Controls.Add(label1);
