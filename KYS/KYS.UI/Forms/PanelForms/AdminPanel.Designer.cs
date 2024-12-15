@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPanel));
             menuStrip1 = new MenuStrip();
             kullanıcıİşlemleriToolStripMenuItem = new ToolStripMenuItem();
             kullanıcıTakipEtmeToolStripMenuItem = new ToolStripMenuItem();
@@ -62,15 +63,16 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem, raporToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1444, 45);
+            menuStrip1.Size = new Size(1370, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
             // kullanıcıİşlemleriToolStripMenuItem
             // 
             kullanıcıİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kullanıcıTakipEtmeToolStripMenuItem });
+            kullanıcıİşlemleriToolStripMenuItem.Image = (Image)resources.GetObject("kullanıcıİşlemleriToolStripMenuItem.Image");
             kullanıcıİşlemleriToolStripMenuItem.Name = "kullanıcıİşlemleriToolStripMenuItem";
-            kullanıcıİşlemleriToolStripMenuItem.Size = new Size(235, 41);
+            kullanıcıİşlemleriToolStripMenuItem.Size = new Size(251, 41);
             kullanıcıİşlemleriToolStripMenuItem.Text = "Kullanıcı İşlemleri";
             // 
             // kullanıcıTakipEtmeToolStripMenuItem
@@ -83,8 +85,9 @@
             // kitapİşlemleriToolStripMenuItem
             // 
             kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapAraToolStripMenuItem, kitapEkleToolStripMenuItem, türEkleToolStripMenuItem, yazarEkleToolStripMenuItem });
+            kitapİşlemleriToolStripMenuItem.Image = (Image)resources.GetObject("kitapİşlemleriToolStripMenuItem.Image");
             kitapİşlemleriToolStripMenuItem.Name = "kitapİşlemleriToolStripMenuItem";
-            kitapİşlemleriToolStripMenuItem.Size = new Size(197, 41);
+            kitapİşlemleriToolStripMenuItem.Size = new Size(213, 41);
             kitapİşlemleriToolStripMenuItem.Text = "Kitap İşlemleri";
             // 
             // kitapAraToolStripMenuItem
@@ -118,8 +121,9 @@
             // yayıncıİşlemleriToolStripMenuItem
             // 
             yayıncıİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { yayıncıEkleToolStripMenuItem });
+            yayıncıİşlemleriToolStripMenuItem.Image = (Image)resources.GetObject("yayıncıİşlemleriToolStripMenuItem.Image");
             yayıncıİşlemleriToolStripMenuItem.Name = "yayıncıİşlemleriToolStripMenuItem";
-            yayıncıİşlemleriToolStripMenuItem.Size = new Size(216, 41);
+            yayıncıİşlemleriToolStripMenuItem.Size = new Size(232, 41);
             yayıncıİşlemleriToolStripMenuItem.Text = "Yayıncı İşlemleri";
             // 
             // yayıncıEkleToolStripMenuItem
@@ -154,8 +158,9 @@
             // duyuruEkleToolStripMenuItem
             // 
             duyuruEkleToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { duyuruEkleToolStripMenuItem1 });
+            duyuruEkleToolStripMenuItem.Image = (Image)resources.GetObject("duyuruEkleToolStripMenuItem.Image");
             duyuruEkleToolStripMenuItem.Name = "duyuruEkleToolStripMenuItem";
-            duyuruEkleToolStripMenuItem.Size = new Size(221, 41);
+            duyuruEkleToolStripMenuItem.Size = new Size(237, 41);
             duyuruEkleToolStripMenuItem.Text = "Duyuru İşlemleri";
             // 
             // duyuruEkleToolStripMenuItem1
@@ -168,8 +173,9 @@
             // raporToolStripMenuItem
             // 
             raporToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ödünçAlınanKitaplarToolStripMenuItem });
+            raporToolStripMenuItem.Image = (Image)resources.GetObject("raporToolStripMenuItem.Image");
             raporToolStripMenuItem.Name = "raporToolStripMenuItem";
-            raporToolStripMenuItem.Size = new Size(100, 41);
+            raporToolStripMenuItem.Size = new Size(116, 41);
             raporToolStripMenuItem.Text = "Rapor";
             // 
             // ödünçAlınanKitaplarToolStripMenuItem
@@ -250,7 +256,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1444, 881);
+            ClientSize = new Size(1370, 749);
             Controls.Add(panel1);
             Controls.Add(lblAuthor);
             Controls.Add(lblAnnouncement);
@@ -259,6 +265,7 @@
             Controls.Add(lblUser);
             Controls.Add(lblBook);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "AdminPanel";

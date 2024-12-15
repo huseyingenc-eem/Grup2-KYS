@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BorrowRecordForm));
             pictureBoxPhoto = new PictureBox();
             dtpBorrowDate = new DateTimePicker();
             dtpReturnDate = new DateTimePicker();
@@ -201,7 +202,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(lblMessage);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
@@ -219,6 +220,7 @@
             Controls.Add(dtpBorrowDate);
             Controls.Add(pictureBoxPhoto);
             Font = new Font("Segoe UI", 12F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "BorrowRecordForm";
             Text = "BorrowRecordForm";

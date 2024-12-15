@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyCommentForm));
             dgvCommentRecords = new DataGridView();
             txtSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvCommentRecords).BeginInit();
@@ -55,9 +56,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(dgvCommentRecords);
             Controls.Add(txtSearch);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MyCommentForm";
             Text = "MyCommentForm";
             Load += MyCommentForm_Load;

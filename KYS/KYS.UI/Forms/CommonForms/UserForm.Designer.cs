@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             txtName = new TextBox();
             txtSurname = new TextBox();
             txtUserName = new TextBox();
@@ -161,28 +162,36 @@
             // 
             // btnKaydet
             // 
+            btnKaydet.Image = (Image)resources.GetObject("btnKaydet.Image");
+            btnKaydet.ImageAlign = ContentAlignment.MiddleLeft;
             btnKaydet.Location = new Point(341, 420);
             btnKaydet.Margin = new Padding(3, 4, 3, 4);
             btnKaydet.Name = "btnKaydet";
             btnKaydet.Size = new Size(142, 46);
             btnKaydet.TabIndex = 17;
             btnKaydet.Text = "Kaydet";
+            btnKaydet.TextAlign = ContentAlignment.MiddleRight;
             btnKaydet.UseVisualStyleBackColor = true;
             btnKaydet.Click += btnKaydet_Click;
             // 
             // btnGüncelle
             // 
+            btnGüncelle.Image = (Image)resources.GetObject("btnGüncelle.Image");
+            btnGüncelle.ImageAlign = ContentAlignment.MiddleLeft;
             btnGüncelle.Location = new Point(33, 420);
             btnGüncelle.Margin = new Padding(3, 4, 3, 4);
             btnGüncelle.Name = "btnGüncelle";
             btnGüncelle.Size = new Size(142, 46);
             btnGüncelle.TabIndex = 18;
             btnGüncelle.Text = "Güncelle";
+            btnGüncelle.TextAlign = ContentAlignment.MiddleRight;
             btnGüncelle.UseVisualStyleBackColor = true;
             btnGüncelle.Click += btnGüncelle_Click;
             // 
             // btnSil
             // 
+            btnSil.Image = (Image)resources.GetObject("btnSil.Image");
+            btnSil.ImageAlign = ContentAlignment.MiddleLeft;
             btnSil.Location = new Point(193, 420);
             btnSil.Margin = new Padding(3, 4, 3, 4);
             btnSil.Name = "btnSil";
@@ -197,7 +206,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(btnSil);
             Controls.Add(btnGüncelle);
             Controls.Add(btnKaydet);
@@ -214,6 +223,7 @@
             Controls.Add(txtName);
             Font = new Font("Segoe UI", 16F);
             ForeColor = SystemColors.ControlText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(9, 12, 9, 12);
             Name = "UserForm";
             Text = "UserForm";

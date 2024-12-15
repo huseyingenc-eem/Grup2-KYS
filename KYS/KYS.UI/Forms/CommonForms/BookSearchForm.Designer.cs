@@ -33,6 +33,7 @@
             TreeNode treeNode3 = new TreeNode("Node4");
             TreeNode treeNode4 = new TreeNode("Node0", new TreeNode[] { treeNode1, treeNode2, treeNode3 });
             TreeNode treeNode5 = new TreeNode("Node1");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookSearchForm));
             flpBooks = new FlowLayoutPanel();
             txtBookSearch = new TextBox();
             treeViewBookType = new TreeView();
@@ -92,11 +93,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(label1);
             Controls.Add(treeViewBookType);
             Controls.Add(txtBookSearch);
             Controls.Add(flpBooks);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "BookSearchForm";
             Text = "BookSearchForm";
             Load += BookSearchForm_Load;

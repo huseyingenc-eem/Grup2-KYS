@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnouncementForm));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -120,19 +121,24 @@
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnSave.Location = new Point(406, 527);
+            btnSave.Image = (Image)resources.GetObject("btnSave.Image");
+            btnSave.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSave.Location = new Point(396, 527);
             btnSave.Margin = new Padding(5, 6, 5, 6);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(108, 39);
+            btnSave.Size = new Size(123, 39);
             btnSave.TabIndex = 7;
-            btnSave.Text = "KAYDET";
+            btnSave.Text = "    KAYDET";
+            btnSave.TextAlign = ContentAlignment.MiddleRight;
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
             // btnDelete
             // 
             btnDelete.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnDelete.Location = new Point(288, 529);
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDelete.Location = new Point(278, 529);
             btnDelete.Margin = new Padding(5, 6, 5, 6);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(108, 37);
@@ -144,12 +150,15 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnUpdate.Location = new Point(170, 527);
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdate.Location = new Point(129, 527);
             btnUpdate.Margin = new Padding(5, 6, 5, 6);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(108, 39);
+            btnUpdate.Size = new Size(139, 39);
             btnUpdate.TabIndex = 9;
-            btnUpdate.Text = "GÜNCELLE";
+            btnUpdate.Text = "     GÜNCELLE";
+            btnUpdate.TextAlign = ContentAlignment.MiddleRight;
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
@@ -158,7 +167,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnSave);
@@ -170,6 +179,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 16F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 6, 5, 6);
             Name = "AnnouncementForm";
             Text = "AnnouncementForm";

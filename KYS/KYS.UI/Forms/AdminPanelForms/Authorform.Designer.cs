@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorform));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -139,11 +140,14 @@
             // 
             // btnSelectPhoto
             // 
+            btnSelectPhoto.Image = (Image)resources.GetObject("btnSelectPhoto.Image");
+            btnSelectPhoto.ImageAlign = ContentAlignment.MiddleLeft;
             btnSelectPhoto.Location = new Point(666, 249);
             btnSelectPhoto.Name = "btnSelectPhoto";
             btnSelectPhoto.Size = new Size(148, 43);
             btnSelectPhoto.TabIndex = 17;
             btnSelectPhoto.Text = "Resim Ekle";
+            btnSelectPhoto.TextAlign = ContentAlignment.MiddleRight;
             btnSelectPhoto.UseVisualStyleBackColor = true;
             btnSelectPhoto.Click += btnSelectPhoto_Click;
             // 
@@ -184,7 +188,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(txtDeathDate);
             Controls.Add(txtBirthDate);
             Controls.Add(lstListe);
@@ -200,6 +204,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Authorform";
             Text = "Authorform";
             Load += Authorform_Load;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorDetailsForm));
             txtAra = new TextBox();
             label1 = new Label();
             lstYazar = new ListBox();
@@ -50,22 +51,24 @@
             // 
             // txtAra
             // 
-            txtAra.Location = new Point(71, 75);
+            txtAra.Location = new Point(88, 75);
             txtAra.Margin = new Padding(6);
             txtAra.Name = "txtAra";
-            txtAra.Size = new Size(266, 34);
+            txtAra.Size = new Size(249, 34);
             txtAra.TabIndex = 0;
             txtAra.TextChanged += txtAra_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 75);
+            label1.Image = (Image)resources.GetObject("label1.Image");
+            label1.ImageAlign = ContentAlignment.MiddleRight;
+            label1.Location = new Point(15, 81);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(50, 28);
+            label1.Size = new Size(72, 28);
             label1.TabIndex = 1;
-            label1.Text = "ARA";
+            label1.Text = "Ara      ";
             // 
             // lstYazar
             // 
@@ -238,12 +241,13 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(groupBox1);
             Controls.Add(lstYazar);
             Controls.Add(label1);
             Controls.Add(txtAra);
             Font = new Font("Segoe UI", 15F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(6);
             Name = "AuthorDetailsForm";
             Text = "AuthorDetailsForm";
