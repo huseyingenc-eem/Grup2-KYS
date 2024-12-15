@@ -177,6 +177,7 @@
             ödünçAlınanKitaplarToolStripMenuItem.Name = "ödünçAlınanKitaplarToolStripMenuItem";
             ödünçAlınanKitaplarToolStripMenuItem.Size = new Size(353, 42);
             ödünçAlınanKitaplarToolStripMenuItem.Text = "Ödünç Alınan Kitaplar";
+            ödünçAlınanKitaplarToolStripMenuItem.Click += ödünçAlınanKitaplarToolStripMenuItem_Click;
             // 
             // lblBook
             // 

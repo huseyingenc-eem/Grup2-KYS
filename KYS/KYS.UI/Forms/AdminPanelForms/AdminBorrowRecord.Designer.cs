@@ -28,12 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AdminBorrowRecord";
+            dgvBorrowRecords = new DataGridView();
+            txtSearch = new TextBox();
+            btnReturn = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvBorrowRecords).BeginInit();
+            SuspendLayout();
+            // 
+            // dgvBorrowRecords
+            // 
+            dgvBorrowRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBorrowRecords.Location = new Point(33, 93);
+            dgvBorrowRecords.Name = "dgvBorrowRecords";
+            dgvBorrowRecords.Size = new Size(742, 392);
+            dgvBorrowRecords.TabIndex = 0;
+            dgvBorrowRecords.CellContentClick += dgvBorrowRecords_CellContentClick;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Segoe UI", 15F);
+            txtSearch.Location = new Point(33, 36);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(524, 34);
+            txtSearch.TabIndex = 1;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // btnReturn
+            // 
+            btnReturn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
+            btnReturn.Location = new Point(563, 36);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(212, 34);
+            btnReturn.TabIndex = 2;
+            btnReturn.Text = "İade Al";
+            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.Click += btnReturn_Click;
+            // 
+            // AdminBorrowRecord
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(828, 528);
+            Controls.Add(btnReturn);
+            Controls.Add(txtSearch);
+            Controls.Add(dgvBorrowRecords);
+            Name = "AdminBorrowRecord";
+            Text = "AdminBorrowRecord";
+            Load += AdminBorrowRecord_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvBorrowRecords).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private DataGridView dgvBorrowRecords;
+        private TextBox txtSearch;
+        private Button btnReturn;
     }
 }

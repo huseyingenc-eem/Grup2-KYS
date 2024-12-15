@@ -9,6 +9,7 @@ using Microsoft.Data.SqlClient;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 using System.Drawing;
 using System.Windows.Forms;
+using KYS.UI.Forms.AdminPanelForms;
 
 namespace KYS.UI.Forms.PanelForms
 {
@@ -149,7 +150,7 @@ namespace KYS.UI.Forms.PanelForms
         }
 
 
-        
+
         private void ShowChildForm(Form childForm)
         {
             bool acikMi = false;
@@ -201,7 +202,7 @@ namespace KYS.UI.Forms.PanelForms
                     }
                 }
             }
-            
+
         }
 
         public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
@@ -272,7 +273,7 @@ namespace KYS.UI.Forms.PanelForms
             ShowChildForm(announcementForm);
         }
 
-        
+
 
         private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -323,6 +324,23 @@ namespace KYS.UI.Forms.PanelForms
             }
         }
 
-        
+        private void ödünçAlınanKitaplarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                AdminBorrowRecord adminBorrowRecord = new AdminBorrowRecord();
+                adminBorrowRecord.MdiParent = this;
+
+                ShowFormWithAlignment(adminBorrowRecord, false);
+                ShowChildForm(adminBorrowRecord);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata oluştu: {ex.Message}");
+            }
+
+        }
     }
 }
