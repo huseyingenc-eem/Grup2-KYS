@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorform));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -237,6 +238,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Font = new Font("Segoe UI", 16F);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Authorform";

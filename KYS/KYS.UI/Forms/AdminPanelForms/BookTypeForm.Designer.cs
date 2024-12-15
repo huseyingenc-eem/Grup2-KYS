@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookTypeForm));
             txtName = new TextBox();
             label1 = new Label();
             lstType = new ListBox();
@@ -93,31 +94,39 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(386, 489);
+            btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
+            btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAdd.Location = new Point(371, 489);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(104, 43);
             btnAdd.TabIndex = 5;
             btnAdd.Text = "Ekle";
+            btnAdd.TextAlign = ContentAlignment.MiddleRight;
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(276, 489);
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDelete.Location = new Point(261, 489);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(104, 43);
             btnDelete.TabIndex = 6;
-            btnDelete.Text = "Sil";
+            btnDelete.Text = "   Sil";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(151, 489);
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdate.Location = new Point(125, 489);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(104, 43);
+            btnUpdate.Size = new Size(130, 43);
             btnUpdate.TabIndex = 7;
-            btnUpdate.Text = "Güncelle";
+            btnUpdate.Text = "   Güncelle";
+            btnUpdate.TextAlign = ContentAlignment.MiddleRight;
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
@@ -136,7 +145,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(lblWelcome);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
@@ -147,6 +156,7 @@
             Controls.Add(label1);
             Controls.Add(txtName);
             Font = new Font("Segoe UI", 16F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 6, 5, 6);
             Name = "BookTypeForm";
             Text = "BookTypeForm";

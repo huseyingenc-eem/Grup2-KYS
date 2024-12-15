@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookDetailForm));
             pictureBoxCover = new PictureBox();
             grpBoxBookDetail = new GroupBox();
             btnBorrowBook = new Button();
@@ -243,7 +244,7 @@
             // 
             // label7
             // 
-            label7.Location = new Point(565, 26);
+            label7.Location = new Point(587, 26);
             label7.Name = "label7";
             label7.Size = new Size(279, 54);
             label7.TabIndex = 8;
@@ -293,7 +294,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(label8);
             Controls.Add(btnSubmitComment);
             Controls.Add(txtCommentContent);
@@ -301,6 +302,7 @@
             Controls.Add(flpComments);
             Controls.Add(grpBoxBookDetail);
             Font = new Font("Segoe UI", 16F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 6, 5, 6);
             Name = "BookDetailForm";
             Text = "BookDetailForm";

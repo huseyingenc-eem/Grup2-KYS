@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminBorrowRecord));
             dgvBorrowRecords = new DataGridView();
             txtSearch = new TextBox();
             btnReturn = new Button();
@@ -55,6 +56,8 @@
             // btnReturn
             // 
             btnReturn.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
+            btnReturn.Image = (Image)resources.GetObject("btnReturn.Image");
+            btnReturn.ImageAlign = ContentAlignment.MiddleLeft;
             btnReturn.Location = new Point(563, 36);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(212, 34);
@@ -71,6 +74,7 @@
             Controls.Add(btnReturn);
             Controls.Add(txtSearch);
             Controls.Add(dgvBorrowRecords);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AdminBorrowRecord";
             Text = "AdminBorrowRecord";
             Load += AdminBorrowRecord_Load;

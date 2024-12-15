@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPanel));
             menuStrip1 = new MenuStrip();
             kitapİşlemleriToolStripMenuItem = new ToolStripMenuItem();
             kitapAraToolStripMenuItem = new ToolStripMenuItem();
@@ -50,15 +51,16 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kitapİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, yazarHakkındaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1444, 45);
+            menuStrip1.Size = new Size(1370, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
             // kitapİşlemleriToolStripMenuItem
             // 
             kitapİşlemleriToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kitapAraToolStripMenuItem });
+            kitapİşlemleriToolStripMenuItem.Image = (Image)resources.GetObject("kitapİşlemleriToolStripMenuItem.Image");
             kitapİşlemleriToolStripMenuItem.Name = "kitapİşlemleriToolStripMenuItem";
-            kitapİşlemleriToolStripMenuItem.Size = new Size(197, 41);
+            kitapİşlemleriToolStripMenuItem.Size = new Size(213, 41);
             kitapİşlemleriToolStripMenuItem.Text = "Kitap İşlemleri";
             // 
             // kitapAraToolStripMenuItem
@@ -107,8 +109,9 @@
             // yazarHakkındaToolStripMenuItem
             // 
             yazarHakkındaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { yazarBilgileriToolStripMenuItem });
+            yazarHakkındaToolStripMenuItem.Image = (Image)resources.GetObject("yazarHakkındaToolStripMenuItem.Image");
             yazarHakkındaToolStripMenuItem.Name = "yazarHakkındaToolStripMenuItem";
-            yazarHakkındaToolStripMenuItem.Size = new Size(209, 41);
+            yazarHakkındaToolStripMenuItem.Size = new Size(225, 41);
             yazarHakkındaToolStripMenuItem.Text = "Yazar Hakkında";
             // 
             // yazarBilgileriToolStripMenuItem
@@ -139,10 +142,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1444, 881);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1370, 749);
             Controls.Add(label1);
             Controls.Add(flpAnnouncements);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "UserPanel";

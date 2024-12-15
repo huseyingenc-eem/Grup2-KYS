@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnLogin = new Button();
             txtUserName = new TextBox();
             lblKullanıcı = new Label();
@@ -43,6 +44,8 @@
             // 
             btnLogin.BackColor = Color.PowderBlue;
             btnLogin.Font = new Font("Segoe UI", 15F);
+            btnLogin.Image = (Image)resources.GetObject("btnLogin.Image");
+            btnLogin.ImageAlign = ContentAlignment.MiddleLeft;
             btnLogin.Location = new Point(87, 338);
             btnLogin.Margin = new Padding(6, 7, 6, 7);
             btnLogin.Name = "btnLogin";
@@ -124,9 +127,9 @@
             // pictureKYS
             // 
             pictureKYS.Image = Properties.Resources.KYS;
-            pictureKYS.Location = new Point(87, 12);
+            pictureKYS.Location = new Point(87, 37);
             pictureKYS.Name = "pictureKYS";
-            pictureKYS.Size = new Size(222, 173);
+            pictureKYS.Size = new Size(222, 148);
             pictureKYS.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureKYS.TabIndex = 7;
             pictureKYS.TabStop = false;
@@ -146,6 +149,7 @@
             Controls.Add(txtUserName);
             Controls.Add(btnLogin);
             Font = new Font("Segoe UI", 20F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(6, 7, 6, 7);
             Name = "Form1";
             Text = "Form1";

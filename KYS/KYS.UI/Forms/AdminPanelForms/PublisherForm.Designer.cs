@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PublisherForm));
             label1 = new Label();
             label2 = new Label();
             txtName = new TextBox();
@@ -89,16 +90,21 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(143, 225);
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdate.Location = new Point(118, 225);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(104, 43);
+            btnUpdate.Size = new Size(129, 43);
             btnUpdate.TabIndex = 11;
-            btnUpdate.Text = "Güncelle";
+            btnUpdate.Text = "   Güncelle";
+            btnUpdate.TextAlign = ContentAlignment.MiddleRight;
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
             btnDelete.Location = new Point(253, 225);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(104, 43);
@@ -109,11 +115,14 @@
             // 
             // btnAdd
             // 
+            btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
+            btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
             btnAdd.Location = new Point(374, 225);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(104, 43);
             btnAdd.TabIndex = 9;
             btnAdd.Text = "Ekle";
+            btnAdd.TextAlign = ContentAlignment.MiddleRight;
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
@@ -122,7 +131,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 749);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
@@ -132,6 +141,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 16F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(9, 12, 9, 12);
             Name = "PublisherForm";
             Text = "PublisherForm";

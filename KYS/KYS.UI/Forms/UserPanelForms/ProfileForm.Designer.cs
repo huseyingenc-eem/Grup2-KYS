@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             groupBox1 = new GroupBox();
             txtPassword = new TextBox();
             label4 = new Label();
@@ -101,9 +102,11 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnUpdate.Location = new Point(336, 366);
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdate.Location = new Point(324, 366);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(188, 49);
+            btnUpdate.Size = new Size(200, 38);
             btnUpdate.TabIndex = 6;
             btnUpdate.Text = "Güncelle";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -167,6 +170,7 @@
             BackColor = Color.CadetBlue;
             ClientSize = new Size(680, 564);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ProfileForm";
             Text = "ProfileForm";
             Load += ProfileForm_Load;
