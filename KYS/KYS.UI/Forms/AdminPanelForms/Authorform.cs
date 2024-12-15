@@ -6,7 +6,7 @@ using System.Runtime.InteropServices.JavaScript;
 
 namespace KYS.UI.Forms
 {
-    public partial class Authorform : BaseForm
+    public partial class Authorform : Form
     {
         private readonly AuthorService _authorService;
         public Authorform()
@@ -44,7 +44,7 @@ namespace KYS.UI.Forms
             txtName.Text = "";
             txtName.Focus();
         }
-        protected override void btnAdd_Click(object sender, EventArgs e)
+        private void btnEkle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -73,7 +73,6 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-
         Author? secilenYazar;
         private void lstListe_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -97,7 +96,7 @@ namespace KYS.UI.Forms
                 }
             }
         }
-        protected override void btnUpdate_Click(object sender, EventArgs e)
+        private void btnGuncelle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -134,7 +133,8 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-        protected override void btnDelete_Click(object sender, EventArgs e)
+
+        private void btnSil_Click(object sender, EventArgs e)
         {
             try
             {
@@ -166,21 +166,6 @@ namespace KYS.UI.Forms
                 FormuTemizle(); // Sadece boş alana tıklanırsa çalışır
             }
         }
-
-        private void btnSelectPhoto_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = " Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
-                openFileDialog.Title = "Fotoğraf Seç";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBoxPhoto.ImageLocation = openFileDialog.FileName;
-                }
-            }
-        }
-
         private void lstListe_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
@@ -225,6 +210,54 @@ namespace KYS.UI.Forms
             {
                 clickedIndex = index;
                 lstListe.Invalidate();
+            }
+        }
+
+        private void pictureBoxPhoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
+                openFileDialog.Title = "Fotoğraf Seç";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Proje klasöründe 'Resources/Images' dizinini oluştur
+                    string projectDirectory = AppDomain.CurrentDomain.BaseDirectory; // Çalışma dizini
+                    string imageFolderPath = Path.Combine(projectDirectory, "Resources", "Images");
+
+                    if (!Directory.Exists(imageFolderPath))
+                    {
+                        Directory.CreateDirectory(imageFolderPath); // Klasör yoksa oluştur
+                    }
+
+                    // Seçilen resmin yeni yolunu belirle
+                    string newImagePath = Path.Combine(imageFolderPath, Path.GetFileName(openFileDialog.FileName));
+
+                    // Resmi hedef klasöre kopyala
+                    File.Copy(openFileDialog.FileName, newImagePath, true);
+
+                    // PictureBox'ta yeni resmi göster
+                    pictureBoxPhoto.ImageLocation = newImagePath;
+
+                    MessageBox.Show($"Resim başarıyla eklendi: {newImagePath}", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void pictureBoxPhoto_Paint(object sender, PaintEventArgs e)
+        {
+            if (pictureBoxPhoto.Image == null) // Eğer resim yoksa yazı göster
+            {
+                string text = "Resim eklemek için tıklayınız";
+                Font font = new Font("Arial", 15, FontStyle.Bold);
+                SizeF textSize = e.Graphics.MeasureString(text, font);
+
+                // Yazıyı PictureBox'ın ortasına hizala
+                float x = (pictureBoxPhoto.Width - textSize.Width) / 2;
+                float y = (pictureBoxPhoto.Height - textSize.Height) / 2;
+
+                e.Graphics.DrawString(text, font, Brushes.Gray, x, y);
             }
         }
     }

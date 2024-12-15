@@ -51,6 +51,7 @@
             txtCommentContent = new TextBox();
             btnSubmitComment = new Button();
             label8 = new Label();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCover).BeginInit();
             grpBoxBookDetail.SuspendLayout();
             SuspendLayout();
@@ -67,6 +68,7 @@
             // grpBoxBookDetail
             // 
             grpBoxBookDetail.BackColor = SystemColors.ButtonFace;
+            grpBoxBookDetail.Controls.Add(label9);
             grpBoxBookDetail.Controls.Add(btnBorrowBook);
             grpBoxBookDetail.Controls.Add(lblLocation);
             grpBoxBookDetail.Controls.Add(txtBookDescription);
@@ -104,9 +106,9 @@
             // lblLocation
             // 
             lblLocation.Font = new Font("Segoe UI", 10F);
-            lblLocation.Location = new Point(240, 32);
+            lblLocation.Location = new Point(364, 35);
             lblLocation.Name = "lblLocation";
-            lblLocation.Size = new Size(298, 42);
+            lblLocation.Size = new Size(152, 32);
             lblLocation.TabIndex = 14;
             lblLocation.Text = "Kütüphanedeki Yeri";
             lblLocation.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,6 +278,16 @@
             label8.Text = "Kitaba Hızlı Yorum Yaz";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 10F);
+            label9.Location = new Point(239, 43);
+            label9.Name = "label9";
+            label9.Size = new Size(134, 19);
+            label9.TabIndex = 15;
+            label9.Text = "Kütüphanedeki Yeri :";
+            // 
             // BookDetailForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
@@ -328,5 +340,6 @@
         private TextBox txtCommentContent;
         private Button btnSubmitComment;
         private Label label8;
+        private Label label9;
     }
 }

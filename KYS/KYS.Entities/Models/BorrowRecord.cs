@@ -21,8 +21,15 @@ namespace KYS.Entities.Models
         public DateTime? BorrowDate { get; set; } // İade edilmesi gereken son tarih
         public DateTime? ReturnDate { get; set; } // Gerçek iade tarihi (opsiyonel)
 
-        public string? Status { get; set; } = "Borrowed"; // Ödünç alma durumu (ör. "Borrowed", "Returned", "Overdue")
+        public BorrowStatus Status { get; set; } = BorrowStatus.Ayırtıldı; // Ödünç alma durumu (ör. "Borrowed", "Returned", "Overdue")
         
     }
 
+}
+public enum BorrowStatus
+{
+    Ayırtıldı = 1,    // Kitap ayırtıldı
+    ÖdünçVerildi = 2, // Kitap ödünç verildi
+    TeslimEdildi = 3, // Kitap teslim edildi
+    İptalEdildi = 4   // Ayırtma iptal edildi
 }

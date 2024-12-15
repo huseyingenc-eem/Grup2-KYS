@@ -64,11 +64,12 @@ namespace KYS.UI.Forms
                     throw new Exception("Kitap ödünç alamazsınız çünkü ödünç alma hakkınız kalmadı!");
                 }
                 var existingRecord = _borrowRecordService.GetAll()
-                    .FirstOrDefault(r => r.UserID == currentUser.Id && r.BookID == borrowBook.Id && r.Status == "Borrowed");
+                    .FirstOrDefault(r => r.UserID == currentUser.Id
+                                    && r.BookID == borrowBook.Id);
 
                 if (existingRecord != null)
                 {
-                    throw new Exception("Bu kitabı zaten ödünç aldınız! Aynı kitabı birden fazla ödünç alamazsınız.");
+                    throw new Exception("Bu kitabı zaten ayırtıldınız veya ödünç aldınız! Aynı kitabı birden fazla ödünç alamazsınız.");
                 }
                 var borrowRecord = new BorrowRecord
                 {

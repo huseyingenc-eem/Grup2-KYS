@@ -158,7 +158,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(887, 625);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnSave);

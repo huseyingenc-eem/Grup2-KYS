@@ -39,10 +39,12 @@
             txtCountry = new TextBox();
             txtBiography = new TextBox();
             pictureBoxPhoto = new PictureBox();
-            btnSelectPhoto = new Button();
             lstListe = new ListBox();
             txtBirthDate = new MaskedTextBox();
             txtDeathDate = new MaskedTextBox();
+            btnGuncelle = new Button();
+            btnSil = new Button();
+            btnEkle = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).BeginInit();
             SuspendLayout();
             // 
@@ -58,7 +60,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 103);
+            label2.Location = new Point(12, 104);
             label2.Name = "label2";
             label2.Size = new Size(151, 30);
             label2.TabIndex = 4;
@@ -67,7 +69,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 161);
+            label3.Location = new Point(12, 160);
             label3.Name = "label3";
             label3.Size = new Size(153, 30);
             label3.TabIndex = 5;
@@ -102,7 +104,8 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(177, 39);
+            txtName.Location = new Point(177, 40);
+            txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.Size = new Size(277, 36);
             txtName.TabIndex = 10;
@@ -110,51 +113,48 @@
             // txtSurname
             // 
             txtSurname.Location = new Point(177, 100);
+            txtSurname.Margin = new Padding(3, 4, 3, 4);
             txtSurname.Name = "txtSurname";
             txtSurname.Size = new Size(277, 36);
             txtSurname.TabIndex = 11;
             // 
             // txtCountry
             // 
-            txtCountry.Location = new Point(177, 161);
+            txtCountry.Location = new Point(177, 160);
+            txtCountry.Margin = new Padding(3, 4, 3, 4);
             txtCountry.Name = "txtCountry";
             txtCountry.Size = new Size(277, 36);
             txtCountry.TabIndex = 12;
             // 
             // txtBiography
             // 
-            txtBiography.Location = new Point(177, 311);
+            txtBiography.Location = new Point(177, 312);
+            txtBiography.Margin = new Padding(3, 4, 3, 4);
             txtBiography.Multiline = true;
             txtBiography.Name = "txtBiography";
-            txtBiography.Size = new Size(277, 242);
+            txtBiography.Size = new Size(277, 181);
             txtBiography.TabIndex = 13;
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(516, 39);
+            pictureBoxPhoto.Location = new Point(493, 40);
+            pictureBoxPhoto.Margin = new Padding(3, 4, 3, 4);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(298, 201);
+            pictureBoxPhoto.Size = new Size(187, 200);
             pictureBoxPhoto.TabIndex = 16;
             pictureBoxPhoto.TabStop = false;
-            // 
-            // btnSelectPhoto
-            // 
-            btnSelectPhoto.Location = new Point(666, 249);
-            btnSelectPhoto.Name = "btnSelectPhoto";
-            btnSelectPhoto.Size = new Size(148, 43);
-            btnSelectPhoto.TabIndex = 17;
-            btnSelectPhoto.Text = "Resim Ekle";
-            btnSelectPhoto.UseVisualStyleBackColor = true;
-            btnSelectPhoto.Click += btnSelectPhoto_Click;
+            pictureBoxPhoto.Click += pictureBoxPhoto_Click;
+            pictureBoxPhoto.Paint += pictureBoxPhoto_Paint;
             // 
             // lstListe
             // 
             lstListe.DrawMode = DrawMode.OwnerDrawFixed;
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(478, 316);
+            lstListe.Location = new Point(493, 249);
+            lstListe.Margin = new Padding(3, 4, 3, 4);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(336, 394);
+            lstListe.Size = new Size(187, 244);
             lstListe.TabIndex = 18;
             lstListe.MouseClick += lstListe_MouseClick;
             lstListe.DrawItem += lstListe_DrawItem;
@@ -164,31 +164,68 @@
             // txtBirthDate
             // 
             txtBirthDate.Location = new Point(177, 210);
+            txtBirthDate.Margin = new Padding(3, 4, 3, 4);
             txtBirthDate.Mask = "00/00/0000";
             txtBirthDate.Name = "txtBirthDate";
-            txtBirthDate.Size = new Size(137, 36);
+            txtBirthDate.Size = new Size(138, 36);
             txtBirthDate.TabIndex = 19;
             txtBirthDate.ValidatingType = typeof(DateTime);
             // 
             // txtDeathDate
             // 
             txtDeathDate.Location = new Point(177, 252);
+            txtDeathDate.Margin = new Padding(3, 4, 3, 4);
             txtDeathDate.Mask = "00/00/0000";
             txtDeathDate.Name = "txtDeathDate";
-            txtDeathDate.Size = new Size(137, 36);
+            txtDeathDate.Size = new Size(138, 36);
             txtDeathDate.TabIndex = 20;
             txtDeathDate.ValidatingType = typeof(DateTime);
+            // 
+            // btnGuncelle
+            // 
+            btnGuncelle.Location = new Point(419, 501);
+            btnGuncelle.Margin = new Padding(3, 4, 3, 4);
+            btnGuncelle.Name = "btnGuncelle";
+            btnGuncelle.Size = new Size(122, 44);
+            btnGuncelle.TabIndex = 34;
+            btnGuncelle.Text = "Güncelle";
+            btnGuncelle.UseVisualStyleBackColor = true;
+            btnGuncelle.Click += btnGuncelle_Click;
+            // 
+            // btnSil
+            // 
+            btnSil.Location = new Point(288, 501);
+            btnSil.Margin = new Padding(3, 4, 3, 4);
+            btnSil.Name = "btnSil";
+            btnSil.Size = new Size(123, 44);
+            btnSil.TabIndex = 33;
+            btnSil.Text = "Sil";
+            btnSil.UseVisualStyleBackColor = true;
+            btnSil.Click += btnSil_Click;
+            // 
+            // btnEkle
+            // 
+            btnEkle.Location = new Point(558, 501);
+            btnEkle.Margin = new Padding(3, 4, 3, 4);
+            btnEkle.Name = "btnEkle";
+            btnEkle.Size = new Size(122, 44);
+            btnEkle.TabIndex = 32;
+            btnEkle.Text = "Ekle";
+            btnEkle.UseVisualStyleBackColor = true;
+            btnEkle.Click += btnEkle_Click;
             // 
             // Authorform
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 881);
+            ClientSize = new Size(729, 680);
+            Controls.Add(btnGuncelle);
+            Controls.Add(btnSil);
+            Controls.Add(btnEkle);
             Controls.Add(txtDeathDate);
             Controls.Add(txtBirthDate);
             Controls.Add(lstListe);
-            Controls.Add(btnSelectPhoto);
             Controls.Add(pictureBoxPhoto);
             Controls.Add(txtBiography);
             Controls.Add(txtCountry);
@@ -200,24 +237,11 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Font = new Font("Segoe UI", 16F);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Authorform";
             Text = "Authorform";
             Load += Authorform_Load;
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(label2, 0);
-            Controls.SetChildIndex(label3, 0);
-            Controls.SetChildIndex(label4, 0);
-            Controls.SetChildIndex(label5, 0);
-            Controls.SetChildIndex(label6, 0);
-            Controls.SetChildIndex(txtName, 0);
-            Controls.SetChildIndex(txtSurname, 0);
-            Controls.SetChildIndex(txtCountry, 0);
-            Controls.SetChildIndex(txtBiography, 0);
-            Controls.SetChildIndex(pictureBoxPhoto, 0);
-            Controls.SetChildIndex(btnSelectPhoto, 0);
-            Controls.SetChildIndex(lstListe, 0);
-            Controls.SetChildIndex(txtBirthDate, 0);
-            Controls.SetChildIndex(txtDeathDate, 0);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -236,9 +260,11 @@
         private TextBox txtCountry;
         private TextBox txtBiography;
         private PictureBox pictureBoxPhoto;
-        private Button btnSelectPhoto;
         private ListBox lstListe;
         private MaskedTextBox txtBirthDate;
         private MaskedTextBox txtDeathDate;
+        private Button btnGuncelle;
+        private Button btnSil;
+        private Button btnEkle;
     }
 }

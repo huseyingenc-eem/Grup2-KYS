@@ -72,7 +72,9 @@ namespace KYS.UI
             using (UserForm registerForm = new UserForm(UserFormMode.Register))
             {
                 this.Hide();
+                registerForm.StartPosition=FormStartPosition.CenterScreen;
                 registerForm.ShowDialog();
+                
                 this.Show();
             }
         }

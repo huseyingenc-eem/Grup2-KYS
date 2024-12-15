@@ -91,5 +91,18 @@ namespace KYS.Business.Services
             return 0;
         }
 
+        public void CancelExpiredReservations()
+        {
+            var expiredRecords = _bRepository.GetAll()
+                .Where(r => r.Status == BorrowStatus.Ayırtıldı && r.CreatedDate <= DateTime.Now.AddDays(-1))
+                .ToList();
+
+            foreach (var record in expiredRecords)
+            {
+                record.Status = BorrowStatus.İptalEdildi; // Durumu güncelle
+                _bRepository.Update(record);   // Her bir kayıt için Update metodunu çağır
+            }
+        }
+
     }
 }

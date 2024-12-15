@@ -47,7 +47,7 @@
             // txtName
             // 
             txtName.Font = new Font("Segoe UI", 15F);
-            txtName.Location = new Point(218, 99);
+            txtName.Location = new Point(212, 76);
             txtName.Margin = new Padding(5, 6, 5, 6);
             txtName.Name = "txtName";
             txtName.Size = new Size(223, 34);
@@ -56,7 +56,7 @@
             // txtSurname
             // 
             txtSurname.Font = new Font("Segoe UI", 15F);
-            txtSurname.Location = new Point(218, 152);
+            txtSurname.Location = new Point(212, 129);
             txtSurname.Margin = new Padding(5, 6, 5, 6);
             txtSurname.Name = "txtSurname";
             txtSurname.Size = new Size(223, 34);
@@ -65,7 +65,7 @@
             // txtUserName
             // 
             txtUserName.Font = new Font("Segoe UI", 15F);
-            txtUserName.Location = new Point(218, 216);
+            txtUserName.Location = new Point(212, 193);
             txtUserName.Margin = new Padding(5, 6, 5, 6);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(223, 34);
@@ -74,7 +74,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Segoe UI", 15F);
-            txtPassword.Location = new Point(218, 284);
+            txtPassword.Location = new Point(212, 261);
             txtPassword.Margin = new Padding(5, 6, 5, 6);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(223, 34);
@@ -83,7 +83,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 15F);
-            txtEmail.Location = new Point(218, 346);
+            txtEmail.Location = new Point(212, 323);
             txtEmail.Margin = new Padding(5, 6, 5, 6);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(223, 34);
@@ -93,7 +93,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(33, 102);
+            label1.Location = new Point(27, 79);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(44, 28);
@@ -104,7 +104,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(33, 152);
+            label2.Location = new Point(27, 129);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(79, 28);
@@ -115,7 +115,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(31, 216);
+            label3.Location = new Point(25, 193);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(144, 28);
@@ -126,7 +126,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(33, 284);
+            label4.Location = new Point(27, 261);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(60, 28);
@@ -137,7 +137,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 15F);
-            label5.Location = new Point(33, 352);
+            label5.Location = new Point(27, 329);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
             label5.Size = new Size(67, 28);
@@ -149,7 +149,7 @@
             lstUsers.DrawMode = DrawMode.OwnerDrawFixed;
             lstUsers.FormattingEnabled = true;
             lstUsers.ItemHeight = 30;
-            lstUsers.Location = new Point(491, 102);
+            lstUsers.Location = new Point(485, 76);
             lstUsers.Margin = new Padding(5, 6, 5, 6);
             lstUsers.Name = "lstUsers";
             lstUsers.Size = new Size(354, 544);
@@ -161,10 +161,10 @@
             // 
             // btnKaydet
             // 
-            btnKaydet.Location = new Point(341, 420);
+            btnKaydet.Location = new Point(316, 397);
             btnKaydet.Margin = new Padding(3, 4, 3, 4);
             btnKaydet.Name = "btnKaydet";
-            btnKaydet.Size = new Size(142, 46);
+            btnKaydet.Size = new Size(119, 46);
             btnKaydet.TabIndex = 17;
             btnKaydet.Text = "Kaydet";
             btnKaydet.UseVisualStyleBackColor = true;
@@ -172,10 +172,10 @@
             // 
             // btnGüncelle
             // 
-            btnGüncelle.Location = new Point(33, 420);
+            btnGüncelle.Location = new Point(66, 397);
             btnGüncelle.Margin = new Padding(3, 4, 3, 4);
             btnGüncelle.Name = "btnGüncelle";
-            btnGüncelle.Size = new Size(142, 46);
+            btnGüncelle.Size = new Size(119, 46);
             btnGüncelle.TabIndex = 18;
             btnGüncelle.Text = "Güncelle";
             btnGüncelle.UseVisualStyleBackColor = true;
@@ -183,10 +183,10 @@
             // 
             // btnSil
             // 
-            btnSil.Location = new Point(193, 420);
+            btnSil.Location = new Point(191, 397);
             btnSil.Margin = new Padding(3, 4, 3, 4);
             btnSil.Name = "btnSil";
-            btnSil.Size = new Size(142, 46);
+            btnSil.Size = new Size(119, 46);
             btnSil.TabIndex = 19;
             btnSil.Text = "Sil";
             btnSil.UseVisualStyleBackColor = true;

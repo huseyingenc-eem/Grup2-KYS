@@ -59,6 +59,12 @@ namespace KYS.UI.Forms
         public UserForm() : this(UserFormMode.Admin) { }
         private void LoadUsers()
         {
+            if (_currentMode == UserFormMode.Register)
+            {
+                // Register modunda liste yüklemeye gerek yok
+                return;
+            }
+
             Guid currentAdminId = SessionManager.CurrentUser.Id;
 
             var users = _userService.GetAll()

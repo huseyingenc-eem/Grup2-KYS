@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KYS.UI.Forms
 {
-    public partial class BookForm : BaseForm
+    public partial class BookForm : Form
     {
         private readonly AuthorService _authorService;
         private readonly BookTypeService _bookTypeService;
@@ -60,27 +60,11 @@ namespace KYS.UI.Forms
             lstListe.SelectedIndex = -1;
             secilenKitap = null;
             FormuTemizle();
-
-
-        }
-        private string GenerateRandomISBN()
-        {
-            Random random = new Random();
-            StringBuilder isbnBuilder = new StringBuilder();
-
-            // 13 haneli rastgele sayı oluştur
-            for (int i = 0; i < 13; i++)
-            {
-                isbnBuilder.Append(random.Next(0, 10)); // 0-9 arasında rastgele sayı ekle
-            }
-
-            return isbnBuilder.ToString();
         }
         private void FormuTemizle()
         {
             txtPublishedYear.Text = "";
             txtPages.Text = "";
-            txtISBN.Text = GenerateRandomISBN();
             txtDescription.Text = "";
             txtCopiesAvailable.Text = "";
             txtLanguage.Text = "";
@@ -117,16 +101,17 @@ namespace KYS.UI.Forms
                 selectedPublisher = (Publisher?)cmbPublisher.SelectedItem;
             }
         }
-
-        protected override void btnAdd_Click(object sender, EventArgs e)
+        private void btnEkle_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_bookService.IfEntityExists(a=>a.CoverImageUrl == pictureBoxPhoto.ImageLocation))
+                if (_bookService.IfEntityExists(a => a.CoverImageUrl == pictureBoxPhoto.ImageLocation))
                 {
                     secilenKitap = (Book?)lstListe.SelectedItem;
                     throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
                 }
+                var existingBooks = _bookService.GetAll(); // Mevcut kitapları al
+
                 Book newBook = new Book()
                 {
                     Name = txtName.Text,
@@ -139,9 +124,10 @@ namespace KYS.UI.Forms
                     BookType = selectedBookType,
                     Publisher = selectedPublisher,
                     CoverImageUrl = pictureBoxPhoto.ImageLocation,
-
                 };
-                lblLocation.Text = newBook.ShelfLocation;
+                newBook.SetExistingBooks(existingBooks); // Mevcut kitap listesini ver
+                MessageBox.Show(newBook.ShelfLocation); // ShelfLocation hesaplanır ve gösterilir
+
                 _bookService.Create(newBook);
                 MessageBox.Show("Kayıt Başarılı");
                 GetAllBooks();
@@ -154,8 +140,7 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-
-        protected override void btnDelete_Click(object sender, EventArgs e)
+        private void btnSil_Click(object sender, EventArgs e)
         {
             try
             {
@@ -172,8 +157,7 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-
-        protected override void btnUpdate_Click(object sender, EventArgs e)
+        private void btnGuncelle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -222,7 +206,6 @@ namespace KYS.UI.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void lstListe_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstListe.SelectedIndex != -1)
@@ -292,5 +275,7 @@ namespace KYS.UI.Forms
                 e.Graphics.DrawString(text, font, Brushes.Gray, x, y);
             }
         }
+
+        
     }
 }

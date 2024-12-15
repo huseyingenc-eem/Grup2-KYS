@@ -17,7 +17,7 @@ namespace KYS.UI.Forms.AdminPanelForms
     public partial class AdminBorrowRecord : Form
     {
         private readonly BorrowRecordService _borrowRecordService;
-        
+
         public AdminBorrowRecord()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace KYS.UI.Forms.AdminPanelForms
         {
             dgvBorrowRecords.DataSource = records.Select(record => new
             {
-                Id=record.Id,
+                Id = record.Id,
                 UserName = record.User?.Name ?? "Bilinmiyor",
                 BookName = record.Book?.Name ?? "Belirtilmemiş",
                 BorrowDate = record.CreatedDate.ToString("dd-MM-yyyy"),
@@ -80,34 +80,36 @@ namespace KYS.UI.Forms.AdminPanelForms
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
-        { }
-        //{// DataGridView'den seçili satırı al
-        //    if (dgvBorrowRecords.SelectedRows.Count > 0)
-        //    {
-        //        // Seçili satırdaki BorrowRecord ID'sini al
-        //        int selectedRowIndex = dgvBorrowRecords.SelectedRows[0].Index;
-        //        Guid recordId = Guid.Parse(dgvBorrowRecords.Rows[selectedRowIndex].Cells["Id"].Value.ToString());
+        {
+            // DataGridView'den seçili satırı al
+            if (dgvBorrowRecords.SelectedRows.Count > 0)
+            {
+                // Seçili satırdaki BorrowRecord ID'sini al
+                int selectedRowIndex = dgvBorrowRecords.SelectedRows[0].Index;
+                Guid recordId = Guid.Parse(dgvBorrowRecords.Rows[selectedRowIndex].Cells["Id"].Value.ToString());
 
-        //        // Silme işlemi
-        //        var confirmResult = MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo);
-        //        if (confirmResult == DialogResult.Yes)
-        //        {
-        //            // BorrowRecordService üzerinden sil
-        //            _borrowRecordService.Delete(recordId);
+                // Silme işlemi
+                var confirmResult = MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // BorrowRecordService üzerinden sil
+                    _borrowRecordService.Delete(recordId);
 
-        //            // Güncellenmiş kayıtları yükle
-        //            LoadAllBorrowRecords();
+                    // Güncellenmiş kayıtları yükle
+                    LoadAllBorrowRecords();
 
-        //            MessageBox.Show("Kayıt başarıyla silindi.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Lütfen silmek için bir kayıt seçin.");
-        //    }
+                    MessageBox.Show("Kayıt başarıyla silindi.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen silmek için bir kayıt seçin.");
+            }
+
         }
     }
- 
+}
 
-    
+
+
 

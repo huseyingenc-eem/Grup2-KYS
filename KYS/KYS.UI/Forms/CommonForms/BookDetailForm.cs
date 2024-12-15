@@ -26,7 +26,7 @@ namespace KYS.UI.Forms.UserPanelForms
             var dbContext = new ApplicationDBContext();
             _commentService = new CommentService(new CommentRepository(dbContext));
 
-            _currentMode= mode;
+            _currentMode = mode;
             if (mode == BookDetailFormMod.Register)
             {
                 btnBorrowBook.Visible = true;
@@ -36,7 +36,7 @@ namespace KYS.UI.Forms.UserPanelForms
                 btnBorrowBook.Visible = false;
             }
         }
-        
+
 
         private void BookDetailForm_Load(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace KYS.UI.Forms.UserPanelForms
             {
                 lblBookName.Text = selectedBook.Name ?? "Belirtilmemiş";
                 pictureBoxCover.ImageLocation = selectedBook.CoverImageUrl;
-                lblLocation.Text=selectedBook.ShelfLocation;
+                lblLocation.Text = selectedBook.ShelfLocation;
                 lblBookType.Text = selectedBook.BookType?.Name ?? "Belirtilmemiş";
                 lblAuthor.Text = selectedBook.Author?.Name ?? "Belirtilmemiş";
                 lblPublisherName.Text = selectedBook.Publisher?.Name ?? "Belirtilmemiş";
@@ -58,7 +58,7 @@ namespace KYS.UI.Forms.UserPanelForms
                 lblBookPage.Text = selectedBook.Pages.ToString();
                 lblCopiesAvailable.Text = selectedBook.CopiesAvailable.ToString();
                 txtBookDescription.Text = selectedBook.Description ?? string.Empty;
-
+                lblLocation.Text = selectedBook.ShelfLocation;
                 LoadComments(selectedBook.Id);
             }
         }
@@ -190,12 +190,12 @@ namespace KYS.UI.Forms.UserPanelForms
 
             BorrowRecordForm borrowRecordForm = new BorrowRecordForm()
             {
-                borrowBook=selectedBook,
+                borrowBook = selectedBook,
             };
             borrowRecordForm.StartPosition = FormStartPosition.CenterScreen;
             borrowRecordForm.ShowDialog();
 
-            
+
         }
     }
 }

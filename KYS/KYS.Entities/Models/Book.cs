@@ -29,10 +29,29 @@ namespace KYS.Entities.Models
         public string? Description { get; set; }            // Kitap Açıklaması
         public string? Language { get; set; }               // Kitabın Dili
         public string? CoverImageUrl { get; set; }          // Kapak Resmi URL
-        public bool AvailabilityStatus { get; private set; }        //True ise var False ise yok.
-        public string? ShelfLocation { get; private set; } // Otomatik kitap yeri kodu
+        public bool AvailabilityStatus { get; set; }        //True ise var False ise yok.
 
-
+        private string? _shelfLocation; // ShelfLocation'ı tutacak alan
+        private IEnumerable<Book> _existingBooks; // Dışarıdan mevcut kitap listesi 
+        public string? ShelfLocation
+        {
+            get
+            {
+                if (_shelfLocation == null)
+                {
+                    _shelfLocation = GenerateShelfLocation(_existingBooks); // Hesaplama yapılır
+                }
+                return _shelfLocation;
+            }
+            private set
+            {
+                _shelfLocation = value; // Sadece içeriden set edilir
+            }
+        }
+        public void SetExistingBooks(IEnumerable<Book> existingBooks)
+        {
+            _existingBooks = existingBooks; // Mevcut kitaplar atanır
+        }
         // Navigation Property : Authoer
         public Guid AuthorID { get; set; }                      // Yazar ID'si (Yabancı Anahtar)
         public Author? Author { get; set; }             // Yazar ile ilişki
@@ -51,7 +70,7 @@ namespace KYS.Entities.Models
         // Navigation Property : Comment
         public ICollection<Comment>? Comments { get; set; } // Kitaba ait yorumlar
 
-        public void GenerateShelfLocation(IEnumerable<Book> existingBooks)
+        private string GenerateShelfLocation(IEnumerable<Book> existingBooks)
         {
             if (BookType == null || Author == null || string.IsNullOrEmpty(Name))
                 throw new InvalidOperationException("BookType, Author ve Name alanları dolu olmalıdır.");
@@ -59,21 +78,35 @@ namespace KYS.Entities.Models
             // Kitap adının baş harfini al
             char bookInitial = char.ToUpper(Name[0]);
 
-            // Mevcut kitapları filtrele
-            var booksInSameType = existingBooks
-                .Where(b => b.BookTypeID == BookTypeID && b.Name.StartsWith(bookInitial.ToString()))
-                .OrderBy(b => b.Name)
+            // Bölge kodu (BookType ShortCode + kitap baş harfi)
+            string baseCode = $"{BookType.ShortCode}-{bookInitial}";
+
+            // Aynı tür, aynı baş harf ve yazar koduna sahip kitapları kontrol et
+            var booksWithSameBaseCode = existingBooks
+                .Where(b => b.ShelfLocation != null
+                            && b.ShelfLocation.StartsWith(baseCode)
+                            && b.ShelfLocation.EndsWith(Author.ShortCode))
                 .ToList();
 
-            // Bölge ve raf numarası hesapla
-            int shelfNumber = (booksInSameType.Count / 20) + 1; // Raf başına 20 kitap
-            int positionInShelf = (booksInSameType.Count % 20) + 1;
+            // En yüksek pozisyon numarasını bul
+            int maxPosition = booksWithSameBaseCode
+                .Select(b =>
+                {
+                    var parts = b.ShelfLocation.Split('-');
+                    return parts.Length >= 3 && int.TryParse(parts[2], out int pos) ? pos : 0;
+                })
+                .DefaultIfEmpty(0)
+                .Max();
 
-            // Kitap kodu (A01-001)
-            string bookCode = $"{bookInitial}{shelfNumber:D2}-{positionInShelf:D3}";
+            // Yeni pozisyonu belirle
+            int nextPosition = maxPosition + 1;
 
-            // Kitap yeri kodunu oluştur
-            ShelfLocation = $"{BookType.ShortCode}-{bookCode}-{Author.ShortCode}";
+            // Raf numarasını hesapla
+            int shelfNumber = (nextPosition / 20) + 1;
+            int positionInShelf = (nextPosition % 20 == 0) ? 20 : nextPosition % 20;
+
+            // Yeni kitap yeri kodu oluştur
+            return $"{baseCode}{shelfNumber:D2}-{positionInShelf:D3}-{Author.ShortCode}";
         }
 
     }
