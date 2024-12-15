@@ -1,7 +1,4 @@
 ﻿using OfficeOpenXml;
-using iText.Kernel.Pdf;
-using iText.Layout.Element;
-using iText.Layout.Properties;
 
 public static class GenericExporter
 {

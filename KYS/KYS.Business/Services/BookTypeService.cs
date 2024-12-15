@@ -67,5 +67,11 @@ namespace KYS.Business.Services
                 throw new Exception(sb.ToString());
             }
         }
+        public string GenerateBookTypeShortCode(string bookTypeName)
+        {
+            return string.Concat(bookTypeName.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(word => word[0]))
+                        .ToUpper();
+        }
     }
 }

@@ -89,7 +89,7 @@
             txtDescription.Margin = new Padding(5, 6, 5, 6);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(354, 430);
+            txtDescription.Size = new Size(354, 297);
             txtDescription.TabIndex = 4;
             // 
             // lstListe
@@ -100,7 +100,7 @@
             lstListe.Location = new Point(545, 61);
             lstListe.Margin = new Padding(5, 6, 5, 6);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(305, 629);
+            lstListe.Size = new Size(305, 379);
             lstListe.TabIndex = 5;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 
@@ -116,7 +116,7 @@
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnSave.Location = new Point(427, 586);
+            btnSave.Location = new Point(427, 453);
             btnSave.Margin = new Padding(5, 6, 5, 6);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 39);
@@ -128,7 +128,7 @@
             // btnDelete
             // 
             btnDelete.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnDelete.Location = new Point(309, 586);
+            btnDelete.Location = new Point(309, 453);
             btnDelete.Margin = new Padding(5, 6, 5, 6);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(108, 37);
@@ -140,7 +140,7 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 162);
-            btnUpdate.Location = new Point(181, 586);
+            btnUpdate.Location = new Point(181, 453);
             btnUpdate.Margin = new Padding(5, 6, 5, 6);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(108, 39);

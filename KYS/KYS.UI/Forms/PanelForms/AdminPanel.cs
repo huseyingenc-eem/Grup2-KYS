@@ -15,7 +15,6 @@ namespace KYS.UI.Forms.PanelForms
         private readonly UserService _userService;
         private readonly ApplicationDBContext _context;
 
-
         public AdminPanel(UserService userService, ApplicationDBContext context)
         {
             InitializeComponent();
@@ -168,9 +167,16 @@ namespace KYS.UI.Forms.PanelForms
                     if (!(control is MdiClient) && !(control is MenuStrip)) // Sadece MDI Container hariç
                     {
                         control.Visible = true;
+                        LoadYazarSayisi();
+                        LoadKitapTurSayisi();
+                        LoadDuyuruSayisi();
+                        LoadKullaniciSayisi();
+                        LoadYayinciSayisi();
+                        LoadKitapSayisi();
                     }
                 }
             }
+            
         }
 
         public void ShowFormWithAlignment(Form frm, bool isLeftAligned)

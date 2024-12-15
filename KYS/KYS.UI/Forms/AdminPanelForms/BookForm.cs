@@ -122,28 +122,26 @@ namespace KYS.UI.Forms
         {
             try
             {
-                if (_bookService.IfEntityExists(a => a.ISBN == txtISBN.Text || a.CoverImageUrl == pictureBoxPhoto.ImageLocation))
+                if (_bookService.IfEntityExists(a=>a.CoverImageUrl == pictureBoxPhoto.ImageLocation))
                 {
                     secilenKitap = (Book?)lstListe.SelectedItem;
-                    txtISBN.Text = secilenKitap?.ISBN;
                     throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
                 }
                 Book newBook = new Book()
                 {
                     Name = txtName.Text,
-                    ISBN = txtISBN.Text,
                     PublishedYear = Convert.ToInt32(txtPublishedYear.Text),
                     Pages = Convert.ToInt32(txtPages.Text),
                     CopiesAvailable = Convert.ToInt32(txtCopiesAvailable.Text),
                     Description = txtDescription.Text,
                     Language = txtLanguage.Text,
-
                     Author = selectedAuthor,
                     BookType = selectedBookType,
                     Publisher = selectedPublisher,
                     CoverImageUrl = pictureBoxPhoto.ImageLocation,
-                };
 
+                };
+                lblLocation.Text = newBook.ShelfLocation;
                 _bookService.Create(newBook);
                 MessageBox.Show("Kayıt Başarılı");
                 GetAllBooks();
@@ -182,12 +180,9 @@ namespace KYS.UI.Forms
                 if (lstListe.SelectedIndex == -1)
                     throw new Exception("Listeden Kitap seçiniz.");
 
-                if (_bookService.IfEntityExists(a =>
-                (a.ISBN == txtISBN.Text || a.CoverImageUrl == pictureBoxPhoto.ImageLocation) &&
-                a.Id != secilenKitap.Id))
+                if (_bookService.IfEntityExists(a => (a.CoverImageUrl == pictureBoxPhoto.ImageLocation) && a.Id != secilenKitap.Id))
                 {
                     secilenKitap = (Book?)lstListe.SelectedItem;
-                    txtISBN.Text = secilenKitap?.ISBN;
                     pictureBoxPhoto.ImageLocation = secilenKitap?.CoverImageUrl;
                     throw new Exception("Bu ISBN veya fotoğraf zaten başka bir kitapta kullanılıyor!");
                 }
@@ -195,7 +190,6 @@ namespace KYS.UI.Forms
                 if (secilenKitap != null)
                 {
                     secilenKitap.Name = txtName.Text;
-                    secilenKitap.ISBN = txtISBN.Text;
                     secilenKitap.PublishedYear = Convert.ToInt32(txtPublishedYear.Text);
 
                     secilenKitap.Pages = Convert.ToInt32(txtPages.Text);
@@ -238,14 +232,12 @@ namespace KYS.UI.Forms
                 if (secilenKitap != null)
                 {
                     txtName.Text = secilenKitap.Name;
-                    txtISBN.Text = secilenKitap.ISBN;
                     txtPublishedYear.Text = secilenKitap.PublishedYear.ToString();
                     txtPages.Text = secilenKitap.Pages.ToString();
                     txtCopiesAvailable.Text = secilenKitap.CopiesAvailable.ToString();
                     txtDescription.Text = secilenKitap.Description;
                     txtLanguage.Text = secilenKitap.Language;
                     pictureBoxPhoto.ImageLocation = secilenKitap.CoverImageUrl;
-                    // Yazar bilgisi ComboBox'ta seç
                     cmbAuthor.SelectedValue = secilenKitap.AuthorID;
                     cmbType.SelectedValue = secilenKitap.BookTypeID;
                     cmbPublisher.SelectedValue = secilenKitap.PublisherID;

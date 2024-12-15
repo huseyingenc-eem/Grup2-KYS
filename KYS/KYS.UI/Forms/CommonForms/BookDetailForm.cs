@@ -49,12 +49,11 @@ namespace KYS.UI.Forms.UserPanelForms
             {
                 lblBookName.Text = selectedBook.Name ?? "Belirtilmemiş";
                 pictureBoxCover.ImageLocation = selectedBook.CoverImageUrl;
-                lblISBN.Text = selectedBook.ISBN ?? "Belirtilmemiş";
-
+                lblLocation.Text=selectedBook.ShelfLocation;
                 lblBookType.Text = selectedBook.BookType?.Name ?? "Belirtilmemiş";
                 lblAuthor.Text = selectedBook.Author?.Name ?? "Belirtilmemiş";
                 lblPublisherName.Text = selectedBook.Publisher?.Name ?? "Belirtilmemiş";
-
+                lblLocation.Text = selectedBook.ShelfLocation;
                 lblPublisherYear.Text = selectedBook.PublishedYear.ToString();
                 lblBookPage.Text = selectedBook.Pages.ToString();
                 lblCopiesAvailable.Text = selectedBook.CopiesAvailable.ToString();

@@ -131,15 +131,15 @@
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(497, 39);
+            pictureBoxPhoto.Location = new Point(516, 39);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(359, 247);
+            pictureBoxPhoto.Size = new Size(322, 201);
             pictureBoxPhoto.TabIndex = 16;
             pictureBoxPhoto.TabStop = false;
             // 
             // btnSelectPhoto
             // 
-            btnSelectPhoto.Location = new Point(708, 290);
+            btnSelectPhoto.Location = new Point(690, 246);
             btnSelectPhoto.Name = "btnSelectPhoto";
             btnSelectPhoto.Size = new Size(148, 43);
             btnSelectPhoto.TabIndex = 17;
@@ -151,9 +151,9 @@
             // 
             lstListe.FormattingEnabled = true;
             lstListe.ItemHeight = 30;
-            lstListe.Location = new Point(12, 501);
+            lstListe.Location = new Point(498, 314);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(844, 184);
+            lstListe.Size = new Size(340, 184);
             lstListe.TabIndex = 18;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 

@@ -33,7 +33,6 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
@@ -41,7 +40,6 @@
             lstListe = new ListBox();
             txtName = new TextBox();
             txtPublishedYear = new TextBox();
-            txtISBN = new TextBox();
             txtPages = new TextBox();
             txtCopiesAvailable = new TextBox();
             txtLanguage = new TextBox();
@@ -50,6 +48,7 @@
             cmbType = new ComboBox();
             cmbPublisher = new ComboBox();
             pictureBoxPhoto = new PictureBox();
+            lblLocation = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).BeginInit();
             SuspendLayout();
             // 
@@ -97,15 +96,6 @@
             label5.Size = new Size(106, 30);
             label5.TabIndex = 8;
             label5.Text = "Yayın Yılı :";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(36, 269);
-            label6.Name = "label6";
-            label6.Size = new Size(71, 30);
-            label6.TabIndex = 9;
-            label6.Text = "ISBN :";
             // 
             // label7
             // 
@@ -166,14 +156,6 @@
             txtPublishedYear.Name = "txtPublishedYear";
             txtPublishedYear.Size = new Size(287, 36);
             txtPublishedYear.TabIndex = 18;
-            // 
-            // txtISBN
-            // 
-            txtISBN.Location = new Point(234, 269);
-            txtISBN.Name = "txtISBN";
-            txtISBN.ReadOnly = true;
-            txtISBN.Size = new Size(287, 36);
-            txtISBN.TabIndex = 19;
             // 
             // txtPages
             // 
@@ -243,11 +225,21 @@
             pictureBoxPhoto.Click += pictureBoxPhoto_Click;
             pictureBoxPhoto.Paint += pictureBoxPhoto_Paint;
             // 
+            // lblLocation
+            // 
+            lblLocation.AutoSize = true;
+            lblLocation.Location = new Point(298, 675);
+            lblLocation.Name = "lblLocation";
+            lblLocation.Size = new Size(83, 30);
+            lblLocation.TabIndex = 29;
+            lblLocation.Text = "label11";
+            // 
             // BookForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 887);
+            Controls.Add(lblLocation);
             Controls.Add(pictureBoxPhoto);
             Controls.Add(cmbPublisher);
             Controls.Add(cmbType);
@@ -256,7 +248,6 @@
             Controls.Add(txtLanguage);
             Controls.Add(txtCopiesAvailable);
             Controls.Add(txtPages);
-            Controls.Add(txtISBN);
             Controls.Add(txtPublishedYear);
             Controls.Add(txtName);
             Controls.Add(lstListe);
@@ -264,7 +255,6 @@
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -279,7 +269,6 @@
             Controls.SetChildIndex(label3, 0);
             Controls.SetChildIndex(label4, 0);
             Controls.SetChildIndex(label5, 0);
-            Controls.SetChildIndex(label6, 0);
             Controls.SetChildIndex(label7, 0);
             Controls.SetChildIndex(label8, 0);
             Controls.SetChildIndex(label9, 0);
@@ -287,7 +276,6 @@
             Controls.SetChildIndex(lstListe, 0);
             Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(txtPublishedYear, 0);
-            Controls.SetChildIndex(txtISBN, 0);
             Controls.SetChildIndex(txtPages, 0);
             Controls.SetChildIndex(txtCopiesAvailable, 0);
             Controls.SetChildIndex(txtLanguage, 0);
@@ -296,6 +284,7 @@
             Controls.SetChildIndex(cmbType, 0);
             Controls.SetChildIndex(cmbPublisher, 0);
             Controls.SetChildIndex(pictureBoxPhoto, 0);
+            Controls.SetChildIndex(lblLocation, 0);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -308,7 +297,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Label label6;
         private Label label7;
         private Label label8;
         private Label label9;
@@ -316,7 +304,6 @@
         private ListBox lstListe;
         private TextBox txtName;
         private TextBox txtPublishedYear;
-        private TextBox txtISBN;
         private TextBox txtPages;
         private TextBox txtCopiesAvailable;
         private TextBox txtLanguage;
@@ -325,5 +312,6 @@
         private ComboBox cmbType;
         private ComboBox cmbPublisher;
         private PictureBox pictureBoxPhoto;
+        private Label lblLocation;
     }
 }

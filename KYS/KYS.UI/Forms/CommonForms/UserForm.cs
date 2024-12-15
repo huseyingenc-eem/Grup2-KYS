@@ -154,6 +154,7 @@ namespace KYS.UI.Forms
                     selectedUser.Surname= txtSurname.Text;
                     selectedUser.Username= txtUserName.Text;
                     selectedUser.Email= txtEmail.Text;
+                    
                 }
                 _userService.Update(selectedUser);
                 MessageBox.Show("Güncelleme İşlemi Başarılı.");

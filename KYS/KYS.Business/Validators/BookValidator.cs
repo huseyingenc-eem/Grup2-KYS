@@ -18,13 +18,7 @@ namespace KYS.Business.Validators
                 .MinimumLength(3)
                 .WithMessage("Kitap adı en az 3 karakter olmalıdır!");
 
-            RuleFor(b => b.ISBN)
-                .NotEmpty()
-                .WithMessage("ISBN numarası boş olamaz!")
-                .Length(13)
-                .WithMessage("ISBN numarası 13 karakter uzunluğunda olmalıdır!")
-                .Matches("^[0-9]*$")
-                .WithMessage("ISBN numarası yalnızca rakamlardan oluşmalıdır!");
+            
 
             RuleFor(b => b.Publisher)
                 .NotNull()

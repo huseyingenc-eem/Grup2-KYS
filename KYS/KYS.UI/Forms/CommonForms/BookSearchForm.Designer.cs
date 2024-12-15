@@ -36,21 +36,22 @@
             flpBooks = new FlowLayoutPanel();
             txtBookSearch = new TextBox();
             treeViewBookType = new TreeView();
+            label1 = new Label();
             SuspendLayout();
             // 
             // flpBooks
             // 
             flpBooks.BackColor = SystemColors.Control;
-            flpBooks.Location = new Point(186, 227);
+            flpBooks.Location = new Point(186, 151);
             flpBooks.Name = "flpBooks";
-            flpBooks.Size = new Size(884, 854);
+            flpBooks.Size = new Size(787, 663);
             flpBooks.TabIndex = 0;
             // 
             // txtBookSearch
             // 
-            txtBookSearch.Location = new Point(186, 179);
+            txtBookSearch.Location = new Point(186, 122);
             txtBookSearch.Name = "txtBookSearch";
-            txtBookSearch.Size = new Size(257, 23);
+            txtBookSearch.Size = new Size(787, 23);
             txtBookSearch.TabIndex = 1;
             txtBookSearch.TextChanged += txtBookSearch_TextChanged;
             // 
@@ -58,7 +59,7 @@
             // 
             treeViewBookType.BackColor = Color.White;
             treeViewBookType.ForeColor = SystemColors.WindowText;
-            treeViewBookType.Location = new Point(12, 227);
+            treeViewBookType.Location = new Point(12, 122);
             treeViewBookType.Name = "treeViewBookType";
             treeNode1.Name = "Node2";
             treeNode1.Text = "Node2";
@@ -71,16 +72,27 @@
             treeNode5.Name = "Node1";
             treeNode5.Text = "Node1";
             treeViewBookType.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode5 });
-            treeViewBookType.Size = new Size(168, 854);
+            treeViewBookType.Size = new Size(168, 692);
             treeViewBookType.TabIndex = 2;
             treeViewBookType.AfterSelect += treeViewBookType_AfterSelect;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 50F);
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(1058, 110);
+            label1.TabIndex = 3;
+            label1.Text = "Kitap Arama Ekranı";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // BookSearchForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1082, 1093);
+            ClientSize = new Size(988, 836);
+            Controls.Add(label1);
             Controls.Add(treeViewBookType);
             Controls.Add(txtBookSearch);
             Controls.Add(flpBooks);
@@ -96,5 +108,6 @@
         private FlowLayoutPanel flpBooks;
         private TextBox txtBookSearch;
         private TreeView treeViewBookType;
+        private Label label1;
     }
 }

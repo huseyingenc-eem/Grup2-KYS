@@ -113,6 +113,7 @@ namespace KYS.UI.Forms.PanelForms
         {
             BookSearchForm bookSearch = new BookSearchForm();
             bookSearch.MdiParent = this;
+            
             ShowFormWithAlignment(bookSearch, true);
             FormControl(bookSearch);
 

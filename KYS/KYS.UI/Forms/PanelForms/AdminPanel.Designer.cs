@@ -43,19 +43,22 @@
             çıkışYapToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem = new ToolStripMenuItem();
             duyuruEkleToolStripMenuItem1 = new ToolStripMenuItem();
+            raporToolStripMenuItem = new ToolStripMenuItem();
+            ödünçAlınanKitaplarToolStripMenuItem = new ToolStripMenuItem();
             lblBook = new Label();
             lblUser = new Label();
             lblType = new Label();
             lblPublisher = new Label();
             lblAnnouncement = new Label();
             lblAuthor = new Label();
+            panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.Font = new Font("Segoe UI", 20F);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { kullanıcıİşlemleriToolStripMenuItem, kitapİşlemleriToolStripMenuItem, yayıncıİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, duyuruEkleToolStripMenuItem, raporToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(2387, 45);
@@ -161,6 +164,19 @@
             duyuruEkleToolStripMenuItem1.Text = "Duyuru Ekle";
             duyuruEkleToolStripMenuItem1.Click += duyuruEkleToolStripMenuItem1_Click;
             // 
+            // raporToolStripMenuItem
+            // 
+            raporToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ödünçAlınanKitaplarToolStripMenuItem });
+            raporToolStripMenuItem.Name = "raporToolStripMenuItem";
+            raporToolStripMenuItem.Size = new Size(100, 41);
+            raporToolStripMenuItem.Text = "Rapor";
+            // 
+            // ödünçAlınanKitaplarToolStripMenuItem
+            // 
+            ödünçAlınanKitaplarToolStripMenuItem.Name = "ödünçAlınanKitaplarToolStripMenuItem";
+            ödünçAlınanKitaplarToolStripMenuItem.Size = new Size(353, 42);
+            ödünçAlınanKitaplarToolStripMenuItem.Text = "Ödünç Alınan Kitaplar";
+            // 
             // lblBook
             // 
             lblBook.BackColor = Color.LightSeaGreen;
@@ -221,11 +237,19 @@
             lblAuthor.TabIndex = 10;
             lblAuthor.Text = "Yazar Sayısı :";
             // 
+            // panel1
+            // 
+            panel1.Location = new Point(446, 386);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(392, 379);
+            panel1.TabIndex = 12;
+            // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2387, 1264);
+            Controls.Add(panel1);
             Controls.Add(lblAuthor);
             Controls.Add(lblAnnouncement);
             Controls.Add(lblPublisher);
@@ -267,5 +291,8 @@
         private Label lblAnnouncement;
         private Label lblAuthor;
         private ToolStripMenuItem yazarEkleToolStripMenuItem;
+        private Panel panel1;
+        private ToolStripMenuItem raporToolStripMenuItem;
+        private ToolStripMenuItem ödünçAlınanKitaplarToolStripMenuItem;
     }
 }

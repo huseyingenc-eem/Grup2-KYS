@@ -14,7 +14,7 @@ namespace KYS.Entities.Models
         private int _copiesAvailable;
 
         public string? Name { get; set; }                  // Kitap Başlığı
-        public string? ISBN { get; set; }                   // ISBN Numarası
+
         public int PublishedYear { get; set; }              // Yayınlanma Yılı
         public int Pages { get; set; }                      // Sayfa Sayısı
         public int CopiesAvailable                          // Mevcut Kopya Sayısı
@@ -30,6 +30,8 @@ namespace KYS.Entities.Models
         public string? Language { get; set; }               // Kitabın Dili
         public string? CoverImageUrl { get; set; }          // Kapak Resmi URL
         public bool AvailabilityStatus { get; private set; }        //True ise var False ise yok.
+        public string? ShelfLocation { get; private set; } // Otomatik kitap yeri kodu
+
 
         // Navigation Property : Authoer
         public Guid AuthorID { get; set; }                      // Yazar ID'si (Yabancı Anahtar)
@@ -49,7 +51,30 @@ namespace KYS.Entities.Models
         // Navigation Property : Comment
         public ICollection<Comment>? Comments { get; set; } // Kitaba ait yorumlar
 
-        
+        public void GenerateShelfLocation(IEnumerable<Book> existingBooks)
+        {
+            if (BookType == null || Author == null || string.IsNullOrEmpty(Name))
+                throw new InvalidOperationException("BookType, Author ve Name alanları dolu olmalıdır.");
+
+            // Kitap adının baş harfini al
+            char bookInitial = char.ToUpper(Name[0]);
+
+            // Mevcut kitapları filtrele
+            var booksInSameType = existingBooks
+                .Where(b => b.BookTypeID == BookTypeID && b.Name.StartsWith(bookInitial.ToString()))
+                .OrderBy(b => b.Name)
+                .ToList();
+
+            // Bölge ve raf numarası hesapla
+            int shelfNumber = (booksInSameType.Count / 20) + 1; // Raf başına 20 kitap
+            int positionInShelf = (booksInSameType.Count % 20) + 1;
+
+            // Kitap kodu (A01-001)
+            string bookCode = $"{bookInitial}{shelfNumber:D2}-{positionInShelf:D3}";
+
+            // Kitap yeri kodunu oluştur
+            ShelfLocation = $"{BookType.ShortCode}-{bookCode}-{Author.ShortCode}";
+        }
 
     }
 

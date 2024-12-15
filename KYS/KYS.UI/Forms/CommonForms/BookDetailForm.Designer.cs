@@ -31,7 +31,7 @@
             pictureBoxCover = new PictureBox();
             grpBoxBookDetail = new GroupBox();
             btnBorrowBook = new Button();
-            lblISBN = new Label();
+            lblLocation = new Label();
             txtBookDescription = new TextBox();
             lblCopiesAvailable = new Label();
             lblBookPage = new Label();
@@ -68,7 +68,7 @@
             // 
             grpBoxBookDetail.BackColor = SystemColors.ButtonFace;
             grpBoxBookDetail.Controls.Add(btnBorrowBook);
-            grpBoxBookDetail.Controls.Add(lblISBN);
+            grpBoxBookDetail.Controls.Add(lblLocation);
             grpBoxBookDetail.Controls.Add(txtBookDescription);
             grpBoxBookDetail.Controls.Add(lblCopiesAvailable);
             grpBoxBookDetail.Controls.Add(lblBookPage);
@@ -101,15 +101,15 @@
             btnBorrowBook.UseVisualStyleBackColor = true;
             btnBorrowBook.Click += btnBorrowBook_Click;
             // 
-            // lblISBN
+            // lblLocation
             // 
-            lblISBN.Font = new Font("Segoe UI", 10F);
-            lblISBN.Location = new Point(240, 32);
-            lblISBN.Name = "lblISBN";
-            lblISBN.Size = new Size(298, 42);
-            lblISBN.TabIndex = 14;
-            lblISBN.Text = "ISBN Numarası";
-            lblISBN.TextAlign = ContentAlignment.MiddleCenter;
+            lblLocation.Font = new Font("Segoe UI", 10F);
+            lblLocation.Location = new Point(240, 32);
+            lblLocation.Name = "lblLocation";
+            lblLocation.Size = new Size(298, 42);
+            lblLocation.TabIndex = 14;
+            lblLocation.Text = "Kütüphanedeki Yeri";
+            lblLocation.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtBookDescription
             // 
@@ -318,7 +318,7 @@
         private Label lblPublisherYear;
         private Label lblPublisherName;
         private Label lblAuthor;
-        private Label lblISBN;
+        private Label lblLocation;
         private TextBox txtBookDescription;
         private Button btnBorrowBook;
         private Label label7;
