@@ -51,6 +51,7 @@
             btnEkle = new Button();
             btnSil = new Button();
             btnGuncelle = new Button();
+            btnExporter = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPhoto).BeginInit();
             SuspendLayout();
             // 
@@ -142,7 +143,7 @@
             lstListe.Location = new Point(523, 299);
             lstListe.Margin = new Padding(3, 4, 3, 4);
             lstListe.Name = "lstListe";
-            lstListe.Size = new Size(314, 304);
+            lstListe.Size = new Size(264, 304);
             lstListe.TabIndex = 16;
             lstListe.SelectedIndexChanged += lstListe_SelectedIndexChanged;
             // 
@@ -231,7 +232,7 @@
             pictureBoxPhoto.Location = new Point(523, 32);
             pictureBoxPhoto.Margin = new Padding(3, 4, 3, 4);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
-            pictureBoxPhoto.Size = new Size(314, 256);
+            pictureBoxPhoto.Size = new Size(264, 256);
             pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 28;
             pictureBoxPhoto.TabStop = false;
@@ -271,12 +272,23 @@
             btnGuncelle.UseVisualStyleBackColor = true;
             btnGuncelle.Click += btnGuncelle_Click;
             // 
+            // btnExporter
+            // 
+            btnExporter.Location = new Point(560, 634);
+            btnExporter.Name = "btnExporter";
+            btnExporter.Size = new Size(227, 44);
+            btnExporter.TabIndex = 32;
+            btnExporter.Text = "Kitapları Dışarı Aktar";
+            btnExporter.UseVisualStyleBackColor = true;
+            btnExporter.Click += btnExporter_Click;
+            // 
             // BookForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(933, 713);
+            ClientSize = new Size(808, 713);
+            Controls.Add(btnExporter);
             Controls.Add(btnGuncelle);
             Controls.Add(btnSil);
             Controls.Add(btnEkle);
@@ -335,5 +347,6 @@
         private Button btnEkle;
         private Button btnSil;
         private Button btnGuncelle;
+        private Button btnExporter;
     }
 }

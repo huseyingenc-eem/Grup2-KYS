@@ -1,43 +1,58 @@
 ﻿using OfficeOpenXml;
 using System.Reflection;
+using System.Windows.Forms;
 
 public static class GenericExporter
 {
-    // Excel'e Aktarma: Tüm Entity veya Data için
-    public static void ExportToExcel<T>(IEnumerable<T> data, string filePath)
+    // Excel'e Aktarma: Dosya yolu kullanıcıdan alınacak
+    public static void ExportToExcel<T>(IEnumerable<T> data)
     {
         if (data == null || !data.Any())
             throw new ArgumentException("Veri boş veya null olamaz.", nameof(data));
 
-        using (var package = new ExcelPackage())
+        // SaveFileDialog ile dosya yolunu kullanıcıdan al
+        var saveFileDialog = new SaveFileDialog
         {
-            var worksheet = package.Workbook.Worksheets.Add(typeof(T).Name + "_Data");
+            Title = "Excel Dosyası Kaydet",
+            Filter = "Excel Files|*.xlsx",
+            FileName = $"{typeof(T).Name}_Data.xlsx"
+        };
 
-            // Başlıkları yaz
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            for (int i = 0; i < properties.Length; i++)
-            {
-                worksheet.Cells[1, i + 1].Value = properties[i].Name; // Property isimlerini al
-            }
+        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            string filePath = saveFileDialog.FileName;
 
-            // Verileri doldur
-            int rowIndex = 2;
-            foreach (var item in data)
+            using (var package = new ExcelPackage())
             {
-                for (int colIndex = 0; colIndex < properties.Length; colIndex++)
+                var worksheet = package.Workbook.Worksheets.Add(typeof(T).Name + "_Data");
+
+                // Başlıkları yaz
+                var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                for (int i = 0; i < properties.Length; i++)
                 {
-                    var value = properties[colIndex].GetValue(item, null);
-                    worksheet.Cells[rowIndex, colIndex + 1].Value = value?.ToString() ?? ""; // Null kontrolü
+                    worksheet.Cells[1, i + 1].Value = properties[i].Name; // Property isimlerini al
                 }
-                rowIndex++;
+
+                // Verileri doldur
+                int rowIndex = 2;
+                foreach (var item in data)
+                {
+                    for (int colIndex = 0; colIndex < properties.Length; colIndex++)
+                    {
+                        var value = properties[colIndex].GetValue(item, null);
+                        worksheet.Cells[rowIndex, colIndex + 1].Value = value?.ToString() ?? ""; // Null kontrolü
+                    }
+                    rowIndex++;
+                }
+
+                // Güzelleştirme
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // Dosyayı kaydet
+                File.WriteAllBytes(filePath, package.GetAsByteArray());
             }
 
-            // Güzelleştirme
-            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
-
-            // Dosyayı kaydet
-            File.WriteAllBytes(filePath, package.GetAsByteArray());
+            MessageBox.Show("Veriler başarıyla Excel'e aktarıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
     }
 }

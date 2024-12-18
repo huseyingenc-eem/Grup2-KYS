@@ -51,7 +51,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { kitapİşlemleriToolStripMenuItem, adSoyadToolStripMenuItem, yazarHakkındaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1370, 45);
+            menuStrip1.Size = new Size(1681, 45);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -123,7 +123,7 @@
             // 
             // flpAnnouncements
             // 
-            flpAnnouncements.Location = new Point(1598, 122);
+            flpAnnouncements.Location = new Point(1223, 119);
             flpAnnouncements.Name = "flpAnnouncements";
             flpAnnouncements.Size = new Size(435, 935);
             flpAnnouncements.TabIndex = 3;
@@ -131,7 +131,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 25F);
-            label1.Location = new Point(1598, 64);
+            label1.Location = new Point(1223, 61);
             label1.Name = "label1";
             label1.Size = new Size(435, 55);
             label1.TabIndex = 5;
@@ -143,7 +143,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1370, 749);
+            ClientSize = new Size(1681, 1083);
             Controls.Add(label1);
             Controls.Add(flpAnnouncements);
             Controls.Add(menuStrip1);

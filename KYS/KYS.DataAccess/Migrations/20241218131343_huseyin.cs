@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KYS.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class İlkKurulum : Migration
+    public partial class huseyin : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +18,7 @@ namespace KYS.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShortCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeathDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Biography = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -39,6 +40,7 @@ namespace KYS.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShortCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -66,7 +68,7 @@ namespace KYS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publisher",
+                name: "Publishers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -78,7 +80,7 @@ namespace KYS.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Publisher", x => x.Id);
+                    table.PrimaryKey("PK_Publishers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,7 +110,6 @@ namespace KYS.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PublishedYear = table.Column<int>(type: "int", nullable: false),
                     Pages = table.Column<int>(type: "int", nullable: false),
                     CopiesAvailable = table.Column<int>(type: "int", nullable: false),
@@ -116,10 +117,10 @@ namespace KYS.DataAccess.Migrations
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AvailabilityStatus = table.Column<bool>(type: "bit", nullable: false),
+                    ShelfLocation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PublicherID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PublisherId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PublisherID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -140,28 +141,30 @@ namespace KYS.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Books_Publisher_PublisherId",
-                        column: x => x.PublisherId,
-                        principalTable: "Publisher",
-                        principalColumn: "Id");
+                        name: "FK_Books_Publishers_PublisherID",
+                        column: x => x.PublisherID,
+                        principalTable: "Publishers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BorrowRecords",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BorrowRecords", x => new { x.BookID, x.UserID });
+                    table.PrimaryKey("PK_BorrowRecords", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BorrowRecords_Books_BookID",
                         column: x => x.BookID,
@@ -180,6 +183,7 @@ namespace KYS.DataAccess.Migrations
                 name: "Comments",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -190,7 +194,7 @@ namespace KYS.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => new { x.BookID, x.UserID });
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Comments_Books_BookID",
                         column: x => x.BookID,
@@ -216,14 +220,24 @@ namespace KYS.DataAccess.Migrations
                 column: "BookTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_PublisherId",
+                name: "IX_Books_PublisherID",
                 table: "Books",
-                column: "PublisherId");
+                column: "PublisherID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BorrowRecords_BookID",
+                table: "BorrowRecords",
+                column: "BookID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BorrowRecords_UserID",
                 table: "BorrowRecords",
                 column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_BookID",
+                table: "Comments",
+                column: "BookID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserID",
@@ -256,7 +270,7 @@ namespace KYS.DataAccess.Migrations
                 name: "BookTypes");
 
             migrationBuilder.DropTable(
-                name: "Publisher");
+                name: "Publishers");
         }
     }
 }

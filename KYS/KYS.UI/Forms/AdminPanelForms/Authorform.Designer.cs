@@ -142,6 +142,7 @@
             pictureBoxPhoto.Margin = new Padding(3, 4, 3, 4);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(187, 200);
+            pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPhoto.TabIndex = 16;
             pictureBoxPhoto.TabStop = false;
             pictureBoxPhoto.Click += pictureBoxPhoto_Click;
@@ -238,8 +239,8 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Font = new Font("Segoe UI", 16F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Authorform";
             Text = "Authorform";

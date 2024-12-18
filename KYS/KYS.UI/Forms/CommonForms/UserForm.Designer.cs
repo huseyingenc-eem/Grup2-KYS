@@ -43,6 +43,7 @@
             btnKaydet = new Button();
             btnGüncelle = new Button();
             btnSil = new Button();
+            btnExporter = new Button();
             SuspendLayout();
             // 
             // txtName
@@ -153,7 +154,7 @@
             lstUsers.Location = new Point(485, 76);
             lstUsers.Margin = new Padding(5, 6, 5, 6);
             lstUsers.Name = "lstUsers";
-            lstUsers.Size = new Size(354, 544);
+            lstUsers.Size = new Size(354, 394);
             lstUsers.TabIndex = 15;
             lstUsers.MouseClick += lstUsers_MouseClick;
             lstUsers.DrawItem += lstUsers_DrawItem;
@@ -162,7 +163,6 @@
             // 
             // btnKaydet
             // 
-            btnKaydet.Location = new Point(316, 397);
             btnKaydet.Image = (Image)resources.GetObject("btnKaydet.Image");
             btnKaydet.ImageAlign = ContentAlignment.MiddleLeft;
             btnKaydet.Location = new Point(341, 420);
@@ -177,13 +177,12 @@
             // 
             // btnGüncelle
             // 
-            btnGüncelle.Location = new Point(66, 397);
             btnGüncelle.Image = (Image)resources.GetObject("btnGüncelle.Image");
             btnGüncelle.ImageAlign = ContentAlignment.MiddleLeft;
             btnGüncelle.Location = new Point(33, 420);
             btnGüncelle.Margin = new Padding(3, 4, 3, 4);
             btnGüncelle.Name = "btnGüncelle";
-            btnGüncelle.Size = new Size(119, 46);
+            btnGüncelle.Size = new Size(136, 46);
             btnGüncelle.TabIndex = 18;
             btnGüncelle.Text = "Güncelle";
             btnGüncelle.TextAlign = ContentAlignment.MiddleRight;
@@ -192,7 +191,6 @@
             // 
             // btnSil
             // 
-            btnSil.Location = new Point(191, 397);
             btnSil.Image = (Image)resources.GetObject("btnSil.Image");
             btnSil.ImageAlign = ContentAlignment.MiddleLeft;
             btnSil.Location = new Point(193, 420);
@@ -204,12 +202,23 @@
             btnSil.UseVisualStyleBackColor = true;
             btnSil.Click += btnSil_Click;
             // 
+            // btnExporter
+            // 
+            btnExporter.Location = new Point(692, 471);
+            btnExporter.Name = "btnExporter";
+            btnExporter.Size = new Size(147, 43);
+            btnExporter.TabIndex = 20;
+            btnExporter.Text = "Dışarı Aktar";
+            btnExporter.UseVisualStyleBackColor = true;
+            btnExporter.Click += btnExporter_Click;
+            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 749);
+            ClientSize = new Size(887, 526);
+            Controls.Add(btnExporter);
             Controls.Add(btnSil);
             Controls.Add(btnGüncelle);
             Controls.Add(btnKaydet);
@@ -251,5 +260,6 @@
         private Button btnKaydet;
         private Button btnGüncelle;
         private Button btnSil;
+        private Button btnExporter;
     }
 }

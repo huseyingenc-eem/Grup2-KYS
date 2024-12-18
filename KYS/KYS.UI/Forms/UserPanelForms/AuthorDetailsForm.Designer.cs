@@ -78,7 +78,7 @@
             lstYazar.Location = new Point(26, 131);
             lstYazar.Margin = new Padding(6);
             lstYazar.Name = "lstYazar";
-            lstYazar.Size = new Size(311, 676);
+            lstYazar.Size = new Size(311, 564);
             lstYazar.TabIndex = 2;
             lstYazar.MouseClick += lstYazar_MouseClick;
             lstYazar.DrawItem += lstYazar_DrawItem;
@@ -93,7 +93,7 @@
             lstKitap.Location = new Point(12, 387);
             lstKitap.Margin = new Padding(6);
             lstKitap.Name = "lstKitap";
-            lstKitap.Size = new Size(482, 284);
+            lstKitap.Size = new Size(482, 200);
             lstKitap.TabIndex = 3;
             lstKitap.MouseClick += lstKitap_MouseClick;
             lstKitap.DrawItem += lstKitap_DrawItem;
@@ -128,14 +128,14 @@
             groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(6);
-            groupBox1.Size = new Size(515, 782);
+            groupBox1.Size = new Size(515, 670);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Yazar Hakkında";
             // 
             // btnSendToBook
             // 
-            btnSendToBook.Location = new Point(35, 699);
+            btnSendToBook.Location = new Point(49, 603);
             btnSendToBook.Margin = new Padding(6);
             btnSendToBook.Name = "btnSendToBook";
             btnSendToBook.Size = new Size(445, 43);
@@ -241,7 +241,7 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 749);
+            ClientSize = new Size(887, 713);
             Controls.Add(groupBox1);
             Controls.Add(lstYazar);
             Controls.Add(label1);

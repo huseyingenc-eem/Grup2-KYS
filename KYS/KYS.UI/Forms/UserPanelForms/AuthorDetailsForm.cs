@@ -205,7 +205,7 @@ namespace KYS.UI.Forms
                         return;
                     }
                 }
-                adminPanel.ShowFormWithAlignment(newBookDetailForm, false);
+                //adminPanel.ShowFormWithAlignment(newBookDetailForm, false);
                 newBookDetailForm.MdiParent = this.MdiParent;
                 newBookDetailForm.Show();
             }

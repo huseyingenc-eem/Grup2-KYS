@@ -38,9 +38,16 @@ namespace KYS.UI.Forms.UserPanelForms
                 BookName = records.Book?.Name ?? "Belirtilmemiş",
                 BorrowDate = records.CreatedDate.ToString("dd-MM-yyyy"),
                 DueDate = records.BorrowDate?.ToString("dd-MM-yyyy") ?? "Belirtilmemiş",
-                ReturnDate = records.ReturnDate?.ToString("dd-MM-yyyy") ?? "Teslim Edilmedi", // Geri getirilen tarih
+                ReturnDate = records.ReturnDate?.ToString("dd-MM-yyyy") ?? "Teslim Edilmedi",
                 Status = records.Status
             }).ToList();
+
+            // Sütun başlıklarını özelleştir
+            dgvBorrowRecords.Columns["BookName"].HeaderText = "Kitap Adı";
+            dgvBorrowRecords.Columns["BorrowDate"].HeaderText = "Ödünç Alma Tarihi";
+            dgvBorrowRecords.Columns["DueDate"].HeaderText = "Son Teslim Tarihi";
+            dgvBorrowRecords.Columns["ReturnDate"].HeaderText = "İade Tarihi";
+            dgvBorrowRecords.Columns["Status"].HeaderText = "Durum";
         }
         
 

@@ -12,13 +12,14 @@ namespace KYS.UI.Forms.UserPanelForms
     {
         private readonly BookService _bookService;
         private readonly BookTypeService _bookTypeService;
-
-        public BookSearchForm()
+        private Form _parentForm;
+        public BookSearchForm(Form parentForm)
         {
             InitializeComponent();
             var dbContext = new ApplicationDBContext();
             _bookService = new BookService(new BookRepository(dbContext));
             _bookTypeService = new BookTypeService(new BookTypeRepository(dbContext));
+            _parentForm = parentForm;
         }
 
         private void BookSearchForm_Load(object sender, EventArgs e)
@@ -167,43 +168,26 @@ namespace KYS.UI.Forms.UserPanelForms
         private void BookDetailUpdate(BookDetailForm newBookDetailForm, Book selectedBook)
         {
 
-            if (this.MdiParent is UserPanel userPanel)
+            if (_parentForm is UserPanel userPanel)
             {
-                
-                // Zaten açık bir BookDetailForm var mı kontrol et
-                foreach (Form openForm in Application.OpenForms)
+                foreach (Form childForm in userPanel.MdiChildren)
                 {
-                    if (openForm is BookDetailForm bookDetailForm)
+                    if (childForm is BookDetailForm bookDetailForm)
                     {
-                        // Açık olan formu güncelle
                         bookDetailForm.selectedBook = selectedBook;
                         bookDetailForm.BookDetailUpdate();
                         bookDetailForm.BringToFront();
                         return;
                     }
                 }
+                newBookDetailForm.MdiParent = userPanel;
                 userPanel.ShowFormWithAlignment(newBookDetailForm, false);
-                newBookDetailForm.MdiParent = this.MdiParent;
                 newBookDetailForm.Show();
             }
-            if (this.MdiParent is AdminPanel adminPanel)
+            else if (_parentForm is AdminPanel adminPanel)
             {
-
-                // Zaten açık bir BookDetailForm var mı kontrol et
-                foreach (Form openForm in Application.OpenForms)
-                {
-                    if (openForm is BookDetailForm bookDetailForm)
-                    {
-                        // Açık olan formu güncelle
-                        bookDetailForm.selectedBook = selectedBook;
-                        bookDetailForm.BookDetailUpdate();
-                        bookDetailForm.BringToFront();
-                        return;
-                    }
-                }
-                adminPanel.ShowFormWithAlignment(newBookDetailForm, false);
-                newBookDetailForm.MdiParent = this.MdiParent;
-                newBookDetailForm.Show();
+                //adminPanel.ResizeAdminPanel(true);
+                adminPanel.ShowBookDetailsInPanel(selectedBook);
             }
         }
 

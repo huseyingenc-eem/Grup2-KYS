@@ -55,9 +55,7 @@ namespace KYS.Business.Services
 
         public void Update(BorrowRecord entity)
         {
-            //
-
-            if (entity == null) 
+            if (entity != null) 
                 _bRepository.Update(entity);
 
         }

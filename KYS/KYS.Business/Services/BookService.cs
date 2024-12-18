@@ -57,7 +57,7 @@ namespace KYS.Business.Services
 
         public void Update(Book entity)
         {
-            ValidationControl(entity);
+            //ValidationControl(entity);
 
             _bookRepository.Update(entity);
         }

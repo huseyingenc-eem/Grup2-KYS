@@ -159,10 +159,11 @@ namespace KYS.DataAccess.Migrations
 
             modelBuilder.Entity("KYS.Entities.Models.BorrowRecord", b =>
                 {
-                    b.Property<Guid>("BookID")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserID")
+                    b.Property<Guid>("BookID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("BorrowDate")
@@ -177,13 +178,18 @@ namespace KYS.DataAccess.Migrations
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("BookID", "UserID");
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookID");
 
                     b.HasIndex("UserID");
 

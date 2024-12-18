@@ -2,6 +2,7 @@
 using KYS.DataAccess.Context;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using KYS.UI.Helpers;
 using System.Text;
 
 namespace KYS.UI.Forms
@@ -265,7 +266,7 @@ namespace KYS.UI.Forms
             if (pictureBoxPhoto.Image == null) // Eğer resim yoksa yazı göster
             {
                 string text = "Resim eklemek için tıklayınız";
-                Font font = new Font("Arial", 15, FontStyle.Bold);
+                Font font = new Font("Arial", 10, FontStyle.Bold);
                 SizeF textSize = e.Graphics.MeasureString(text, font);
 
                 // Yazıyı PictureBox'ın ortasına hizala
@@ -276,6 +277,25 @@ namespace KYS.UI.Forms
             }
         }
 
-        
+        private void btnExporter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var books = _bookService.GetAll();
+
+                if (books == null || !books.Any())
+                {
+                    MessageBox.Show("Herhangi bir kullanıcı verisi bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // GenericExporter ile veriyi dışa aktar
+                GenericExporter.ExportToExcel(books);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

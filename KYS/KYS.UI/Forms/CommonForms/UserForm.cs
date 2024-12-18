@@ -253,6 +253,27 @@ namespace KYS.UI.Forms
                 lstUsers.Invalidate(); // ListBox'ı yeniden çiz
             }
         }
+
+        private void btnExporter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var users = _userService.GetAll().Where(x=>x.IsAdmin!=SessionManager.CurrentUser.IsAdmin);
+
+                if (users == null || !users.Any())
+                {
+                    MessageBox.Show("Herhangi bir kullanıcı verisi bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // GenericExporter ile veriyi dışa aktar
+                GenericExporter.ExportToExcel(users);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
 

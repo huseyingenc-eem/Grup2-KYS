@@ -50,7 +50,7 @@
             // 
             // pictureBoxPhoto
             // 
-            pictureBoxPhoto.Location = new Point(37, 107);
+            pictureBoxPhoto.Location = new Point(35, 107);
             pictureBoxPhoto.Name = "pictureBoxPhoto";
             pictureBoxPhoto.Size = new Size(303, 307);
             pictureBoxPhoto.SizeMode = PictureBoxSizeMode.Zoom;
@@ -86,7 +86,7 @@
             // 
             lblBookName.AutoSize = true;
             lblBookName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblBookName.Location = new Point(35, 495);
+            lblBookName.Location = new Point(35, 438);
             lblBookName.Name = "lblBookName";
             lblBookName.Size = new Size(97, 25);
             lblBookName.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             lblAuthor.AutoSize = true;
             lblAuthor.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            lblAuthor.Location = new Point(35, 559);
+            lblAuthor.Location = new Point(35, 502);
             lblAuthor.Name = "lblAuthor";
             lblAuthor.Size = new Size(99, 25);
             lblAuthor.TabIndex = 5;
@@ -144,15 +144,17 @@
             // 
             // txtBookName
             // 
-            txtBookName.Location = new Point(142, 491);
+            txtBookName.Location = new Point(142, 434);
             txtBookName.Name = "txtBookName";
+            txtBookName.ReadOnly = true;
             txtBookName.Size = new Size(198, 29);
             txtBookName.TabIndex = 11;
             // 
             // txtAuthorName
             // 
-            txtAuthorName.Location = new Point(142, 555);
+            txtAuthorName.Location = new Point(142, 498);
             txtAuthorName.Name = "txtAuthorName";
+            txtAuthorName.ReadOnly = true;
             txtAuthorName.Size = new Size(198, 29);
             txtAuthorName.TabIndex = 12;
             // 
@@ -168,11 +170,11 @@
             // 
             btnSave.BackColor = SystemColors.GradientActiveCaption;
             btnSave.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnSave.Location = new Point(624, 631);
+            btnSave.Location = new Point(589, 487);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(215, 40);
             btnSave.TabIndex = 14;
-            btnSave.Text = "Kitabı Ödünç Al";
+            btnSave.Text = "Kitabı Ayırt";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
@@ -180,7 +182,7 @@
             // 
             btnCancel.BackColor = SystemColors.GradientActiveCaption;
             btnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnCancel.Location = new Point(400, 631);
+            btnCancel.Location = new Point(365, 487);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(93, 40);
             btnCancel.TabIndex = 15;
@@ -191,9 +193,9 @@
             // lblMessage
             // 
             lblMessage.BackColor = SystemColors.GradientActiveCaption;
-            lblMessage.Location = new Point(400, 370);
+            lblMessage.Location = new Point(365, 333);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(439, 240);
+            lblMessage.Size = new Size(439, 81);
             lblMessage.TabIndex = 17;
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -202,7 +204,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 749);
+            ClientSize = new Size(847, 586);
             Controls.Add(lblMessage);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);

@@ -250,7 +250,7 @@ namespace KYS.UI.Forms
             if (pictureBoxPhoto.Image == null) // Eğer resim yoksa yazı göster
             {
                 string text = "Resim eklemek için tıklayınız";
-                Font font = new Font("Arial", 15, FontStyle.Bold);
+                Font font = new Font("Arial", 10, FontStyle.Bold);
                 SizeF textSize = e.Graphics.MeasureString(text, font);
 
                 // Yazıyı PictureBox'ın ortasına hizala

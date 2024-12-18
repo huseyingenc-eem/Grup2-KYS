@@ -35,25 +35,25 @@ namespace KYS.UI.Forms.PanelForms
         }
         public class CustomMenuRenderer : ToolStripProfessionalRenderer
         {
-            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
-            {
-                base.OnRenderMenuItemBackground(e);
+            //protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            //{
+            //    base.OnRenderMenuItemBackground(e);
 
-                if (e.Item.Owner is MenuStrip)
-                {
-                    e.Graphics.FillRectangle(Brushes.Gray, new Rectangle(Point.Empty, e.Item.Size));
-                }
-                else if (e.Item.OwnerItem != null)
-                {
-                    e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(Point.Empty, e.Item.Size));
-                }
-            }
+            //    if (e.Item.Owner is MenuStrip)
+            //    {
+            //        e.Graphics.FillRectangle(Brushes.Gray, new Rectangle(Point.Empty, e.Item.Size));
+            //    }
+            //    else if (e.Item.OwnerItem != null)
+            //    {
+            //        e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(Point.Empty, e.Item.Size));
+            //    }
+            //}
 
-            protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
-            {
-                base.OnRenderItemText(e);
-                e.TextColor = Color.White;
-            }
+            //protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+            //{
+            //    base.OnRenderItemText(e);
+            //    e.TextColor = Color.White;
+            //}
         }
         private void LoadKitapSayisi()
         {
@@ -145,135 +145,93 @@ namespace KYS.UI.Forms.PanelForms
                 Application.Restart();
                 return;
             }
-
             adSoyadToolStripMenuItem.Text = $"Hoş geldiniz, {SessionManager.CurrentUser?.Name}";
+            this.Width = _collapsedAdminPanelWidth;
         }
 
 
-
-        private void ShowChildForm(Form childForm)
+        private void ShowFormInPanel(Form childForm, string sectionName)
         {
-            bool acikMi = false;
+            // Açık olan formu kapat
+            CloseCurrentFormInPanel();
 
-            // Açık olan formları kontrol et
-            foreach (Form item in Application.OpenForms)
+            // Paneli temizle
+            pnlForms.Controls.Clear();
+            lblHeader.Text = sectionName;
+            // Yeni formu ekle ve göster
+            childForm.TopLevel = false;
+            childForm.Dock = DockStyle.Fill;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+
+            pnlForms.Controls.Add(childForm);
+            childForm.Show();
+        }
+
+        private void CloseCurrentFormInPanel()
+        {
+            this.Width=_collapsedAdminPanelWidth;
+            // pnlForms içindeki tüm kontrolleri kontrol et
+            foreach (Control control in pnlForms.Controls)
             {
-                if (item.GetType() == childForm.GetType())
+                if (control is Form form)
                 {
-                    acikMi = true;
-                    item.Activate(); // Açık olan formu etkinleştir
-                    item.BringToFront(); // Formu ön plana getir
-                    break;
+                    form.Close(); // Açık olan formu kapat
+                    break; // Tek bir form var, dolayısıyla döngüden çık
                 }
             }
-            foreach (Control control in this.Controls)
-            {
-                if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
-                {
-                    control.Visible = false; // Tüm diğer kontrolleri gizle
-                }
-            }
-            if (!acikMi)
-            {
-                childForm.FormClosed += AdminPanel_MdiChildFormClosed;
-                childForm.MdiParent = this;
-                childForm.TopMost = true;
-                childForm.Show();
-            }
-            else
-                MessageBox.Show("Form zaten açık durumda.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void AdminPanel_MdiChildFormClosed(object? sender, FormClosedEventArgs e)
-        {
-            if (this.MdiChildren.Length == 1)
-            {
-                foreach (Control control in this.Controls)
-                {
-                    if (!(control is MdiClient) && !(control is MenuStrip)) // Sadece MDI Container hariç
-                    {
-                        control.Visible = true;
-                        LoadYazarSayisi();
-                        LoadKitapTurSayisi();
-                        LoadDuyuruSayisi();
-                        LoadKullaniciSayisi();
-                        LoadYayinciSayisi();
-                        LoadKitapSayisi();
-                    }
-                }
-            }
 
-        }
-
-        public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
-        {
-            frm.StartPosition = FormStartPosition.Manual;
-
-            // MDI Parent genişlik ve yükseklik bilgilerini al
-            int parentWidth = this.ClientSize.Width;
-            int parentHeight = this.ClientSize.Height;
-
-            // Formun genişlik ve yüksekliği
-            int formWidth = frm.Width;
-            int formHeight = frm.Height;
-
-            // X koordinatını belirle
-            int x = isLeftAligned
-                ? 2 // Sola yaslı, girintili
-                : parentWidth - formWidth - 10; // Sağa yaslı, girintili
-
-            // Y koordinatını ortalamak için hesapla
-            int y = (parentHeight - formHeight) - (parentHeight - formHeight - 10);
-
-            // Formun konumunu ayarla
-            frm.Location = new Point(x, y);
-        }
         private void kullanıcıTakipEtmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserForm userForm = new UserForm();
-            ShowFormWithAlignment(userForm, true);
-            ShowChildForm(userForm);
+            ShowFormInPanel(userForm,"Kullanıcı Takip Etme");
         }
         private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookSearchForm bookSearchForm = new BookSearchForm();
-            ShowFormWithAlignment(bookSearchForm, true);
-            ShowChildForm(bookSearchForm);
+            BookSearchForm bookSearchForm = new BookSearchForm(this);
+            ShowFormInPanel(bookSearchForm,"Kitap Arama Ekranı");
         }
         private void kitapEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookForm bookForm = new BookForm();
-            ShowFormWithAlignment(bookForm, true);
-            ShowChildForm(bookForm);
+            ShowFormInPanel(bookForm,"Kitap Ekle");
         }
 
         private void türEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookTypeForm bookTypeForm = new BookTypeForm();
-            ShowFormWithAlignment(bookTypeForm, true);
-            ShowChildForm(bookTypeForm);
+            ShowFormInPanel(bookTypeForm,"Tür Ekle");
         }
         private void yazarEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Authorform authorForm = new Authorform();
-            ShowFormWithAlignment(authorForm, true);
-            ShowChildForm(authorForm);
+            ShowFormInPanel(authorForm,"Yazar Ekle");
         }
         private void yayıncıEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PublisherForm publisherForm = new PublisherForm();
-            ShowFormWithAlignment(publisherForm, true);
-            ShowChildForm(publisherForm);
+            ShowFormInPanel(publisherForm,"Yayıncı Ekle");
         }
 
         private void duyuruEkleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AnnouncementForm announcementForm = new AnnouncementForm();
-            ShowFormWithAlignment(announcementForm, true);
-            ShowChildForm(announcementForm);
+            ShowFormInPanel(announcementForm,"Duyuru Ekle");
         }
 
+        private void adminBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProfileForm profileForm = new ProfileForm();
+            ShowFormInPanel(profileForm,"Admin Bilgileri");
+        }
 
+        private void ödünçAlınanKitaplarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            AdminBorrowRecord adminBorrowRecord = new AdminBorrowRecord();
+            ShowFormInPanel(adminBorrowRecord,"Ödünç kitap Ekranı");
+        }
 
         private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -284,63 +242,26 @@ namespace KYS.UI.Forms.PanelForms
         {
             Application.Exit();
         }
-
-        private void adminBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
+        public void ShowBookDetailsInPanel(Book book)
         {
-            ProfileForm profileForm = new ProfileForm();
-            ShowFormWithAlignment(profileForm, false);
-            ShowChildForm(profileForm);
+            pnlYardimci.Controls.Clear(); // Paneli temizle
+
+            // Yeni BookDetailForm oluştur ve parametreyi ayarla
+            BookDetailForm detailForm = new BookDetailForm(BookDetailFormMod.Admin)
+            {
+                selectedBook = book
+            };
+
+            // Form ayarları
+            detailForm.TopLevel = false;
+            detailForm.Dock = DockStyle.Fill;
+            detailForm.FormBorderStyle = FormBorderStyle.None;
+            this.Width = _defaultAdminPanelWidth;
+            pnlYardimci.Controls.Add(detailForm); // Panel içine ekle
+            detailForm.Show();
         }
+        private int _defaultAdminPanelWidth = 2200; // Varsayılan genişlik
+        private int _collapsedAdminPanelWidth = 1389; // Küçültülecek genişlik
 
-        private void ExportaData(List<User> users)
-        {
-            try
-            {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                {
-                    saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.Title = "Verileri Dışa Aktar";
-                    saveFileDialog.DefaultExt = "xlsx";
-                    saveFileDialog.AddExtension = true;
-
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string filePath = saveFileDialog.FileName;
-
-                        // Örnek veri (herhangi bir tip olabilir)
-                        var userList = _userService.GetAll().Cast<object>().ToList();
-
-                        if (filePath.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
-                        {
-                            GenericExporter.ExportToExcel(userList, filePath);
-                            MessageBox.Show("Veriler Excel olarak dışa aktarıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ödünçAlınanKitaplarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                AdminBorrowRecord adminBorrowRecord = new AdminBorrowRecord();
-                adminBorrowRecord.MdiParent = this;
-
-                ShowFormWithAlignment(adminBorrowRecord, false);
-                ShowChildForm(adminBorrowRecord);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Hata oluştu: {ex.Message}");
-            }
-
-        }
     }
 }

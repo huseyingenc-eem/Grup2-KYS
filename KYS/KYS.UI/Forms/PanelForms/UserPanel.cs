@@ -136,9 +136,9 @@ namespace KYS.UI.Forms.PanelForms
         }
         private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookSearchForm bookSearch = new BookSearchForm();
+            BookSearchForm bookSearch = new BookSearchForm(this);
             bookSearch.MdiParent = this;
-            
+
             ShowFormWithAlignment(bookSearch, true);
             FormControl(bookSearch);
 

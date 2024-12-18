@@ -15,7 +15,7 @@ namespace KYS.UI.Forms
 
         User currentUser = SessionManager.CurrentUser;
 
-        private const int _defaultBorrowDuration = 14;
+        private const int _defaultBorrowDuration = 1;
 
         public BorrowRecordForm()
         {
@@ -47,7 +47,7 @@ namespace KYS.UI.Forms
             dtpReturnDate.Enabled = false;
             // Ödünç alma tarihini ve mesajı ayarla
             dtpBorrowDate.Value = DateTime.Now;
-            lblMessage.Text = $"Bu kitabı {_defaultBorrowDuration} gün içinde iade etmelisiniz!";
+            lblMessage.Text = $"Bu kitabı ayırttıktan sonra {_defaultBorrowDuration} gün içinde almalısınız!!!!\nAldıktan sonra 14 gün içinde iade etmelisiniz.";
 
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -69,13 +69,13 @@ namespace KYS.UI.Forms
 
                 if (existingRecord != null)
                 {
-                    throw new Exception("Bu kitabı zaten ayırtıldınız veya ödünç aldınız! Aynı kitabı birden fazla ödünç alamazsınız.");
+                    throw new Exception("Bu kitabı zaten ayırtdınız veya ödünç aldınız! Aynı kitabı birden fazla kez alamazsınız.");
                 }
                 var borrowRecord = new BorrowRecord
                 {
                     BookID = borrowBook.Id,
                     UserID = currentUser.Id,
-                    
+                    Status=BorrowStatus.Ayırtıldı
                 };
 
                 _borrowRecordService.Create(borrowRecord);

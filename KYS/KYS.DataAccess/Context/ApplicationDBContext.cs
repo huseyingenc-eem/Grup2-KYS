@@ -24,21 +24,7 @@ namespace KYS.DataAccess.Context
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-            //OrderDetail tablosunun ID alınını iptal edeceğiz:
-            modelBuilder.Entity<BorrowRecord>().Ignore(x => x.Id);
-
-            //Bunun yerine ProductID ve OrderID alanlarını Composite Key yapacağız:
-            modelBuilder.Entity<BorrowRecord>().HasKey(b => new
-            {
-                b.BookID,
-                b.UserID
-            });
-
-
-        }
+        
 
     }
 }
