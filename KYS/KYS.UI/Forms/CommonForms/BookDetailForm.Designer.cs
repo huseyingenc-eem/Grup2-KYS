@@ -53,6 +53,7 @@
             txtCommentContent = new TextBox();
             btnSubmitComment = new Button();
             label8 = new Label();
+            btnGeri = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCover).BeginInit();
             grpBoxBookDetail.SuspendLayout();
             SuspendLayout();
@@ -292,12 +293,24 @@
             label8.Text = "Kitaba Hızlı Yorum Yaz";
             label8.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnGeri
+            // 
+            btnGeri.Font = new Font("Segoe UI", 10F);
+            btnGeri.Location = new Point(12, 10);
+            btnGeri.Name = "btnGeri";
+            btnGeri.Size = new Size(102, 24);
+            btnGeri.TabIndex = 12;
+            btnGeri.Text = "Geri";
+            btnGeri.UseVisualStyleBackColor = true;
+            btnGeri.Click += btnGeri_Click;
+            // 
             // BookDetailForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
             ClientSize = new Size(887, 731);
+            Controls.Add(btnGeri);
             Controls.Add(label8);
             Controls.Add(btnSubmitComment);
             Controls.Add(txtCommentContent);
@@ -346,5 +359,6 @@
         private Button btnSubmitComment;
         private Label label8;
         private Label label9;
+        private Button btnGeri;
     }
 }

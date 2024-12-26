@@ -158,7 +158,8 @@ namespace KYS.UI.Forms.UserPanelForms
                 {
                     newBookDetailForm = new BookDetailForm(BookDetailFormMod.Register)
                     {
-                        selectedBook = book
+                        selectedBook = book,
+                        ReturnTo = ReturnTarget.BookSearch
                     };
                 }
                 BookDetailUpdate(newBookDetailForm, book);
@@ -170,19 +171,8 @@ namespace KYS.UI.Forms.UserPanelForms
 
             if (_parentForm is UserPanel userPanel)
             {
-                foreach (Form childForm in userPanel.MdiChildren)
-                {
-                    if (childForm is BookDetailForm bookDetailForm)
-                    {
-                        bookDetailForm.selectedBook = selectedBook;
-                        bookDetailForm.BookDetailUpdate();
-                        bookDetailForm.BringToFront();
-                        return;
-                    }
-                }
-                newBookDetailForm.MdiParent = userPanel;
-                userPanel.ShowFormWithAlignment(newBookDetailForm, false);
-                newBookDetailForm.Show();
+                
+                userPanel.ShowFormInUserPanel(newBookDetailForm, "Kitap Detayı");
             }
             else if (_parentForm is AdminPanel adminPanel)
             {

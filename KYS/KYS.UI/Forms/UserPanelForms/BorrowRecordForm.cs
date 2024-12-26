@@ -63,9 +63,10 @@ namespace KYS.UI.Forms
                 {
                     throw new Exception("Kitap ödünç alamazsınız çünkü ödünç alma hakkınız kalmadı!");
                 }
-                var existingRecord = _borrowRecordService.GetAll()
-                    .FirstOrDefault(r => r.UserID == currentUser.Id
-                                    && r.BookID == borrowBook.Id);
+                var existingRecord = _borrowRecordService.GetAll().FirstOrDefault(r =>
+                    r.UserID == currentUser.Id
+                     && r.BookID == borrowBook.Id
+                     && (r.Status == BorrowStatus.Ayırtıldı || r.Status == BorrowStatus.ÖdünçVerildi));
 
                 if (existingRecord != null)
                 {

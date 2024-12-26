@@ -49,7 +49,7 @@
             dgvBorrowRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBorrowRecords.Location = new Point(26, 92);
             dgvBorrowRecords.Name = "dgvBorrowRecords";
-            dgvBorrowRecords.Size = new Size(640, 172);
+            dgvBorrowRecords.Size = new Size(640, 213);
             dgvBorrowRecords.TabIndex = 1;
             // 
             // label1

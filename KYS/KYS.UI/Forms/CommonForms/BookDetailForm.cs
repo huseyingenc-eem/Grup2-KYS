@@ -12,7 +12,11 @@ namespace KYS.UI.Forms.UserPanelForms
     {
         private readonly CommentService _commentService;
 
-
+        public enum ReturnTarget
+        {
+            BookSearch,
+            AuthorForm
+        }
         public Book? selectedBook { get; set; }
         public enum BookDetailFormMod
         {
@@ -30,10 +34,12 @@ namespace KYS.UI.Forms.UserPanelForms
             if (mode == BookDetailFormMod.Register)
             {
                 btnBorrowBook.Visible = true;
+                btnGeri.Visible = true;
             }
             else if (mode == BookDetailFormMod.Admin)
             {
                 btnBorrowBook.Visible = false;
+                btnGeri.Visible = false;
             }
         }
 
@@ -197,7 +203,12 @@ namespace KYS.UI.Forms.UserPanelForms
 
 
         }
-        
-
+        public event EventHandler BookDetailClosed; // Bir event tanımlayın
+        public ReturnTarget ReturnTo { get; set; } = ReturnTarget.BookSearch;
+        private void btnGeri_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            BookDetailClosed?.Invoke(this, EventArgs.Empty); // Olayı tetikle
+        }
     }
 }

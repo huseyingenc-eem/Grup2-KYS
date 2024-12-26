@@ -39,7 +39,7 @@
             dgvCommentRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCommentRecords.Location = new Point(25, 101);
             dgvCommentRecords.Name = "dgvCommentRecords";
-            dgvCommentRecords.Size = new Size(840, 700);
+            dgvCommentRecords.Size = new Size(659, 348);
             dgvCommentRecords.TabIndex = 3;
             // 
             // txtSearch
@@ -56,7 +56,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 749);
+            ClientSize = new Size(718, 483);
             Controls.Add(dgvCommentRecords);
             Controls.Add(txtSearch);
             Icon = (Icon)resources.GetObject("$this.Icon");

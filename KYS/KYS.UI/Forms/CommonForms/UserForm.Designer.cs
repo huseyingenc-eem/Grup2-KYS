@@ -154,7 +154,7 @@
             lstUsers.Location = new Point(485, 76);
             lstUsers.Margin = new Padding(5, 6, 5, 6);
             lstUsers.Name = "lstUsers";
-            lstUsers.Size = new Size(354, 394);
+            lstUsers.Size = new Size(319, 394);
             lstUsers.TabIndex = 15;
             lstUsers.MouseClick += lstUsers_MouseClick;
             lstUsers.DrawItem += lstUsers_DrawItem;
@@ -204,7 +204,7 @@
             // 
             // btnExporter
             // 
-            btnExporter.Location = new Point(692, 471);
+            btnExporter.Location = new Point(657, 471);
             btnExporter.Name = "btnExporter";
             btnExporter.Size = new Size(147, 43);
             btnExporter.TabIndex = 20;
@@ -217,7 +217,7 @@
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(887, 526);
+            ClientSize = new Size(823, 526);
             Controls.Add(btnExporter);
             Controls.Add(btnSil);
             Controls.Add(btnGüncelle);

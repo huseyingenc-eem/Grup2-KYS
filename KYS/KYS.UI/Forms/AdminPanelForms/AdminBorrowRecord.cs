@@ -93,55 +93,57 @@ namespace KYS.UI.Forms.AdminPanelForms
             // DataGridView'den seçili satırı al
             if (dgvBorrowRecords.SelectedRows.Count > 0)
             {
-                // Seçili satırdaki BorrowRecord ID'sini al
                 int selectedRowIndex = dgvBorrowRecords.SelectedRows[0].Index;
-                var bookId = Guid.Parse(dgvBorrowRecords.Rows[selectedRowIndex].Cells["BookID"].Value.ToString());
-                var userId = Guid.Parse(dgvBorrowRecords.Rows[selectedRowIndex].Cells["UserID"].Value.ToString());
 
-                // Onay mesajı
+                // BorrowRecord ID'sini al
+                var borrowRecordId = Guid.Parse(dgvBorrowRecords.Rows[selectedRowIndex].Cells["BorrowRecordID"].Value.ToString());
+
                 var confirmResult = MessageBox.Show("Bu kaydı iade almak istediğinize emin misiniz?", "İade Onayı", MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    // 1. BorrowRecord'ı güncelle
-                    var borrowRecord = _borrowRecordService.GetAll()
-                        .FirstOrDefault(r => r.BookID == bookId && r.UserID == userId && r.Status == BorrowStatus.ÖdünçVerildi);
+                    // BorrowRecord kaydını getir
+                    var borrowRecord = _borrowRecordService.GetByID(borrowRecordId);
 
-                    if (borrowRecord != null)
+                    if (borrowRecord == null)
                     {
-
-
-                        borrowRecord.Status = BorrowStatus.GeriAlındı;
-                        borrowRecord.ReturnDate = DateTime.Now;
-
-                        _borrowRecordService.Update(borrowRecord);
-                        var user = _userService.GetByID(userId);
-                        if (user != null)
-                        {
-                            user.MaxBorrowLimit++; // Kullanıcının kitap alma hakkını artır
-                            _userService.Update(user);
-                        }
-
-                        // 3. Kitabın kopya sayısını artır ve Available durumunu kontrol et
-                        var book = _bookService.GetByID(bookId);
-                        if (book != null)
-                        {
-                            book.CopiesAvailable++;
-                            book.AvailabilityStatus = book.CopiesAvailable > 0; // Eğer kopya sayısı sıfırdan büyükse Available = true
-
-                            _bookService.Update(book);
-                            LoadAllRecordBooks();
-                        }
-                        // 2. Kullanıcının kitap alma hakkını artır
-
-
-                        MessageBox.Show("Kitap başarıyla iade alındı.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        cmbSearch.SelectedIndex = 0; // Güncel kayıtları yükle
-
+                        MessageBox.Show("Seçilen kayıt bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                    else
+
+                    if (borrowRecord.Status != BorrowStatus.ÖdünçVerildi)
                     {
-                        MessageBox.Show("İlgili kayıt bulunamadı veya zaten iade alınmış.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Seçilen kayıt zaten iade alınmış veya uygun değil.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
+
+                    // BorrowRecord'u güncelle
+                    borrowRecord.Status = BorrowStatus.GeriAlındı;
+                    borrowRecord.ReturnDate = DateTime.Now;
+
+                    _borrowRecordService.Update(borrowRecord);
+
+                    // Kullanıcıyı güncelle
+                    var user = _userService.GetByID(borrowRecord.UserID);
+                    if (user != null)
+                    {
+                        user.MaxBorrowLimit++;
+                        _userService.Update(user);
+                    }
+
+                    // Kitabı güncelle
+                    var book = _bookService.GetByID(borrowRecord.BookID);
+                    if (book != null)
+                    {
+                        book.CopiesAvailable++;
+                        book.AvailabilityStatus = book.CopiesAvailable > 0;
+
+                        _bookService.Update(book);
+                    }
+
+                    MessageBox.Show("Kitap başarıyla iade alındı.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Tabloyu yenile
+                    LoadAllRecordBooks();
                 }
             }
             else
@@ -301,12 +303,7 @@ namespace KYS.UI.Forms.AdminPanelForms
                     return;
                 }
 
-                // Kitabın kopya sayısını kontrol et
-                if (book.CopiesAvailable <= 0)
-                {
-                    MessageBox.Show("Seçilen kitapta yeterli kopya yok.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
 
                 // Kaydın durumunu güncelle
                 borrowRecord.Status = BorrowStatus.ÖdünçVerildi;
@@ -316,13 +313,10 @@ namespace KYS.UI.Forms.AdminPanelForms
                 // Kullanıcının kitap alma hakkını azalt
                 user.MaxBorrowLimit--;
 
-                // Kitabın kopya sayısını azalt
-                book.CopiesAvailable--;
 
                 // Değişiklikleri kaydet
                 _borrowRecordService.Update(borrowRecord); // BorrowRecord güncelle
                 _userService.Update(user); // Kullanıcı güncelle
-                _bookService.Update(book); // Kitap güncelle
 
                 MessageBox.Show("Kitap başarıyla ödünç verildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cmbSearch.SelectedIndex = 0; // DataGrid'i yenile

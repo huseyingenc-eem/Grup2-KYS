@@ -6,6 +6,7 @@ using KYS.UI.Helpers;
 using static KYS.UI.Forms.UserPanelForms.BookDetailForm;
 using System.Drawing;
 using System.Windows.Forms;
+using KYS.Entities.Models;
 
 namespace KYS.UI.Forms.PanelForms
 {
@@ -43,11 +44,11 @@ namespace KYS.UI.Forms.PanelForms
 
                 if (e.Item.Owner is MenuStrip)
                 {
-                    e.Graphics.FillRectangle(Brushes.Gray, new Rectangle(Point.Empty, e.Item.Size));
+                    e.Graphics.FillRectangle(Brushes.CadetBlue, new Rectangle(Point.Empty, e.Item.Size));
                 }
                 else if (e.Item.OwnerItem != null)
                 {
-                    e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(Point.Empty, e.Item.Size));
+                    e.Graphics.FillRectangle(Brushes.CadetBlue, new Rectangle(Point.Empty, e.Item.Size));
                 }
             }
 
@@ -57,47 +58,6 @@ namespace KYS.UI.Forms.PanelForms
                 e.TextColor = Color.White;
             }
         }
-
-        public void FormControl(Form frm)
-        {
-            bool acikMi = false;
-            foreach (Form openForm in Application.OpenForms)
-            {
-                if (openForm.GetType() == frm.GetType())
-                {
-                    acikMi = true;
-                    openForm.Activate(); // Mevcut formu etkinleştir
-                    openForm.BringToFront(); // Formu ön plana getir
-                    break;
-                }
-            }
-            foreach (Control control in this.Controls)
-            {
-                if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
-                {
-                    control.Visible = false; // Tüm diğer kontrolleri gizle
-                }
-            }
-            if (acikMi)
-            {
-                MessageBox.Show("Form Zaten Açık duurmda");
-            }
-            else
-            {
-                foreach (Control control in this.Controls)
-                {
-                    if (!(control is MdiClient) && !(control is MenuStrip)) // MDI Container ve MenuStrip hariç
-                    {
-                        control.Visible = false; // Tüm diğer kontrolleri gizle
-                    }
-                }
-                frm.FormClosed += UserPanelChildFormClosed; ;
-                frm.MdiParent = this;
-                frm.Show();
-            }
-
-        }
-
         private void UserPanelChildFormClosed(object? sender, FormClosedEventArgs e)
         {
             if (this.MdiChildren.Length == 1)
@@ -111,71 +71,92 @@ namespace KYS.UI.Forms.PanelForms
                 }
             }
         }
-        public void ShowFormWithAlignment(Form frm, bool isLeftAligned)
+        public void ShowFormInUserPanel(Form childForm, string sectionName)
         {
-            frm.StartPosition = FormStartPosition.Manual;
+            // Zaten açık olan formu kontrol edin ve kapatın
+            CloseCurrentFormInUserPanel();
 
-            // MDI Parent genişlik ve yükseklik bilgilerini al
-            int parentWidth = this.ClientSize.Width;
-            int parentHeight = this.ClientSize.Height;
+            // Paneli temizle
+            panelForm.Controls.Clear();
+            //lblHeader.Text = sectionName;
 
-            // Formun genişlik ve yüksekliği
-            int formWidth = frm.Width;
-            int formHeight = frm.Height;
+            // Yeni formu ekle ve göster
+            childForm.TopLevel = false;
+            childForm.Dock = DockStyle.Fill;
+            childForm.FormBorderStyle = FormBorderStyle.None;
 
-            // X koordinatını belirle
-            int x = isLeftAligned
-                ? 2 // Sola yaslı, girintili
-                : parentWidth - formWidth - 10; // Sağa yaslı, girintili
+            panelForm.Controls.Add(childForm);
 
-            // Y koordinatını ortalamak için hesapla
-            int y = (parentHeight - formHeight) - (parentHeight - formHeight - 10);
+            // Eğer form BookDetailForm ise, kapatılma olayını dinle
+            if (childForm is BookDetailForm bookDetailForm)
+            {
+                bookDetailForm.BookDetailClosed += BookDetailForm_BookDetailClosed; ;
+            }
 
-            // Formun konumunu ayarla
-            frm.Location = new Point(x, y);
+            childForm.Show();
+        }
+
+        private void BookDetailForm_BookDetailClosed(object? sender, EventArgs e)
+        {
+            if (sender is BookDetailForm bookDetailForm)
+            {
+                if (bookDetailForm.ReturnTo == ReturnTarget.AuthorForm)
+                {
+                    // AuthorForm'u aç
+                    AuthorDetailsForm authorDetailsForm = new AuthorDetailsForm(this);
+                    ShowFormInUserPanel(authorDetailsForm, "Yazar Bilgileri");
+                }
+                else
+                {
+                    // BookSearchForm'u aç
+                    BookSearchForm bookSearchForm = new BookSearchForm(this);
+                    ShowFormInUserPanel(bookSearchForm, "Kitap Arama Ekranı");
+                }
+            }
+        }
+
+        private void CloseCurrentFormInUserPanel()
+        {
+            foreach (Control control in panelForm.Controls)
+            {
+                if (control is Form form)
+                {
+                    form.Close(); // Mevcut formu kapat
+                    break;
+                }
+            }
         }
         private void kitapAraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookSearchForm bookSearch = new BookSearchForm(this);
-            bookSearch.MdiParent = this;
 
-            ShowFormWithAlignment(bookSearch, true);
-            FormControl(bookSearch);
+            ShowFormInUserPanel(bookSearch, "Kitap ara");
 
         }
         private void kitapHakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookDetailForm bookDetailForm = new BookDetailForm(BookDetailFormMod.Register);
-            bookDetailForm.MdiParent = this;
-            ShowFormWithAlignment(bookDetailForm, false);
-            FormControl(bookDetailForm);
 
         }
 
 
         private void yazarBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AuthorDetailsForm authorDetailsForm = new AuthorDetailsForm();
-            authorDetailsForm.MdiParent = this;
-            ShowFormWithAlignment(authorDetailsForm, true);
-            FormControl(authorDetailsForm);
+            AuthorDetailsForm authorDetailsForm = new AuthorDetailsForm(this);
+            ShowFormInUserPanel(authorDetailsForm, "Yazar Bilgileri");
         }
 
         private void kullanıcıBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProfileForm profilForm = new ProfileForm();
-            profilForm.MdiParent = this;
-            ShowFormWithAlignment(profilForm, false);
-            FormControl(profilForm);
+            ShowFormInUserPanel(profilForm, "Kullancıı Bilgileri");
 
 
         }
         private void yaptığımYorumlarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MyCommentForm myCommentForm = new MyCommentForm();
-            myCommentForm.MdiParent = this;
-            ShowFormWithAlignment(myCommentForm, false);
-            FormControl(myCommentForm);
+            ShowFormInUserPanel(myCommentForm, "Yaptığım Yorumlar");
         }
 
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,9 +172,7 @@ namespace KYS.UI.Forms.PanelForms
         private void ödünçAlmaEkranıToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BorrowRecordForm borrowRecordForm = new BorrowRecordForm();
-            borrowRecordForm.MdiParent = this;
-            ShowFormWithAlignment(borrowRecordForm, false);
-            FormControl(borrowRecordForm);
+            ShowFormInUserPanel(borrowRecordForm, "Ödünç Aldığım Kitaplar");
         }
 
         private void ödünçAldığımKitaplarToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -203,8 +182,7 @@ namespace KYS.UI.Forms.PanelForms
                 MyBorrowRecord myBorrowRecord = new MyBorrowRecord();
                 myBorrowRecord.MdiParent = this;
 
-                ShowFormWithAlignment(myBorrowRecord, false);
-                FormControl(myBorrowRecord);
+                ShowFormInUserPanel(myBorrowRecord, "Ödünç Aldığım Kitaplar");
 
             }
             catch (Exception ex)
@@ -279,5 +257,7 @@ namespace KYS.UI.Forms.PanelForms
             flpAnnouncements.VerticalScroll.Value = currentScrollPosition;
             flpAnnouncements.PerformLayout();
         }
+
+        
     }
 }

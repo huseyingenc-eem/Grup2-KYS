@@ -12,7 +12,11 @@ namespace KYS.Business.Validators
     {
         public CommentValidator()
         {
-
+            RuleFor(b => b.Content)
+                .NotEmpty()
+                .WithMessage("Yorum boş olamaz!")
+                .MinimumLength(5)
+                .WithMessage("Yorum az 5 karakter olmalıdır!");
         }
     }
 }
